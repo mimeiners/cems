@@ -19,15 +19,15 @@
 ### Scientific Computing / Data Science
 * [Python](https://www.anaconda.com/download/)
 * [Matlab](http://de.mathworks.com/?requestedDomain=de.mathworks.com)
-* [Command-line tools](http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html) 
+* [Command-line tools](https://jeroenjanssens.com/seven/) 
 
 <!-- !split -->
 ### Circuit Simulation
 * [LTspice (Analog Devices)](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html)
 * [TINA-TI (Texas Instruments)](https://www.ti.com/tool/TINA-TI)
 * [ngspice (Open Source)](http://ngspice.sourceforge.net)
-* [ELDO (Siemens EDA)](https://eda.sw.siemens.com/en-US/eldo/)
-* [Spectre (cadence)](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-simulation/spectre-simulation-platform.html)
+* [ELDO (SiemensEDA)](https://eda.sw.siemens.com/en-US/eldo/)
+* [Spectre (CADENCE)](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-simulation/spectre-simulation-platform.html)
 * [PrimeSim HSPICE (SYNOPSIS)](https://www.synopsys.com/implementation-and-signoff/ams-simulation/primesim-hspice.html)
 
 <!-- !split -->
@@ -77,7 +77,7 @@
   * [TeXMaker](http://www.xm1math.net/texmaker/)
 
 * Collaborative Frameworks
-  * [ShareLaTeX, Online LaTeX](https://www.sharelatex.com/)
+  * [Overleaf, Online LaTeX](https://www.overleaf.com/)
   * [CoCalc - Online LaTeX](https://cocalc.com/doc/latex-editor.html)
 
 
@@ -90,10 +90,6 @@
 <!-- !split -->
 ### Design Project
 *Concept and Design of a Sigma-Delta Modulator.* 
-* Specification:
-  * [TI ADS1115](http://www.ti.com/product/ADS1115/description)
-  * 
-
 * Use different description
   * System level (Model-Based-Systems-Engineering (MBSE) with Matlab, Simulink and Python)
   * Circuit level (SPICE) with behavioural blocks, e.g. OTA and comparator
@@ -116,7 +112,6 @@
   * Mathmatical description
   * SPICE modeling and simulation
   * Data analysis and validation
-  * Design report
 
 
 <!-- !split -->
@@ -146,8 +141,8 @@
 <!-- !split -->
 ### Brave New World
 <!-- !bslidecell 00 0.9 -->
-<!-- <img src="../../lecture/doconce/fig/lec_AMD@16nm@Jaguar.jpg" width="400"><p><em>AMD Jaguar APU (CPU/GPU), 16 nm, 325 qmm, 2016 <div id="fig:jaguar"></div></em></p> -->
-![<p><em>AMD Jaguar APU (CPU/GPU), 16 nm, 325 qmm, 2016 <div id="fig:jaguar"></div></em></p>](../../lecture/doconce/fig/lec_AMD@16nm@Jaguar.jpg)
+<!-- <img src="../../lecture/doconce/fig/lec1_AMD@16nm@Jaguar.jpg" width="400"><p><em>AMD Jaguar APU (CPU/GPU), 16 nm, 325 qmm, 2016 <div id="fig:jaguar"></div></em></p> -->
+![<p><em>AMD Jaguar APU (CPU/GPU), 16 nm, 325 qmm, 2016 <div id="fig:jaguar"></div></em></p>](../../lecture/doconce/fig/lec1_AMD@16nm@Jaguar.jpg)
 <!-- !eslidecell -->
 
 <!-- !split -->
@@ -155,6 +150,14 @@
 <!-- !bslidecell 00 0.9 -->
 
 <iframe width="793" height="446" src="https://www.youtube.com/embed/bor0qLifjz4?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" frameborder="0" allowfullscreen></iframe>
+
+<!-- !eslidecell -->
+
+<!-- !split -->
+### Sand to Silicon (GlobalFoundries, Desden)
+<!-- !bslidecell 00 0.9 -->
+
+<iframe width="793" height="446" src="https://www.youtube.com/embed/UvluuAIiA50?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" frameborder="0" allowfullscreen></iframe>
 
 <!-- !eslidecell -->
 
@@ -273,86 +276,86 @@
 <!-- !split -->
 ### Views on Hardware (1)
 
-<!-- <img src="fig/lec_01-views_on_hardware_1.png" width="400"> -->
-![](fig/lec_01-views_on_hardware_1.png)
+<!-- <img src="fig/lec1_views_on_hardware_1.png" width="400"> -->
+![](fig/lec1_views_on_hardware_1.png)
 
 <!-- !split -->
 ### Views on Hardware (2)
 
-<!-- <img src="../../lecture/doconce/fig/lec_01-views_on_hardware_2.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
-![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec_01-views_on_hardware_2.png)
+<!-- <img src="../../lecture/doconce/fig/lec1_views_on_hardware_2.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
+![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec1_views_on_hardware_2.png)
 
 <!-- !split -->
 ### Abstraction Layer
 
-<!-- <img src="../../lecture/doconce/fig/lec_01-abstraction_layer.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
-![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec_01-abstraction_layer.png)
+<!-- <img src="../../lecture/doconce/fig/lec1_abstraction_layer.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
+![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec1_abstraction_layer.png)
 
 <!-- !split -->
 ### Design Flow
 
-<!-- <img src="../../lecture/doconce/fig/lec_01-design_flow.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
-![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec_01-design_flow.png)
+<!-- <img src="../../lecture/doconce/fig/lec1_design_flow.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
+![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec1_design_flow.png)
 
 <!-- !split -->
 ### Verification
 
-<!-- <img src="../../lecture/doconce/fig/lec_01-verification.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
-![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec_01-verification.png)
+<!-- <img src="../../lecture/doconce/fig/lec1_verification.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
+![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec1_verification.png)
 
 <!-- !split -->
 ### Frontend vs. Backend (analog)
 
-<!-- <img src="../../lecture/doconce/fig/lec_01-front-end_back-end_analog.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
-![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec_01-front-end_back-end_analog.png)
+<!-- <img src="../../lecture/doconce/fig/lec1_front-end_back-end_analog.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
+![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec1_front-end_back-end_analog.png)
 
 <!-- !split -->
 ### Frontend vs. Backend (digital)
 
-<!-- <img src="../../lecture/doconce/fig/lec_01-front-end_back-end_digital.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
-![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec_01-front-end_back-end_digital.png)
+<!-- <img src="../../lecture/doconce/fig/lec1_front-end_back-end_digital.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
+![<p><em>(c) M. Ortmanns, Univ. Ulm.</em></p>](../../lecture/doconce/fig/lec1_front-end_back-end_digital.png)
 
 <!-- !split -->
 ### Analog Design Entry
 
-<!-- <img src="fig/lec_01-design_entry_analog.png" width="400"> -->
-![](fig/lec_01-design_entry_analog.png)
+<!-- <img src="fig/lec1_design_entry_analog.png" width="400"> -->
+![](fig/lec1_design_entry_analog.png)
 
 <!-- !split -->
 ### Netlist
 
-<!-- <img src="fig/lec_01-netlist.png" width="400"> -->
-![](fig/lec_01-netlist.png)
+<!-- <img src="fig/lec1_netlist.png" width="400"> -->
+![](fig/lec1_netlist.png)
 
 <!-- !split -->
 ### Layout
 
-<!-- <img src="fig/lec_01-inverter_layout.png" width="400"> -->
-![](fig/lec_01-inverter_layout.png)
+<!-- <img src="fig/lec1_inverter_layout.png" width="400"> -->
+![](fig/lec1_inverter_layout.png)
 
 <!-- !split -->
 ### Digital Design Entry
 
-<!-- <img src="fig/lec_01-design_entry_digital.png" width="400"> -->
-![](fig/lec_01-design_entry_digital.png)
+<!-- <img src="fig/lec1_design_entry_digital.png" width="400"> -->
+![](fig/lec1_design_entry_digital.png)
 
 <!-- !split -->
 ### Hardware Desciption Language
 
-<!-- <img src="fig/lec_01-hdl_inv.png" width="400"> -->
-![](fig/lec_01-hdl_inv.png)
+<!-- <img src="fig/lec1_hdl_inv.png" width="400"> -->
+![](fig/lec1_hdl_inv.png)
 
 <!-- !split -->
 ### Technology-Gates and Netlisting
 
-<!-- <img src="fig/lec_01-technology_gate_netlist.png" width="400"> -->
-![](fig/lec_01-technology_gate_netlist.png)
+<!-- <img src="fig/lec1_technology_gate_netlist.png" width="400"> -->
+![](fig/lec1_technology_gate_netlist.png)
 
 <!-- !split -->
 ### Standard Cell Layout
 
-<!-- <img src="fig/lec_01-standard_cell_layout.png" width="400"> -->
-![](fig/lec_01-standard_cell_layout.png)
+<!-- <img src="fig/lec1_standard_cell_layout.png" width="400"> -->
+![](fig/lec1_standard_cell_layout.png)
 
 <!-- !split -->
 ### Sustainable Electronics ...

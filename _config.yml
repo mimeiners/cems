@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: M 2.9 Concept Engineering Mixed-Technology Systems (CEMS)
+title: M 1.2 Concept Engineering Mixed-Technology Systems (CEMS)
 author: M. Meiners (HSB) 
 copyright: ""
 logo: images/hsb-logo.png
@@ -46,6 +46,9 @@ repository:
   path_to_book: ""
   branch: master
 
+parse:
+  myst_enable_extensions:
+    - html_image
 
 # LaTeX settings
 bibtex_bibfiles:
@@ -96,6 +99,6 @@ sphinx:
       COURSE_LINK: ""
       FORUM_LINK: ""
       ANALYTICS_OPTOUT: ""
-      FORMAT: "Lectures and Labs"
+      FORMAT: "Lectures and Lab"
       ASSOCIATE_HEAD: "Tim Ziemann [tim.ziemann@hs-bremen.de](mailto:tim.ziemann@hs-bremen.de)"
       ANON_FEEDBACK: ""
