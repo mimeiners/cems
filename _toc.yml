@@ -15,9 +15,10 @@ parts:
     - file: class/01_lec
       title: Introduction and Survey
     - file: class/02_lec
-      title: Sampling and Quantization
+      title: Systems Engineering for Gyros
     - file: class/03_lec
       title: References
 - caption: Lab / Design Project
   chapters:
-    - file: lab/Experiment_01
+    - file: lab/01_lab
+      title: Model-Based Systems Engineering of an Intertial Sensor System
