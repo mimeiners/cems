@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Readout Concept for Vibratory Gyroscopes &#8212; M 1.2 Concept Engineering Mixed-Technology Systems (CEMS)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link media="all" rel="stylesheet" type="text/css" href="https://dokie.li/media/css/dokieli.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="dokieli" src="https://dokie.li/scripts/dokieli.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "mimeiners/cems");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'class/02_lec';</script>
+    <link rel="canonical" href="https://mimeiners.github.io/cems/class/02_lec.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="03_lec.html" />
+    <link rel="prev" title="Introduction and Survey" href="01_lec.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../about/unsyllabus.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/hsb-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/hsb-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../about/unsyllabus.html">
+                    Unsyllabus
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_lec.html">Introduction and Survey</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Systems Engineering for Gyros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_lec.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab / Design Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lab/01_lab.html">Model-Based Systems Engineering of an Intertial Sensor System</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mimeiners/cems" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mimeiners/cems/edit/master/class/02_lec.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mimeiners/cems/issues/new?title=Issue%20on%20page%20%2Fclass/02_lec.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/class/02_lec.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Readout Concept for Vibratory Gyroscopes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vehicles-without-esp">Vehicles without ESP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vehicle-dynamics-controls-systems-esp">Vehicle Dynamics Controls Systems - ESP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consumer-gyroscopes">Consumer Gyroscopes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mems-for-automotive-and-consumer-applications">MEMS for Automotive and Consumer Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mems-gyroscope-in-action">MEMS Gyroscope in Action</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-mass-damping-system">Spring-Mass-Damping System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-block-diagram">Functional Block Diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-domain-readout-block-diagram">Multi-Domain Readout Block Diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-domain-modelling">Multi-Domain Modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rom-modelling-coordinate-transformation">ROM Modelling - Coordinate transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gyro-behavioural-modelling">Gyro Behavioural Modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-domain-simulation">Mixed-domain simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-closed-loop-simulation">Analog Closed-Loop Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ams-closed-loop-simulation">AMS Closed-Loop Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <!-- !split -->
+<!-- jupyter-book 02_lec.md -->
+<section class="tex2jax_ignore mathjax_ignore" id="readout-concept-for-vibratory-gyroscopes">
+<h1>Readout Concept for Vibratory Gyroscopes<a class="headerlink" href="#readout-concept-for-vibratory-gyroscopes" title="Permalink to this heading">#</a></h1>
+<!-- !split -->
+<section id="vehicles-without-esp">
+<h2>Vehicles without ESP<a class="headerlink" href="#vehicles-without-esp" title="Permalink to this heading">#</a></h2>
+<!-- <img src="../../lecture/doconce/fig/lec2_moose.png" width="400"><p><em>The moose test / elk test. <div id="fig:elk-test"></div></em></p> -->
+<p><img alt="The moose test / elk test. " src="../_images/lec2_moose.png" /></p>
+<!-- !split -->
+</section>
+<section id="vehicle-dynamics-controls-systems-esp">
+<h2>Vehicle Dynamics Controls Systems - ESP<a class="headerlink" href="#vehicle-dynamics-controls-systems-esp" title="Permalink to this heading">#</a></h2>
+<!-- <img src="../../lecture/doconce/fig/lec2_esp.png" width="400"><p><em>Market launch of gyros. <div id="fig:market-launch"></div></em></p> -->
+<p><img alt="Market launch of gyros. " src="../_images/lec2_esp.png" /></p>
+<!-- !split -->
+</section>
+<section id="consumer-gyroscopes">
+<h2>Consumer Gyroscopes<a class="headerlink" href="#consumer-gyroscopes" title="Permalink to this heading">#</a></h2>
+<p><em>Market segments.</em></p>
+<ul class="simple">
+<li><p>Mobile phones</p></li>
+<li><p>Digital cameras</p></li>
+<li><p>Pointing devices</p></li>
+<li><p>Gaming consoles</p></li>
+<li><p>GPS portables</p></li>
+</ul>
+<!-- <img src="./fig/lec2_ipad.png" width="300"> -->
+<p><img alt="" src="class/fig/lec2_ipad.png" /></p>
+<!-- <img src="./fig/lec2_samsung.png" width="200"> -->
+<p><img alt="" src="class/fig/lec2_samsung.png" /></p>
+<!-- <img src="./fig/lec2_garmin.png" width="300"> -->
+<p><img alt="" src="class/fig/lec2_garmin.png" /></p>
+<!-- <img src="./fig/lec2_ixus.png" width="200"> -->
+<p><img alt="" src="class/fig/lec2_ixus.png" /></p>
+<!-- <img src="./fig/lec2_wii.png" width="300"> -->
+<p><img alt="" src="class/fig/lec2_wii.png" /></p>
+<!-- !split -->
+</section>
+<section id="mems-for-automotive-and-consumer-applications">
+<h2>MEMS for Automotive and Consumer Applications<a class="headerlink" href="#mems-for-automotive-and-consumer-applications" title="Permalink to this heading">#</a></h2>
+<iframe width="640" height="365" src="https://www.youtube.com/embed/5MKnlsLtK34" frameborder="0" allowfullscreen></iframe>
+<p><em>Plenary Sessions from the 2010 ISSCC</em></p>
+<ul class="simple">
+<li><p>Jiri Marek, Senior Vice President, Robert Bosch, Reutlingen, Germany</p></li>
+</ul>
+<!-- !split -->
+</section>
+<section id="mems-gyroscope-in-action">
+<h2>MEMS Gyroscope in Action<a class="headerlink" href="#mems-gyroscope-in-action" title="Permalink to this heading">#</a></h2>
+<div>
+<video loop controls width='640' height='365' preload='none'>
+    <source src='../../lecture/doconce/mov/lec2_mm3drive.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+</video>
+</div>
+<p><em>Drive movement as model animation.</em></p>
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width:95%%; padding:10px; border:1px solid #100; border-radius:4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script>
+<div>
+<video loop controls width='640' height='365' preload='none'>
+    <source src='../../lecture/doconce/mov/lec2_mm3sense.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+</video>
+</div>
+<p><em>Sense movement as model animation.</em></p>
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width:95%%; padding:10px; border:1px solid #100; border-radius:4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script>
+<!-- !split -->
+</section>
+<section id="spring-mass-damping-system">
+<h2>Spring-Mass-Damping System<a class="headerlink" href="#spring-mass-damping-system" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>1-D equation of motion (EoM) <span class="math notranslate nohighlight">\(F = m\ddot{x} + d\dot{x} + kx\)</span></p></li>
+<li><p>Laplace transformation</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+H(s) &amp;= \frac{1}{m s^2 +  d s + k} \\
+     &amp;= \frac{\frac{1}{m}}{s^2 + \frac{\omega_0}{Q} s + \omega_0^2}
+\end{align}
+\end{split}\]</div>
+<!-- !split -->
+</section>
+<section id="functional-block-diagram">
+<h2>Functional Block Diagram<a class="headerlink" href="#functional-block-diagram" title="Permalink to this heading">#</a></h2>
+<!-- <img src="./fig/lec2_gyroblock.png" width="300"> -->
+<p><img alt="" src="class/fig/lec2_gyroblock.png" /></p>
+<ul class="simple">
+<li><p>Coriolis force principle, <span class="math notranslate nohighlight">\(F_C = 2 m \left(\mathbf{v} \times \Omega \right)\)</span></p></li>
+<li><p>Drive loop to have an accelerated mass</p></li>
+<li><p>Sense loop to detect angular rate</p></li>
+<li><p>Distinction of closed-loop and open-loop system</p></li>
+</ul>
+<!-- !split -->
+</section>
+<section id="multi-domain-readout-block-diagram">
+<h2>Multi-Domain Readout Block Diagram<a class="headerlink" href="#multi-domain-readout-block-diagram" title="Permalink to this heading">#</a></h2>
+<!-- <img src="./fig/lec2_sdsystem.png" width="300"> -->
+<p><img alt="" src="class/fig/lec2_sdsystem.png" /></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+H_s(s) &amp;= \frac{\frac{1}{m}}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2} &amp;\quad \mbox{sensor} \\
+H_{CV}(s) &amp;= \frac{g_m}{C_L}\frac{1-e^{-sT_{int}}}{s} &amp;\quad \mbox{CV converter} \\
+H_{lf}(z) &amp;= -\frac{z}{z+a}\frac{z^2 +b_1z +b_0}{z^2 +c_1z +c_0} &amp;\quad \mbox{loop filter}
+\end{align}
+\end{split}\]</div>
+<!-- !split -->
+</section>
+<section id="multi-domain-modelling">
+<h2>Multi-Domain Modelling<a class="headerlink" href="#multi-domain-modelling" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Describing kinematic and electrical behaviour with the help of HDL</p>
+<ul>
+<li><p>VHDL, VHDL-AMS</p></li>
+<li><p>Verilog, Verilog-A, Verilog-AMS</p></li>
+</ul>
+</li>
+<li><p>Using ROM for a MATLAB/SIMULINK model and real-time workshop to port model for use with Cadence <span class="math notranslate nohighlight">\(\rightarrow\)</span> Verilog-AMS is used for wrapping</p></li>
+<li><p>Parasitic SPICE circuit equivalent from FEM sensor model and layout extraction</p></li>
+</ul>
+<!-- !split -->
+</section>
+<section id="rom-modelling-coordinate-transformation">
+<h2>ROM Modelling - Coordinate transformation<a class="headerlink" href="#rom-modelling-coordinate-transformation" title="Permalink to this heading">#</a></h2>
+<!-- <img src="./fig/lec2_rom.png" width="300"> -->
+<p><img alt="" src="class/fig/lec2_rom.png" /></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+    M \ddot{x} &amp;+ K x &amp;= F &amp;\quad \mbox{FEM, 100.000 DOF}\\
+    M \phi \ddot{q} &amp;+ K \phi q &amp;= F &amp; \\
+    \underbrace{\phi' M \phi} \ddot{q} &amp;+ \underbrace{\phi' K \phi} q &amp;= \phi' F &amp; \\
+    \tilde{M} \ddot{q} &amp;+ \tilde{K} q &amp;= \tilde{F} &amp; \quad \mbox{ROM, approx. 10 DOF}
+\end{align}
+\end{split}\]</div>
+<!-- !split -->
+</section>
+<section id="gyro-behavioural-modelling">
+<h2>Gyro Behavioural Modelling<a class="headerlink" href="#gyro-behavioural-modelling" title="Permalink to this heading">#</a></h2>
+<!-- <img src="../../lecture/doconce/fig/lec2_gyromodel.png" height="400"><p><em>Model of gyroscope.</em></p> -->
+<p><img alt="Model of gyroscope." src="../_images/lec2_gyromodel.png" /></p>
+<!-- !split -->
+</section>
+<section id="mixed-domain-simulation">
+<h2>Mixed-domain simulation<a class="headerlink" href="#mixed-domain-simulation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>All models from previous slide can be used in Cadence design frame work</p></li>
+<li><p>Pure analog closed-loop transient simulation with Spectre (turbo, aps), circuits and verilog-a model</p></li>
+<li><p>Pure analog closed-loop simulation with SPICE circuit equivalent</p></li>
+<li><p>Mixed-domain, mixed-mode simulation with AMSDesigner (ncsim, spectre-turbo/aps)</p></li>
+</ul>
+<!-- !split -->
+</section>
+<section id="analog-closed-loop-simulation">
+<h2>Analog Closed-Loop Simulation<a class="headerlink" href="#analog-closed-loop-simulation" title="Permalink to this heading">#</a></h2>
+<!-- <img src="../../lecture/doconce/fig/lec2_analogsim.png" height="400"><p><em>Analog simulation with Cadence.</em></p> -->
+<p><img alt="Analog simulation with Cadence." src="../_images/lec2_analogsim.png" /></p>
+<!-- !split -->
+</section>
+<section id="ams-closed-loop-simulation">
+<h2>AMS Closed-Loop Simulation<a class="headerlink" href="#ams-closed-loop-simulation" title="Permalink to this heading">#</a></h2>
+<!-- <img src="../../lecture/doconce/fig/lec2_amssim.png" width="400"><p><em>AMS simulation with Cadence.</em></p> -->
+<p><img alt="AMS simulation with Cadence." src="../_images/lec2_amssim.png" /></p>
+<!-- !split -->
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p><em>Vibratory Gyroscopes.</em></p>
+<ul class="simple">
+<li><p>Automotive and consumer applications</p></li>
+<li><p>System architectures</p></li>
+<li><p>Mixed-domain, mixed-mode analysis</p></li>
+<li><p>Interdisciplinarity <span class="math notranslate nohighlight">\(\rightarrow\)</span> IC Systems Engineering  Control theory, signal theory, process technology and micromechanics</p></li>
+</ul>
+<p><em>More DOF’s.</em></p>
+<ul class="simple">
+<li><p>Acceleration and angular rate (6 DOF’s)</p></li>
+<li><p>Angulare rate and magneto sensors (6 DOF’s)</p></li>
+<li><p>Acceleration, angular and magneto (9 DOF’s)</p></li>
+</ul>
+<!-- !split -->
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "mimeiners/cems",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./class"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_lec.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction and Survey</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_lec.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vehicles-without-esp">Vehicles without ESP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vehicle-dynamics-controls-systems-esp">Vehicle Dynamics Controls Systems - ESP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consumer-gyroscopes">Consumer Gyroscopes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mems-for-automotive-and-consumer-applications">MEMS for Automotive and Consumer Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mems-gyroscope-in-action">MEMS Gyroscope in Action</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-mass-damping-system">Spring-Mass-Damping System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-block-diagram">Functional Block Diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-domain-readout-block-diagram">Multi-Domain Readout Block Diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-domain-modelling">Multi-Domain Modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rom-modelling-coordinate-transformation">ROM Modelling - Coordinate transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gyro-behavioural-modelling">Gyro Behavioural Modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-domain-simulation">Mixed-domain simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-closed-loop-simulation">Analog Closed-Loop Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ams-closed-loop-simulation">AMS Closed-Loop Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By M. Meiners (HSB)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+    All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</div>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
