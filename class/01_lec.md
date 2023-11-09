@@ -84,14 +84,16 @@
 <!-- !split -->
 ### Bibliography and LaTeX
 * [Citavi im Detail > Titel exportieren > Export nach BibTeX](https://www1.citavi.com/sub/manual5/de/exporting_to_bibtex.html)
+* [Citavi Exporting to BibTeX](https://www1.citavi.com/sub/manual5/en/exporting_to_bibtex.html)
 * [Benutzerdefinierte BibTex-Keys mit Zotero | nerdpause](https://nerdpause.de/benutzerdefinierte-bibtex-keys-mit-zotero/)
+* [Better BibTeX for Zotero](https://retorque.re/zotero-better-bibtex/index.html)
 * [JabRef - Library Guide Univ. Melbourne](https://unimelb.libguides.com/c.php?g=565734\&p=3897117)
 
 <!-- !split -->
 ### Design Project
-*Concept and Design of a Sigma-Delta Modulator.* 
+*Model-Based Systems Engineering of an Inertial Sensor System (MBSE).* 
 * Use different description
-  * System level (Model-Based-Systems-Engineering (MBSE) with Matlab, Simulink and Python)
+  * System level (MBSE with Matlab, Simulink and Python)
   * Circuit level (SPICE) with behavioural blocks, e.g. OTA and comparator
   * Hardware: [ESP8266 NodeMCU](https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/), [TIs ADS1115](https://www.ti.com/product/ADS1115), [ADs ADXL335](https://www.analog.com/en/products/adxl335.html)
   * [Arduino IDE](https://www.arduino.cc/en/software) C-Programming and/or [Thonny](https://thonny.org) and/or [Visual Studio Code](https://code.visualstudio.com) [Micropython](https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html#deploying-the-firmware) 
