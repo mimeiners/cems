@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Introduction and Survey &#8212; M 1.2 Concept Engineering Mixed-Technology Systems (CEMS)</title>
   
@@ -15,45 +14,44 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=f78ba3b0" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link media="all" rel="stylesheet" type="text/css" href="https://dokie.li/media/css/dokieli.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=e637711f"></script>
+    <script src="../_static/copybutton.js?v=56c01ce6"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script async="async" kind="dokieli" src="https://dokie.li/scripts/dokieli.js"></script>
     <script kind="utterances">
 
@@ -90,18 +88,24 @@ var addUtterances = () => {
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'class/01_lec';</script>
     <link rel="canonical" href="https://mimeiners.github.io/cems/class/01_lec.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Readout Concept for Vibratory Gyroscopes" href="02_lec.html" />
+    <link rel="next" title="Systems Engineering for Gyros" href="02_lec.html" />
     <link rel="prev" title="Unsyllabus" href="../about/unsyllabus.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -112,19 +116,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -146,12 +154,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -166,9 +182,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../about/unsyllabus.html">
+  
   
   
   
@@ -178,12 +198,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/hsb-logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/hsb-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/hsb-logo.png" class="logo__image only-light" alt="M 1.2 Concept Engineering Mixed-Technology Systems (CEMS) - Home"/>
+    <script>document.write(`<img src="../_static/hsb-logo.png" class="logo__image only-dark" alt="M 1.2 Concept Engineering Mixed-Technology Systems (CEMS) - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -197,11 +228,14 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction and Survey</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_lec.html">Systems Engineering for Gyros</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_lec.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab / Design Project</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../lab/01_lab.html">Model-Based Systems Engineering of an Intertial Sensor System</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_bibliography/references.html">References</a></li>
 </ul>
 
     </div>
@@ -217,7 +251,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -226,7 +260,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -372,20 +406,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -466,15 +502,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <!-- !split -->
 <!-- jupyter-book 01_lec.md -->
 <section class="tex2jax_ignore mathjax_ignore" id="introduction-and-survey">
-<h1>Introduction and Survey<a class="headerlink" href="#introduction-and-survey" title="Permalink to this heading">#</a></h1>
+<h1>Introduction and Survey<a class="headerlink" href="#introduction-and-survey" title="Link to this heading">#</a></h1>
 <!-- !split -->
 <section id="course-objectives">
-<h2>Course Objectives<a class="headerlink" href="#course-objectives" title="Permalink to this heading">#</a></h2>
+<h2>Course Objectives<a class="headerlink" href="#course-objectives" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Interfacing Microsystems</p>
 <ul>
@@ -496,7 +532,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="scientific-computing-data-science">
-<h2>Scientific Computing / Data Science<a class="headerlink" href="#scientific-computing-data-science" title="Permalink to this heading">#</a></h2>
+<h2>Scientific Computing / Data Science<a class="headerlink" href="#scientific-computing-data-science" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.anaconda.com/download/">Python</a></p></li>
 <li><p><a class="reference external" href="http://de.mathworks.com/?requestedDomain=de.mathworks.com">Matlab</a></p></li>
@@ -505,7 +541,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="circuit-simulation">
-<h2>Circuit Simulation<a class="headerlink" href="#circuit-simulation" title="Permalink to this heading">#</a></h2>
+<h2>Circuit Simulation<a class="headerlink" href="#circuit-simulation" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html">LTspice (Analog Devices)</a></p></li>
 <li><p><a class="reference external" href="https://www.ti.com/tool/TINA-TI">TINA-TI (Texas Instruments)</a></p></li>
@@ -517,7 +553,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="os-tools">
-<h2>OS Tools<a class="headerlink" href="#os-tools" title="Permalink to this heading">#</a></h2>
+<h2>OS Tools<a class="headerlink" href="#os-tools" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Shell_%28computing%29">Shell</a></p>
 <ul>
@@ -536,16 +572,18 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="code-editors">
-<h2>Code Editors<a class="headerlink" href="#code-editors" title="Permalink to this heading">#</a></h2>
+<h2>Code Editors<a class="headerlink" href="#code-editors" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://code.visualstudio.com">Visual Studio Code</a></p></li>
+<li><p><a class="reference external" href="https://www.spyder-ide.org">Spyder IDE</a></p></li>
+<li><p><a class="reference external" href="https://thonny.org">Thonny (Micro-)Python IDE</a></p></li>
 <li><p><a class="reference external" href="https://www.gnu.org/software/emacs/">Emacs</a></p></li>
 <li><p><a class="reference external" href="https://www.vim.org">Vim</a></p></li>
 </ul>
 <!-- !split -->
 </section>
 <section id="data-science">
-<h2>Data Science<a class="headerlink" href="#data-science" title="Permalink to this heading">#</a></h2>
+<h2>Data Science<a class="headerlink" href="#data-science" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Folder in your filesystem (sandboxing, virtualenv)</p></li>
 <li><p>Table data: Comma-Separated-Values (CSV), Spreadsheet (.xlsx, .ods)</p></li>
@@ -568,7 +606,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="are-your-writing-or-texing">
-<h2>Are your writing or TeXing?<a class="headerlink" href="#are-your-writing-or-texing" title="Permalink to this heading">#</a></h2>
+<h2>Are your writing or TeXing?<a class="headerlink" href="#are-your-writing-or-texing" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://miktex.org/">MikTeX (Windows, MacOS, Linux)</a></p></li>
 <li><p><a class="reference external" href="https://www.tug.org/mactex/">MacTeX (MacOS)</a></p></li>
@@ -577,7 +615,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="latex-editors">
-<h2>LaTeX Editors<a class="headerlink" href="#latex-editors" title="Permalink to this heading">#</a></h2>
+<h2>LaTeX Editors<a class="headerlink" href="#latex-editors" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>IDE’s</p>
 <ul>
@@ -595,18 +633,18 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="bibliography-and-latex">
-<h2>Bibliography and LaTeX<a class="headerlink" href="#bibliography-and-latex" title="Permalink to this heading">#</a></h2>
+<h2>Bibliography and LaTeX<a class="headerlink" href="#bibliography-and-latex" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www1.citavi.com/sub/manual5/de/exporting_to_bibtex.html">Citavi im Detail &gt; Titel exportieren &gt; Export nach BibTeX</a></p></li>
 <li><p><a class="reference external" href="https://www1.citavi.com/sub/manual5/en/exporting_to_bibtex.html">Citavi Exporting to BibTeX</a></p></li>
 <li><p><a class="reference external" href="https://nerdpause.de/benutzerdefinierte-bibtex-keys-mit-zotero/">Benutzerdefinierte BibTex-Keys mit Zotero | nerdpause</a></p></li>
 <li><p><a class="reference external" href="https://retorque.re/zotero-better-bibtex/index.html">Better BibTeX for Zotero</a></p></li>
-<li><p><a class="reference external" href="https://unimelb.libguides.com/c.php?g=565734&amp;p=3897117">JabRef - Library Guide Univ. Melbourne</a></p></li>
+<li><p><a class="reference external" href="https://unimelb.libguides.com/c.php?g=565734&amp;amp;p=3897117">JabRef - Library Guide Univ. Melbourne</a></p></li>
 </ul>
 <!-- !split -->
 </section>
 <section id="design-project">
-<h2>Design Project<a class="headerlink" href="#design-project" title="Permalink to this heading">#</a></h2>
+<h2>Design Project<a class="headerlink" href="#design-project" title="Link to this heading">#</a></h2>
 <p><em>Model-Based Systems Engineering of an Inertial Sensor System (MBSE).</em></p>
 <ul class="simple">
 <li><p>Use different description</p>
@@ -622,7 +660,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="design-project-flow">
-<h2>Design Project Flow<a class="headerlink" href="#design-project-flow" title="Permalink to this heading">#</a></h2>
+<h2>Design Project Flow<a class="headerlink" href="#design-project-flow" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Literature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor companies) and library</p></li>
 <li><p>Set-up bibliography, e.g. <a class="reference external" href="http://www.jabref.org">JabRef</a>, <a class="reference external" href="https://www.suub.uni-bremen.de/literatur-verwalten/refworks/citavi/">Citavi</a></p></li>
@@ -644,7 +682,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="assignments">
-<h2>Assignments<a class="headerlink" href="#assignments" title="Permalink to this heading">#</a></h2>
+<h2>Assignments<a class="headerlink" href="#assignments" title="Link to this heading">#</a></h2>
 <p><em>Lab and Lecture.</em></p>
 <ul class="simple">
 <li><p><strong>Lab Design Project</strong>: 50%</p></li>
@@ -653,7 +691,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="course-prerequisites">
-<h2>Course Prerequisites<a class="headerlink" href="#course-prerequisites" title="Permalink to this heading">#</a></h2>
+<h2>Course Prerequisites<a class="headerlink" href="#course-prerequisites" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Fundamentals of linux operating systems</p></li>
 <li><p>Fundamentals of microelectronics</p>
@@ -676,43 +714,43 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="brave-new-world">
-<h2>Brave New World<a class="headerlink" href="#brave-new-world" title="Permalink to this heading">#</a></h2>
+<h2>Brave New World<a class="headerlink" href="#brave-new-world" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <!-- <img src="../../lecture/doconce/fig/lec1_AMD@16nm@Jaguar.jpg" width="400"><p><em>AMD Jaguar APU (CPU/GPU), 16 nm, 325 qmm, 2016 <div id="fig:jaguar"></div></em></p> -->
-<p><img alt="AMD Jaguar APU (CPU/GPU), 16 nm, 325 qmm, 2016 " src="../_images/lec1_AMD&#64;16nm&#64;Jaguar.jpg" /></p>
+<p><img alt="AMD Jaguar APU (CPU/GPU), 16 nm, 325 qmm, 2016 " src="../_images/lec1_AMD%4016nm%40Jaguar.jpg" /></p>
 <!-- !eslidecell -->
 <!-- !split -->
 </section>
 <section id="from-sand-to-silicon-infineon-dresden">
-<h2>From Sand to Silicon (Infineon, Dresden)<a class="headerlink" href="#from-sand-to-silicon-infineon-dresden" title="Permalink to this heading">#</a></h2>
+<h2>From Sand to Silicon (Infineon, Dresden)<a class="headerlink" href="#from-sand-to-silicon-infineon-dresden" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="793" height="446" src="https://www.youtube.com/embed/bor0qLifjz4?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" frameborder="0" allowfullscreen></iframe>
 <!-- !eslidecell -->
 <!-- !split -->
 </section>
 <section id="sand-to-silicon-globalfoundries-desden">
-<h2>Sand to Silicon (GlobalFoundries, Desden)<a class="headerlink" href="#sand-to-silicon-globalfoundries-desden" title="Permalink to this heading">#</a></h2>
+<h2>Sand to Silicon (GlobalFoundries, Desden)<a class="headerlink" href="#sand-to-silicon-globalfoundries-desden" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="793" height="446" src="https://www.youtube.com/embed/UvluuAIiA50?list=PLO_wT97BGA6xC6hNy9VGtt1bKwVuQXI5B" frameborder="0" allowfullscreen></iframe>
 <!-- !eslidecell -->
 <!-- !split -->
 </section>
 <section id="finfet-intel">
-<h2>FinFET (Intel)<a class="headerlink" href="#finfet-intel" title="Permalink to this heading">#</a></h2>
+<h2>FinFET (Intel)<a class="headerlink" href="#finfet-intel" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="793" height="446" src="https://www.youtube.com/embed/_VMYPLXnd7E" frameborder="0" allowfullscreen></iframe>
 <!-- !eslidecell -->
 <!-- !split -->
 </section>
 <section id="tsmc-fab-next-gen-7-5-nm">
-<h2>TSMC Fab (Next Gen 7/5 nm)<a class="headerlink" href="#tsmc-fab-next-gen-7-5-nm" title="Permalink to this heading">#</a></h2>
+<h2>TSMC Fab (Next Gen 7/5 nm)<a class="headerlink" href="#tsmc-fab-next-gen-7-5-nm" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="793" height="446" src="https://www.youtube.com/embed/Hb1WDxSoSec" frameborder="0" allowfullscreen></iframe>
 <!-- !eslidecell -->
 <!-- !split -->
 </section>
 <section id="once-upon-a-time">
-<h2>Once upon a time …<a class="headerlink" href="#once-upon-a-time" title="Permalink to this heading">#</a></h2>
+<h2>Once upon a time …<a class="headerlink" href="#once-upon-a-time" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.45 -->
 <!-- <img src="../../lecture/doconce/fig/lec1_vacuum_tube.png" width="400"><p><em>1906 Electron Tube</em></p> -->
 <p><img alt="1906 Electron Tube" src="../_images/lec1_vacuum_tube.png" /></p>
@@ -724,7 +762,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="first-ic-and-today-s-chips">
-<h2>First IC and today’s chips<a class="headerlink" href="#first-ic-and-today-s-chips" title="Permalink to this heading">#</a></h2>
+<h2>First IC and today’s chips<a class="headerlink" href="#first-ic-and-today-s-chips" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.45 -->
 <!-- <img src="../../lecture/doconce/fig/lec1_1st_ic_kilby.png" width="400"><p><em>1958 Jack Kilby's 1st IC <div id="fig:kilbyic"></div></em></p> -->
 <p><img alt="1958 Jack Kilby's 1st IC " src="../_images/lec1_1st_ic_kilby.png" /></p>
@@ -736,7 +774,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="packaging-densities">
-<h2>Packaging Densities<a class="headerlink" href="#packaging-densities" title="Permalink to this heading">#</a></h2>
+<h2>Packaging Densities<a class="headerlink" href="#packaging-densities" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.85 -->
 <!-- <img src="../../lecture/doconce/fig/lec1_wafers.png" width="600"><p><em>Wafer generations <div id="fig:wafer"></div></em></p> -->
 <p><img alt="Wafer generations " src="../_images/lec1_wafers.png" /></p>
@@ -744,7 +782,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="moore-s-law">
-<h2>Moore’s Law<a class="headerlink" href="#moore-s-law" title="Permalink to this heading">#</a></h2>
+<h2>Moore’s Law<a class="headerlink" href="#moore-s-law" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <p><embed src="https://players.brightcove.net/734546229001/default_default/index.html?videoId=4144803153001" width="793" height="446" autoplay="false" loop="true"></embed></p>
 <p><em></em></p>
@@ -752,7 +790,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="system-hierarchy">
-<h2>System Hierarchy<a class="headerlink" href="#system-hierarchy" title="Permalink to this heading">#</a></h2>
+<h2>System Hierarchy<a class="headerlink" href="#system-hierarchy" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.75 -->
 <!-- <img src="../../lecture/doconce/fig/lec1_system_hierarchy.png" height="400"><p><em>Blocks of an electronic system. <div id="fig:hierarchy"></div></em></p> -->
 <p><img alt="Blocks of an electronic system. " src="../_images/lec1_system_hierarchy.png" /></p>
@@ -764,31 +802,31 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="system-assembly">
-<h2>System Assembly<a class="headerlink" href="#system-assembly" title="Permalink to this heading">#</a></h2>
+<h2>System Assembly<a class="headerlink" href="#system-assembly" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_system_assembly.png" height="400"><p><em>Bottom-up Prozess, Integration. <div id="fig:assembly"></div></em></p> -->
 <p><img alt="Bottom-up Prozess, Integration. " src="../_images/lec1_system_assembly.png" /></p>
 <!-- !split -->
 </section>
 <section id="interfacing">
-<h2>Interfacing<a class="headerlink" href="#interfacing" title="Permalink to this heading">#</a></h2>
+<h2>Interfacing<a class="headerlink" href="#interfacing" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_real_world_interface.png" width="400"><p><em>Interfacing. <div id="fig:interfaces"></div></em></p> -->
 <p><img alt="Interfacing. " src="../_images/lec1_real_world_interface.png" /></p>
 <!-- !split -->
 </section>
 <section id="meeting-a-system-1">
-<h2>Meeting a System (1)<a class="headerlink" href="#meeting-a-system-1" title="Permalink to this heading">#</a></h2>
+<h2>Meeting a System (1)<a class="headerlink" href="#meeting-a-system-1" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_smartphone.png" width="400"><p><em>Wireless Communication System. <div id="fig:smartphone"></div></em></p> -->
 <p><img alt="Wireless Communication System. " src="../_images/lec1_smartphone.png" /></p>
 <!-- !split -->
 </section>
 <section id="system-in-a-package-sip">
-<h2>System in a Package (SiP)<a class="headerlink" href="#system-in-a-package-sip" title="Permalink to this heading">#</a></h2>
+<h2>System in a Package (SiP)<a class="headerlink" href="#system-in-a-package-sip" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_system_in_package.png" width="400"><p><em>Accelerometer. <div id="fig:sip"></div></em></p> -->
 <p><img alt="Accelerometer. " src="../_images/lec1_system_in_package.png" /></p>
 <!-- !split -->
 </section>
 <section id="you-will-become-an-expert">
-<h2>You will become an expert<a class="headerlink" href="#you-will-become-an-expert" title="Permalink to this heading">#</a></h2>
+<h2>You will become an expert<a class="headerlink" href="#you-will-become-an-expert" title="Link to this heading">#</a></h2>
 <p><em>Indicators.</em></p>
 <ul class="simple">
 <li><p>Background Knowledge</p>
@@ -817,91 +855,91 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="views-on-hardware-1">
-<h2>Views on Hardware (1)<a class="headerlink" href="#views-on-hardware-1" title="Permalink to this heading">#</a></h2>
+<h2>Views on Hardware (1)<a class="headerlink" href="#views-on-hardware-1" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec1_views_on_hardware_1.png" width="400"> -->
 <p><img alt="" src="class/fig/lec1_views_on_hardware_1.png" /></p>
 <!-- !split -->
 </section>
 <section id="views-on-hardware-2">
-<h2>Views on Hardware (2)<a class="headerlink" href="#views-on-hardware-2" title="Permalink to this heading">#</a></h2>
+<h2>Views on Hardware (2)<a class="headerlink" href="#views-on-hardware-2" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_views_on_hardware_2.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
 <p><img alt="(c) M. Ortmanns, Univ. Ulm." src="../_images/lec1_views_on_hardware_2.png" /></p>
 <!-- !split -->
 </section>
 <section id="abstraction-layer">
-<h2>Abstraction Layer<a class="headerlink" href="#abstraction-layer" title="Permalink to this heading">#</a></h2>
+<h2>Abstraction Layer<a class="headerlink" href="#abstraction-layer" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_abstraction_layer.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
 <p><img alt="(c) M. Ortmanns, Univ. Ulm." src="../_images/lec1_abstraction_layer.png" /></p>
 <!-- !split -->
 </section>
 <section id="design-flow">
-<h2>Design Flow<a class="headerlink" href="#design-flow" title="Permalink to this heading">#</a></h2>
+<h2>Design Flow<a class="headerlink" href="#design-flow" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_design_flow.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
 <p><img alt="(c) M. Ortmanns, Univ. Ulm." src="../_images/lec1_design_flow.png" /></p>
 <!-- !split -->
 </section>
 <section id="verification">
-<h2>Verification<a class="headerlink" href="#verification" title="Permalink to this heading">#</a></h2>
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_verification.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
 <p><img alt="(c) M. Ortmanns, Univ. Ulm." src="../_images/lec1_verification.png" /></p>
 <!-- !split -->
 </section>
 <section id="frontend-vs-backend-analog">
-<h2>Frontend vs. Backend (analog)<a class="headerlink" href="#frontend-vs-backend-analog" title="Permalink to this heading">#</a></h2>
+<h2>Frontend vs. Backend (analog)<a class="headerlink" href="#frontend-vs-backend-analog" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_front-end_back-end_analog.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
 <p><img alt="(c) M. Ortmanns, Univ. Ulm." src="../_images/lec1_front-end_back-end_analog.png" /></p>
 <!-- !split -->
 </section>
 <section id="frontend-vs-backend-digital">
-<h2>Frontend vs. Backend (digital)<a class="headerlink" href="#frontend-vs-backend-digital" title="Permalink to this heading">#</a></h2>
+<h2>Frontend vs. Backend (digital)<a class="headerlink" href="#frontend-vs-backend-digital" title="Link to this heading">#</a></h2>
 <!-- <img src="../../lecture/doconce/fig/lec1_front-end_back-end_digital.png" width="400"><p><em>(c) M. Ortmanns, Univ. Ulm.</em></p> -->
 <p><img alt="(c) M. Ortmanns, Univ. Ulm." src="../_images/lec1_front-end_back-end_digital.png" /></p>
 <!-- !split -->
 </section>
 <section id="analog-design-entry">
-<h2>Analog Design Entry<a class="headerlink" href="#analog-design-entry" title="Permalink to this heading">#</a></h2>
+<h2>Analog Design Entry<a class="headerlink" href="#analog-design-entry" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec1_design_entry_analog.png" width="400"> -->
 <p><img alt="" src="class/fig/lec1_design_entry_analog.png" /></p>
 <!-- !split -->
 </section>
 <section id="netlist">
-<h2>Netlist<a class="headerlink" href="#netlist" title="Permalink to this heading">#</a></h2>
+<h2>Netlist<a class="headerlink" href="#netlist" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec1_netlist.png" width="400"> -->
 <p><img alt="" src="class/fig/lec1_netlist.png" /></p>
 <!-- !split -->
 </section>
 <section id="layout">
-<h2>Layout<a class="headerlink" href="#layout" title="Permalink to this heading">#</a></h2>
+<h2>Layout<a class="headerlink" href="#layout" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec1_inverter_layout.png" width="400"> -->
 <p><img alt="" src="class/fig/lec1_inverter_layout.png" /></p>
 <!-- !split -->
 </section>
 <section id="digital-design-entry">
-<h2>Digital Design Entry<a class="headerlink" href="#digital-design-entry" title="Permalink to this heading">#</a></h2>
+<h2>Digital Design Entry<a class="headerlink" href="#digital-design-entry" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec1_design_entry_digital.png" width="400"> -->
 <p><img alt="" src="class/fig/lec1_design_entry_digital.png" /></p>
 <!-- !split -->
 </section>
 <section id="hardware-desciption-language">
-<h2>Hardware Desciption Language<a class="headerlink" href="#hardware-desciption-language" title="Permalink to this heading">#</a></h2>
+<h2>Hardware Desciption Language<a class="headerlink" href="#hardware-desciption-language" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec1_hdl_inv.png" width="400"> -->
 <p><img alt="" src="class/fig/lec1_hdl_inv.png" /></p>
 <!-- !split -->
 </section>
 <section id="technology-gates-and-netlisting">
-<h2>Technology-Gates and Netlisting<a class="headerlink" href="#technology-gates-and-netlisting" title="Permalink to this heading">#</a></h2>
+<h2>Technology-Gates and Netlisting<a class="headerlink" href="#technology-gates-and-netlisting" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec1_technology_gate_netlist.png" width="400"> -->
 <p><img alt="" src="class/fig/lec1_technology_gate_netlist.png" /></p>
 <!-- !split -->
 </section>
 <section id="standard-cell-layout">
-<h2>Standard Cell Layout<a class="headerlink" href="#standard-cell-layout" title="Permalink to this heading">#</a></h2>
+<h2>Standard Cell Layout<a class="headerlink" href="#standard-cell-layout" title="Link to this heading">#</a></h2>
 <!-- <img src="fig/lec1_standard_cell_layout.png" width="400"> -->
 <p><img alt="" src="class/fig/lec1_standard_cell_layout.png" /></p>
 <!-- !split -->
 </section>
 <section id="sustainable-electronics">
-<h2>Sustainable Electronics …<a class="headerlink" href="#sustainable-electronics" title="Permalink to this heading">#</a></h2>
+<h2>Sustainable Electronics …<a class="headerlink" href="#sustainable-electronics" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="859" height="483" src="https://www.youtube.com/embed/7S5IuaKiZIY" frameborder="0" allowfullscreen></iframe>
 <p><em>Geekchester.</em></p>
@@ -909,7 +947,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="why-it-is-worth">
-<h2>Why it is worth …<a class="headerlink" href="#why-it-is-worth" title="Permalink to this heading">#</a></h2>
+<h2>Why it is worth …<a class="headerlink" href="#why-it-is-worth" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="859" height="483" src="https://www.youtube.com/embed/SwPGxwBZw6I" frameborder="0" allowfullscreen></iframe>
 <p><em>Circuit Song.</em></p>
@@ -917,7 +955,7 @@ document.write(`
 <!-- !split -->
 </section>
 <section id="let-s-go-to-the-beach">
-<h2>Let’s go to the beach …<a class="headerlink" href="#let-s-go-to-the-beach" title="Permalink to this heading">#</a></h2>
+<h2>Let’s go to the beach …<a class="headerlink" href="#let-s-go-to-the-beach" title="Link to this heading">#</a></h2>
 <!-- !bslidecell 00 0.9 -->
 <iframe width="859" height="483" src="https://www.youtube.com/embed/ekkJlQf-K4I" frameborder="0" allowfullscreen></iframe>
 <p><em>Viva la Electronica.</em></p>
@@ -951,11 +989,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../about/unsyllabus.html"
@@ -971,14 +1008,11 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Readout Concept for Vibratory Gyroscopes</p>
+        <p class="prev-next-title">Systems Engineering for Gyros</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -986,6 +1020,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1059,6 +1094,7 @@ By M. Meiners (HSB)
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -1085,8 +1121,8 @@ By M. Meiners (HSB)
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
