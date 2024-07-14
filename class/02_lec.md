@@ -1,6 +1,6 @@
 <!-- !split -->
 <!-- jupyter-book 02_lec.md -->
-# Readout Concept for Vibratory Gyroscopes
+# Systems Engineering for Gyros
 
 <!-- !split -->
 ### Vehicles without ESP

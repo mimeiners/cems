@@ -32,19 +32,21 @@
 
 <!-- !split -->
 ### OS Tools
-  * [Shell](https://en.wikipedia.org/wiki/Shell_%28computing%29)
-    * [oh-my-zsh](https://ohmyz.sh),
-    * [bash-it](https://bash-it.readthedocs.io/en/latest/)
-    * [SSH (Secure Shell)](https://de.wikipedia.org/wiki/Secure_Shell)
+* [Shell](https://en.wikipedia.org/wiki/Shell_%28computing%29)
+  * [oh-my-zsh](https://ohmyz.sh),
+  * [bash-it](https://bash-it.readthedocs.io/en/latest/)
+  * [SSH (Secure Shell)](https://de.wikipedia.org/wiki/Secure_Shell)
 
-  * [GIT (Versionskontrolle)](https://git-scm.com)
-  * [Cygwin](https://cygwin.com)
-    * A large collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows.
+* [GIT (Versionskontrolle)](https://git-scm.com)
+* [Cygwin](https://cygwin.com)
+  * A large collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows.
 
 
 <!-- !split -->
 ### Code Editors
 * [Visual Studio Code](https://code.visualstudio.com)
+* [Spyder IDE](https://www.spyder-ide.org)
+* [Thonny (Micro-)Python IDE](https://thonny.org)
 * [Emacs](https://www.gnu.org/software/emacs/)
 * [Vim](https://www.vim.org)
 
