@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../class/references.html" rel="next">
+<link href="../lab/01_lab.html" rel="next">
 <link href="../class/01_lec.html" rel="prev">
 <link href="../images/hsb-logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -173,12 +173,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../class/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Literaturverzeichnis</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -293,12 +287,10 @@ window.Quarto = {
 <li><p>1-D equation of motion (EoM) <span class="math inline">\(F = m\ddot{x} + d\dot{x} + kx\)</span></p></li>
 <li><p>Laplace transformation</p></li>
 </ul>
-<p><span class="math display">\[
-\begin{align}
+<p><span class="math display">\[\begin{align}
 H(s) &amp;= \frac{1}{m s^2 +  d s + k} \\
 &amp;= \frac{\frac{1}{m}}{s^2 + \frac{\omega_0}{Q} s + \omega_0^2}
-\end{align}
-\]</span></p>
+\end{align}\]</span></p>
 </section>
 <section id="functional-block-diagram" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="functional-block-diagram"><span class="header-section-number">2.7</span> Functional Block Diagram</h2>
@@ -313,13 +305,11 @@ H(s) &amp;= \frac{1}{m s^2 +  d s + k} \\
 <section id="multi-domain-readout-block-diagram" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="multi-domain-readout-block-diagram"><span class="header-section-number">2.8</span> Multi-Domain Readout Block Diagram</h2>
 <p><img src="../images/lec2_sdsystem.png" class="img-fluid"></p>
-<p><span class="math display">\[
-\begin{align}
+<p><span class="math display">\[\begin{align}
 H_s(s) &amp;= \frac{\frac{1}{m}}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2} &amp;\quad \mbox{sensor} \\
 H_{CV}(s) &amp;= \frac{g_m}{C_L}\frac{1-e^{-sT_{int}}}{s} &amp;\quad \mbox{CV converter} \\
 H_{lf}(z) &amp;= -\frac{z}{z+a}\frac{z^2 +b_1z +b_0}{z^2 +c_1z +c_0} &amp;\quad \mbox{loop filter}
-\end{align}
-\]</span></p>
+\end{align}\]</span></p>
 </section>
 <section id="multi-domain-modelling" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="multi-domain-modelling"><span class="header-section-number">2.9</span> Multi-Domain Modelling</h2>
@@ -327,23 +317,21 @@ H_{lf}(z) &amp;= -\frac{z}{z+a}\frac{z^2 +b_1z +b_0}{z^2 +c_1z +c_0} &amp;\quad 
 <li><p>Describing kinematic and electrical behaviour with the help of HDL</p>
 <ul>
 <li>VHDL, VHDL-AMS</li>
-<li>Verilog, Verilog-A, Verilog-AMS</li>
+<li>Verilog, Verilog-a, Verilog-ams</li>
 </ul></li>
-<li><p>Using ROM for a MATLAB/SIMULINK model and real-time workshop to port model for use with Cadence <span class="math inline">\(\rightarrow\)</span> Verilog-AMS is used for wrapping</p></li>
+<li><p>Using ROM for a MATLAB/SIMULINK model and real-time workshop to port model for use with Cadence <span class="math inline">\(\rightarrow\)</span> Verilog-AMS is used for wrapping.</p></li>
 <li><p>Parasitic SPICE circuit equivalent from FEM sensor model and layout extraction</p></li>
 </ul>
 </section>
 <section id="rom-modelling---coordinate-transformation" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="rom-modelling---coordinate-transformation"><span class="header-section-number">2.10</span> ROM Modelling - Coordinate transformation</h2>
 <p><img src="../images/lec2_rom.png" class="img-fluid"></p>
-<p><span class="math display">\[
-\begin{align}
+<p><span class="math display">\[\begin{align}
 M \ddot{x} &amp;+ K x &amp;= F &amp;\quad \mbox{FEM, 100.000 DOF}\\
 M \phi \ddot{q} &amp;+ K \phi q &amp;= F &amp; \\
 \underbrace{\phi' M \phi} \ddot{q} &amp;+ \underbrace{\phi' K \phi} q &amp;= \phi' F &amp; \\
 \tilde{M} \ddot{q} &amp;+ \tilde{K} q &amp;= \tilde{F} &amp; \quad \mbox{ROM, approx. 10 DOF}
-\end{align}
-\]</span></p>
+\end{align}\]</span></p>
 </section>
 <section id="gyro-behavioural-modelling" class="level2" data-number="2.11">
 <h2 data-number="2.11" class="anchored" data-anchor-id="gyro-behavioural-modelling"><span class="header-section-number">2.11</span> Gyro Behavioural Modelling</h2>
@@ -828,8 +816,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../class/references.html" class="pagination-link" aria-label="Literaturverzeichnis">
-        <span class="nav-page-text">Literaturverzeichnis</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lab/01_lab.html" class="pagination-link" aria-label="Model-Based Systems Engineering for an Inertial Sensor System">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Model-Based Systems Engineering for an Inertial Sensor System</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

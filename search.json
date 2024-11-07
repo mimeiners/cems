@@ -564,7 +564,7 @@
     "href": "class/02_lec.html#spring-mass-damping-system",
     "title": "2  Systems Engineering for Gyros",
     "section": "2.6 Spring-Mass-Damping System",
-    "text": "2.6 Spring-Mass-Damping System\n\n1-D equation of motion (EoM) \\(F = m\\ddot{x} + d\\dot{x} + kx\\)\nLaplace transformation\n\n\\[\n\\begin{align}\nH(s) &= \\frac{1}{m s^2 +  d s + k} \\\\\n&= \\frac{\\frac{1}{m}}{s^2 + \\frac{\\omega_0}{Q} s + \\omega_0^2}\n\\end{align}\n\\]",
+    "text": "2.6 Spring-Mass-Damping System\n\n1-D equation of motion (EoM) \\(F = m\\ddot{x} + d\\dot{x} + kx\\)\nLaplace transformation\n\n\\[\\begin{align}\nH(s) &= \\frac{1}{m s^2 +  d s + k} \\\\\n&= \\frac{\\frac{1}{m}}{s^2 + \\frac{\\omega_0}{Q} s + \\omega_0^2}\n\\end{align}\\]",
     "crumbs": [
       "Lecture",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Systems Engineering for Gyros</span>"
@@ -586,7 +586,7 @@
     "href": "class/02_lec.html#multi-domain-readout-block-diagram",
     "title": "2  Systems Engineering for Gyros",
     "section": "2.8 Multi-Domain Readout Block Diagram",
-    "text": "2.8 Multi-Domain Readout Block Diagram\n\n\\[\n\\begin{align}\nH_s(s) &= \\frac{\\frac{1}{m}}{s^2 + \\frac{\\omega_0}{Q}s + \\omega_0^2} &\\quad \\mbox{sensor} \\\\\nH_{CV}(s) &= \\frac{g_m}{C_L}\\frac{1-e^{-sT_{int}}}{s} &\\quad \\mbox{CV converter} \\\\\nH_{lf}(z) &= -\\frac{z}{z+a}\\frac{z^2 +b_1z +b_0}{z^2 +c_1z +c_0} &\\quad \\mbox{loop filter}\n\\end{align}\n\\]",
+    "text": "2.8 Multi-Domain Readout Block Diagram\n\n\\[\\begin{align}\nH_s(s) &= \\frac{\\frac{1}{m}}{s^2 + \\frac{\\omega_0}{Q}s + \\omega_0^2} &\\quad \\mbox{sensor} \\\\\nH_{CV}(s) &= \\frac{g_m}{C_L}\\frac{1-e^{-sT_{int}}}{s} &\\quad \\mbox{CV converter} \\\\\nH_{lf}(z) &= -\\frac{z}{z+a}\\frac{z^2 +b_1z +b_0}{z^2 +c_1z +c_0} &\\quad \\mbox{loop filter}\n\\end{align}\\]",
     "crumbs": [
       "Lecture",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Systems Engineering for Gyros</span>"
@@ -597,7 +597,7 @@
     "href": "class/02_lec.html#multi-domain-modelling",
     "title": "2  Systems Engineering for Gyros",
     "section": "2.9 Multi-Domain Modelling",
-    "text": "2.9 Multi-Domain Modelling\n\nDescribing kinematic and electrical behaviour with the help of HDL\n\nVHDL, VHDL-AMS\nVerilog, Verilog-A, Verilog-AMS\n\nUsing ROM for a MATLAB/SIMULINK model and real-time workshop to port model for use with Cadence \\(\\rightarrow\\) Verilog-AMS is used for wrapping\nParasitic SPICE circuit equivalent from FEM sensor model and layout extraction",
+    "text": "2.9 Multi-Domain Modelling\n\nDescribing kinematic and electrical behaviour with the help of HDL\n\nVHDL, VHDL-AMS\nVerilog, Verilog-a, Verilog-ams\n\nUsing ROM for a MATLAB/SIMULINK model and real-time workshop to port model for use with Cadence \\(\\rightarrow\\) Verilog-AMS is used for wrapping.\nParasitic SPICE circuit equivalent from FEM sensor model and layout extraction",
     "crumbs": [
       "Lecture",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Systems Engineering for Gyros</span>"
@@ -608,7 +608,7 @@
     "href": "class/02_lec.html#rom-modelling---coordinate-transformation",
     "title": "2  Systems Engineering for Gyros",
     "section": "2.10 ROM Modelling - Coordinate transformation",
-    "text": "2.10 ROM Modelling - Coordinate transformation\n\n\\[\n\\begin{align}\nM \\ddot{x} &+ K x &= F &\\quad \\mbox{FEM, 100.000 DOF}\\\\\nM \\phi \\ddot{q} &+ K \\phi q &= F & \\\\\n\\underbrace{\\phi' M \\phi} \\ddot{q} &+ \\underbrace{\\phi' K \\phi} q &= \\phi' F & \\\\\n\\tilde{M} \\ddot{q} &+ \\tilde{K} q &= \\tilde{F} & \\quad \\mbox{ROM, approx. 10 DOF}\n\\end{align}\n\\]",
+    "text": "2.10 ROM Modelling - Coordinate transformation\n\n\\[\\begin{align}\nM \\ddot{x} &+ K x &= F &\\quad \\mbox{FEM, 100.000 DOF}\\\\\nM \\phi \\ddot{q} &+ K \\phi q &= F & \\\\\n\\underbrace{\\phi' M \\phi} \\ddot{q} &+ \\underbrace{\\phi' K \\phi} q &= \\phi' F & \\\\\n\\tilde{M} \\ddot{q} &+ \\tilde{K} q &= \\tilde{F} & \\quad \\mbox{ROM, approx. 10 DOF}\n\\end{align}\\]",
     "crumbs": [
       "Lecture",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Systems Engineering for Gyros</span>"
