@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "M 1.2 Concept Engineering Mixed-Technology Systems (CEMS)",
+    "title": "M 1.9 Concept Engineering Mixed-Technology Systems (CEMS)",
     "section": "",
-    "text": "Unsyllabus\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nCourse\nM 1.2 Concept Engineering Mixed-Technology Systems (CEMS)\n\n\nTerm\nWinter 2024/25\n\n\nInstructor\nProf. Dr.-Ing. M. Meiners\n\n\nLectures\nThu., 9:45 h - 13:00 h\n\n\nRoom\nE 507 Lab",
+    "text": "Unsyllabus\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nCourse\nM 1.9 Concept Engineering Mixed-Technology Systems (CEMS)\n\n\nTerm\nWinter 2024/25\n\n\nInstructor\nProf. Dr.-Ing. M. Meiners\n\n\nLectures\nThu., 9:45 h - 13:00 h\n\n\nRoom\nE 507 Lab",
     "crumbs": [
       "Unsyllabus"
     ]
@@ -25,7 +25,7 @@
     "href": "class/01_lec.html#course-objectives",
     "title": "1  Introduction and Survey",
     "section": "",
-    "text": "Interfacing Microsystems\n\nMixed-technology VLSI systems (System-on-Chip, SoC)\n\nDesign Methodology\n\nSeamlessly modeling and design over all physical domains\n\nConcept Engineering ASICs\n\nPartitioning\nPackaging",
+    "text": "Interfacing Microsystems\n\nMixed-technology systems (System-on-Chip, SoC)\nSystem analysis\nSystem specification\n\nDesign Methodology\n\nSeamlessly modeling and design over all physical domains\n\nPCB (System) and IC Design\n\nArchitecture\nPartitioning\nLayout",
     "crumbs": [
       "Lecture",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
