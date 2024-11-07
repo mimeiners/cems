@@ -67,12 +67,11 @@
 
 * Laplace transformation
 
-$$
 \begin{align}
 H(s) &= \frac{1}{m s^2 +  d s + k} \\
 &= \frac{\frac{1}{m}}{s^2 + \frac{\omega_0}{Q} s + \omega_0^2}
 \end{align}
-$$
+
 
 
 ## Functional Block Diagram
@@ -92,22 +91,22 @@ $$
 
 ![](../images/lec2_sdsystem.png)
 
-$$
 \begin{align}
 H_s(s) &= \frac{\frac{1}{m}}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2} &\quad \mbox{sensor} \\
 H_{CV}(s) &= \frac{g_m}{C_L}\frac{1-e^{-sT_{int}}}{s} &\quad \mbox{CV converter} \\
 H_{lf}(z) &= -\frac{z}{z+a}\frac{z^2 +b_1z +b_0}{z^2 +c_1z +c_0} &\quad \mbox{loop filter}
 \end{align}
-$$
+
 
 
 ## Multi-Domain Modelling
 
 * Describing kinematic and electrical behaviour with the help of HDL
   * VHDL, VHDL-AMS
-  * Verilog, Verilog-A, Verilog-AMS
+  * Verilog, Verilog-a, Verilog-ams
 
-* Using ROM for a MATLAB/SIMULINK model and real-time workshop to port model for use with Cadence $\rightarrow$ Verilog-AMS is used for wrapping
+* Using ROM for a MATLAB/SIMULINK model and real-time workshop to port model for use with Cadence $\rightarrow$
+  Verilog-AMS is used for wrapping.
 
 * Parasitic SPICE circuit equivalent from FEM sensor model and layout extraction
 
@@ -116,14 +115,12 @@ $$
 
 ![](../images/lec2_rom.png)
 
-$$
 \begin{align}
 M \ddot{x} &+ K x &= F &\quad \mbox{FEM, 100.000 DOF}\\
 M \phi \ddot{q} &+ K \phi q &= F & \\
 \underbrace{\phi' M \phi} \ddot{q} &+ \underbrace{\phi' K \phi} q &= \phi' F & \\
 \tilde{M} \ddot{q} &+ \tilde{K} q &= \tilde{F} & \quad \mbox{ROM, approx. 10 DOF}
 \end{align}
-$$
 
 
 ## Gyro Behavioural Modelling
