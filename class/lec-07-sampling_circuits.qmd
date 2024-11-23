@@ -1,0 +1,504 @@
+# Lecture 7
+
+Sampling Circuits
+
+# Circuit Level Considerations
+
+
+
+* How to build circuits that “sample”?
+* Ideal Dirac sampling is impractical
+  * Need a switch that opens\, closes and acquires signal within an infinitely small time\.
+* Discrete time integrators
+  * Finite OTA gain
+  * Electronic noise
+  * OTA dynamic settling error\, nonideality due to slewing
+
+
+# Emulating a Resistor
+
+Note: Current flows in “bursts”
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Switched Capacitor Circuits
+
+SC low\-pass filter \(passiv\)
+
+SC integrator
+
+SC gain stage
+
+\(Actual implementations are differential\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Discussion
+
+
+
+* One of the most significant inventions in the history of ICs
+* Predominant approach for precision signal processing in CMOS
+  * CMOS technology provides good switches & capacitors
+* SC circuits have many advantages over RC implementations
+  * Transfer function set by  _ratio_  of capacitors
+    * RC product suffers from large process variations
+  * Corner frequencies \(of filters\) can be adjusted by changing clock frequency
+  * Can make large time constants without using large resistors
+    * RC lowpass\, 100Hz: R=16MΩ\, C=100pF
+    * SC lowpass\, 100Hz: f=10kHz\, C1=6\.25pF\, C2=100pF
+  * Ref\. R\. Gregorian et al\.\, “Switched\-Capacitor Circuit Design\,” Proceedings of the IEEE\, Vol\. 71\, No\. 8\, Aug\. 1983
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Inverting Configuration
+
+
+
+* Compared to the circuit on slide 3\, the effect of V1 is “inverted” because C is flipped upside down during f2 \(\+ terminal at GND\)
+  * Provides signal inversion
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# RC and SC Filter (1)
+
+Transient analysis
+
+fs = 1MHz\, fc = 50kHz\, fin=3kHz
+
+\* RC SC filter
+
+\* LIBRARIES
+
+\.inc \. <span style="color:#666666">/</span> misc <span style="color:#666666">/</span> utilities\.cir
+
+\* MAIN CIRCUIT
+
+Vin vin  <span style="color:#666666">0</span>  dc  <span style="color:#666666">0</span>  SINE\( <span style="color:#666666">0</span>   <span style="color:#666666">1</span>   <span style="color:#666666">1</span> k\)
+
+Vvdd vdd  <span style="color:#666666">0</span>  dc  <span style="color:#666666">3\.3</span>
+
+\* CLOCKS
+
+Xclk p1 p1b p1e p1eb p2 p2b p2e p2eb vdd clocks1 fclk <span style="color:#666666">=1e6</span>  tnov <span style="color:#666666">=100</span> n
+
+R0 vin vrc  <span style="color:#666666">3\.1831</span> Meg
+
+C0 vrc  <span style="color:#666666">0</span>   <span style="color:#666666">1</span> p ic <span style="color:#666666">=0</span>
+
+C2 vsc  <span style="color:#666666">0</span>   <span style="color:#666666">1</span> p ic <span style="color:#666666">=0</span>
+
+C1 vc1  <span style="color:#666666">0</span>   <span style="color:#666666">314\.6f</span>  ic <span style="color:#666666">=0</span>
+
+<span style="color:#666666">\*</span>  SWITCHES
+
+S1 vin vc1 p1  <span style="color:#666666">0</span>  sw1
+
+S2 vc1 vsc p2  <span style="color:#666666">0</span>  sw1
+
+\* TRANSIENT ANALYSIS
+
+\.tran  <span style="color:#666666">1u</span>   <span style="color:#666666">1</span> m
+
+\.end
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* SC output is a “staircase approximation” of the RC filtered signal
+  * Slightly delayed
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Waveform Details
+
+![](../images/lec-07-sampling_circuits_11.png)
+
+VC1 tracks input
+
+New output value
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Waveforms with Larger Ron
+
+![](../images/lec-07-sampling_circuits_12.png)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response ?
+
+
+
+* Looking at the transient waveforms is fun\, but what can we say about the frequency response of the SC circuit?
+* Looks like a tough question since the output signal looks “complicated”
+  * Not just a sine wave with shifted phase and altered magnitude\, as in the RC case
+  * Instead we have a staircase waveform with “rounded” edges \(due to finite switch resistance\)
+* Part of the problem is that SC circuits are time variant
+  * The configuration is periodically switched between two states
+* Time variant circuits\, in principle\, introduce new frequencies
+  * Think about spectral components caused by the voltage “steps” at the output
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# First Pass Analysis
+
+![](../images/lec-07-sampling_circuits_13.png)
+
+
+
+* Let’s try to find the relationship between Vin\(t1\) and Vout\(t2\)
+  * This means we are looking at the relationship between “discrete time samples” of the voltages and ignore the fact that the output is really a continuous time signal
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Circuit Analysis (1)
+
+During f1\, VC1 tracks Vin
+
+If we assume that the tracking is reasonably fast\, such that there is only a negligible difference between the input and VC1\, we can write
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+During f2\, the output voltage and VC1 are equalized
+
+Again\, assuming that the circuit settles precisely\, we can write
+
+The sum of the charges must be equal to the charges that were previously on C1 and C2\, before the phi2 switch turned on\, i\.e\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Laplace Transform
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Let’s plot this frequency response and compare to the simple RC filter\.
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response
+
+Close only for f << fs
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# First Order Approximation
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# fs = 5 MHz (previously 1 MHz)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Linear Frequency Axis
+
+The transfer function is periodic with period fs\.
+
+Why?
+
+Aliasing\, cmp\. Lec\. 3
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Signal Nomenclature
+
+Continuous Time Signal
+
+Discrete Time Signal
+
+Clock Signal
+
+Track and Hold \(T/H\) Signal“Sampled Data Signal”
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Simple SC Filter
+
+z\-Domain Representation
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Noninverting Integrator Analysis (1)
+
+Output held at end valuefrom previous half cycle
+
+Output can be sampled during either f1 or f2
+
+Sampling at f1 means that there will be an additional half clock cycle delay \(z\-1/2\)
+
+Chargeredistribution\(output ready at end of this phase\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+| __t/T__  __s__ | __Q__  __s__ | __Q__  __I__ |
+| :-: | :-: | :-: |
+| n\-1 | Cs·Vi\(n\-1\) | CI·Vo\(n\-1\)=CI·Vo\(n\-3/2\) |
+| n\-1/2 | 0 | CI·Vo\(n\-1/2\) = CI·Vo\(n\-3/2\) \+ Cs·Vi\(n\-1\) |
+| n | Cs·Vi\(n\) | CI·Vo\(n\) = CI·Vo\(n\-1\) \+ Cs·Vi\(n\-1\) |
+| n\+1/2 | … | … |
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* At output Vo1: DDI \(Direct Digital Integrator\)
+* At output Vo2: LDI \(Lossless Digital Integrator\)
+* What is the frequency response of this integrator?
+  * First look at H2\(z\)\, LDI
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Frequency Response LDI
+
+
+
+* Behaves like an RC integrator for low frequencies \(f << fs\)
+  * R replaced by 1/\(fsCs\)\, as before
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* Magnitude error as before\, but now there’s also a phase error
+  * Bad news if we are looking to build a high Q filter
+* Numerical example for f=fs/32
+  * Magnitude error = 0\.16%  may not be a problem
+  * Phase error = \-5\.6 degrees  big problem\!
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# Inverting Integrator
+
+Input induces charge change \(output ready at the end of this phase\)
+
+At Vo1: Inverting Integrator
+
+Reset Cs
+
+\(output heldat previous value\)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+# General Building Block
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+Assuming ideal amplifier:
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Poor Man’s OTA
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# OTA Model
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Circuit with Feedback Network and Load
+
+
+
+* Questions
+  * What is the phase margin of the loop?
+  * What is the closed\-loop transfer function?
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Putting it All Together
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Complete “Telescopic” OTA
+
+
+
+* For stability\, need to worry about
+  * Nondominant pole from NMOS cascodes
+  * Nondominant pole from PMOS cascodes
+  * Pole\-zero doublet from current mirror
+* One major disadvantage of a telescopic OTA is its limited output range
+  * Especially when desired input common mode is relatively high
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Folded Cascode OTA
+
+
+
+* High\- and low\-frequency behavior similar to telescopic OTA
+* Advantage
+  * Input common mode can be chosen without taking away output signal range
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Current Mirror OTA
+
+
+
+* No Miller effect issues
+* Gm = M gm
+  * But non\-dominant pole due to mirror scales as 1/M
+* Useful for applications that don’t demand bandwidths close to process limits
+* Example
+  * Yao\, IEEE JSSC 11/2004
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# (Basic) Two-Stage OTA
+
+
+
+* High gain ~ 0\.5\(gmro\)2
+* Large output range
+* Possible extensions
+  * Cascodes in stage 1
+    * Gain becomes ~0\.5\(gmro\)3 \(\!\)
+  * Current mirror in stage 1
+
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Nonidealities in SC Integrators
+
+
+
+* Finite amplifier gain
+* Finite amplifier bandwidth and slew rate
+* Thermal noise
+  * From SC resistor emulation
+  * From amplifiers
+* Parasitic capacitance
+  * Use parasitic insensitive configurations
+* Amplifier offset voltage and flicker noise
+  * Often not an issue
+  * If problematic use “correlated double sampling”
+    * Covered later in this course
+* Switch charge injection and clock feedthrough
+  * Use “bottom plate sampling”
+
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+---
+
+Train of pulses is the classic example of the need for constant delay and good attenuation.
+
+# Recall: Intrinsic MOS Capacitor Summary
+
+|  | __Subthreshold__ | __Triode__ | __Saturation__ |
+| :-: | :-: | :-: | :-: |
+| __C__  __gs__ | 0 | _½ WLC_  _ox_ | _2_  _/_  _3_  _ WLC_  _ox_ |
+| __C__  __gd__ | 0 | _½ _  _WLC_  _ox_ | 0 |
+| __C__  __gb__ |  | 0 | 0 |
+
+xd is the width of the depletion region at the silicon surface
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Recall: MOS Capacitor Summary
+
+|  | __Subthreshold__ | __Triode__ | __Saturation__ |
+| :-: | :-: | :-: | :-: |
+| __C__  __gs__ | _C_  _ov_ | _½ WLC_  _ox_  _\+ C_  _ov_ | _2_  _/_  _3_  _ WLC_  _ox _  _\+ C_  _ov_ |
+| __C__  __gd__ | _C_  _ov_ | _½ WLC_  _ox_  _\+C_  _ov_ | _C_  _ov_ |
+| __C__  __gb__ |  | 0 | 0 |
+| __C__  __sb__ | _C_  _jsb_ | _C_  _jsb_  _\+ C_  _CB_  _/2_ | _C_  _jsb_  _\+ _  _2_  _/_  _3_  _C_  _CB_ |
+| __C__  __db__ | _C_  _jdb_ | _C_  _jdb_  _\+ C_  _CB_  _/2_ | _C_  _jdb_ |
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Recall: Small Signal Model with Extrinsic Caps
+
+Quelle: EE114\, B\. Murmann\, Stanford Univ\.
+
+# Finite Gain (1)
+
+Source: EE315a\, B\. Murmann\, Stanford Univ\.
+
+
+
+* Sampling output during phase 1
+* Finite gain results in “leaky integrator”
+  * Some fraction of previous output is lost in new cycle\.
+
+
+# Frequency Domain View
+
+Limited gain at low\-frequencies
+
+But noise\-shaping relies on high integrator gain at low frequencies …
+
+# Required DC Gain
+
+Good practice to make OTA gain at least a few times larger than oversampling ratio\.
+
+# Circuit with MOS Switch / Nonidealities
+
+Finite acquisition time
+
+Tracking nonideality
+
+Signal dependent hold instant
+
+Thermal noise
+
+Clock jitter
+
+Hold mode feedthrough and leakage
+
+Charge injection and clock feedthrough
+
+# Finite Acquisition Time
+
+# Hold Mode Leakage
+
+# Sampling Jitter
+
+
+
+* In any sampling circuit\, electronic noise causes random timing variations in the actual sampling clock edge
+  * Adds "noise" to samples\, especially if dVin/dt is large
+* Analysis
+  * Consider sine wave input signal
+  * Assume ∆t is random with zero mean and standard deviation σ
+
+
+# Charge Cancellation
+
+
+
+* Cancellation is never perfect\, since channel charge of M1 will not exactly split 50/50
+  * E\.g\. if Rs is very small\, most of M1’s channel charge will flow toward the input voltage source
+* Not a precision technique\, just an attempt to do a partial clean\-up
+
+
+# Differential Sampling
+
+# CMOS Switch
+
+
+
+* Design
+  * Size P/N ratio to minimize change in R over input range
+  * Size P and N simultaneously to meet distortion specs
+* PMOS brings limited benefit unless the input signal range is large or centered near VDD
+
+
+# Clock Generation
+
+# Fully Differential Circuit
+

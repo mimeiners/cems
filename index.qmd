@@ -4,7 +4,6 @@
 |------------|-----------------------------------------------------------|
 | Course     | M 1.9 Concept Engineering Mixed-Technology Systems (CEMS) |
 | Term       | Winter 2024/25                                            |
-| Instructor | Prof. Dr.-Ing. M. Meiners                                 |
+| Instructor | Prof. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann     |
 | Lectures   | Thu., 9:45 h - 13:00 h                                    |
-| Room       | E 507 Lab                                                 |
-|            |                                                           |
+| Room       | E 507 ELIE Lab                                                 |
