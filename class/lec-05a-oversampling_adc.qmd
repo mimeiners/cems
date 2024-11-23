@@ -1,0 +1,402 @@
+# Lecture 5
+
+Oversampling ADC‘s
+
+# Overview
+
+Oversampling A/D conversion
+
+Decimation filters
+
+Oversampling D/A conversion
+
+# Recap
+
+Sampling theorem
+
+One good reason for sampling faster \(“oversampling”\):Can use lower order anti\-alias filter \(AAF\)\.
+
+# Anti-Aliasing Filter
+
+# Quantization Noise
+
+
+
+* Recall that the “noise” introduced by quantizer is evenly distributed across all frequencies\.
+  * Provided that quantization error sequence is “sufficiently random”\.
+* Idea: Let’s filter out the noise beyond
+
+
+# Digital Noise Filter (1)
+
+# Noise Shaping
+
+Idea: “Somehow” build an ADC that has most of its quantization noise at high frequencies\.
+
+Key: Feedback
+
+# Noise Shaping Using Feedback (1)
+
+# Discrete Time Integrator
+
+# First Order “Delta-Sigma” Modulator
+
+Output is equal to delayed input plus filtered quantization noise\.
+
+# NTF Frequency Domain Analysis
+
+“1st order noise shaping”
+
+Quantization noise is attenuated at low frequencies\, amplified at high frequencies\.
+
+# In-Band Quantization Noise (1)
+
+Question: If we had an ideal digital lowpass\, what would be the achieved SQNR as a function of oversampling ratio \(OSR\) M?
+
+Can integrate shaped quantization noise spectrum up to fB and compare to full\-scale \(FS\) signal\.
+
+Assuming a full\-scale \(FS\) sinusoidal signal\, we have
+
+Each 2 x increase in M \(OSR\) results in 8 x SQNR improvement\,9 dB \(1\.5 bits\) per octave oversampling\.
+
+# SQNR Improvement
+
+
+
+* Example revisited:
+  * Want a 16\-bit ADC\, fB=1 MHz
+  * Use oversampled 8\-bit ADC\, 1st order noise shaping and \(ideal\) digital lowpass filter\.
+    * SQNR improvement compared to case without oversampling is \-5\.2 dB \+ 30 log\(M\)
+  * 8\-bit increase in resolution \( 48 dB SQNR improvement\) would necessitateM approx\. 60
+* Not all that bad\!
+
+
+| M | SQNR improvement |
+| :-: | :-: |
+| 16 | 31 dB \(~5 bits\) |
+| 256 | 67 dB \(~11 bits\) |
+| 1024 | 85 dB \(~14 bits\) |
+
+# DAC Requirements
+
+
+
+* DAC error is indistinguishable from signal;
+  * Means that DAC must be precise to within target resolution
+* For the previous example\, this means that we need an 8\-bit DAC whose output levels have 16\-bit precision …
+
+
+# Solution
+
+
+
+* Trimming or calibration
+  * Measure DAC levels during test or at power\-up\.
+  * Apply correction values to each level using auxiliary DAC\.
+* Dynamic Element Matching Algorithms
+  * Shuffle DAC unit elements to obtain fairly precise “average” output levels\.
+  * Two ways:
+    * Data independent shuffling
+    * Data dependent shuffling
+* Single bit DAC
+
+
+# Single-Bit DAC
+
+A single bit DAC has only two output levels\.
+
+Even if these two levels are imprecise\, the error will only affect gain and offset of the DAC and modulator which is tolerable in many applications\.
+
+# Modulator with Single-Bit Quantizer (1)
+
+Expected SQNR \(from slide 14 With B=1\)
+
+E\.g\. with M=128\, SQNR=60dB
+
+Implementation example\, cnf\. \(Schreier and Temes\, 2003\, p\. 31\)
+
+Not all that great in terms of achievable SQNR\, but sufficient for some applications\, e\.g\. digital voltmeter \(van de Plassche\, 2003\)
+
+![](../images/lec-05a-oversampling_adc_18.png)
+
+Simulink implementation example \(Boser\, EECS 247\, 2011\)
+
+# Simulated Response
+
+# Spectrum
+
+Looks like there is some noise shaping\, but SQNR=55 dB is lower thatn the exspected 60 dB\.
+
+# Amplitude and Frequency Dependence
+
+
+
+* Erratic dependence on amplitude and requency
+  * Simple linear model fails to predict this behaviour\.
+* Issue: Qunatization noise error sequence is not “sufficiently random”\, as assumed in the beginning of this discussion\.
+
+
+# Quantization Error in 1st Order Modulator
+
+A complicated\, but deterministic function of the input\.
+
+# Aside: Quantizer Gain
+
+
+
+* Another issue is that the gain of the single bit quantizer is ill\-defined\, but we assumed it to be unity in our analysis
+* The actual quantizer gain can be found from simulations\, and then plugged back into the linear model for better agreement \(and stability analysis using root locus\, etc\.\)
+* References
+  * Schreier\, Sections 3\.2 and 4\.2
+  * S\. Ardalan\, and J\. Paulos\, “An analysis of nonlinear behavior in delta\-sigma modulators\,” IEEE TCAS\, vol\.34\, no\.6\, pp\. 593\-603\, June 1987\.
+  * T\. Ritoniemi\, T\. Karema\, and H\. Tenhunen\, “Design of stable high order 1\-bit sigma\-delta modulators\,” Proc\. IEEE ISCAS\, pp\. 3267\-3270\, May 1990
+
+
+# Tones
+
+
+
+* Since the quantization error is correlated with the input\, the shaped quantization noise contains spurious tones\, some of which lie in the signal band\.
+* The linear model cannot predict these tones\.
+* It is generally difficult to predict tonal behavior for arbitrary inputs\, even with a nonlinear model\.
+* Analytical results exist for DC and sine inputs\, see e\.g\.
+  * R\. M\. Gray\, “Spectral analysis of quantization noise in a single\-loop sigma\-delta modulator with DC input\,” IEEE Trans\. Comm\.\, pp\. 588\-599\, June 1989\.
+  * R\. M\. Gray et al\.\, “Quantization noise in single\-loop sigma\-delta modulation with sinusoidal inputs\,” IEEE Trans\. Comm\.\, pp\. 956\-968\, Sept 1989\.
+* Interesting and intuitive to look at DC input as a worst case\.
+
+
+# DC Input
+
+DC input A = 1/11
+
+Doesn’t look like spectrum of DC at all
+
+The ADC “sings” ???Quantization noise is periodic
+
+# Limit Cycle
+
+DC input A=1/11
+
+Periodic sequence
+
+# Idle Tone Considerations
+
+
+
+* Idle tones are known to be a significant issue in audio applications\.
+  * The human ear can detect tones ~20dB below the thermal/quantization noise floor\.
+* If idle tones are an issue\, there are several options for mitigating their impact
+  * Larger oversampling ratio
+  * Multi\-bit quantizer and DAC
+  * Dither
+    * Superimpose a pseudorandom signal at the quantizer input to "whiten" quantization noise
+      * See e\.g\. Chapter 3 of Delta\-Sigma Data Converters by Norsworthy\, Schreier & Temes\.
+    * Overdesign by making quantization noise much smaller than electronic noise from integrators
+      * Noisy integrator\(s\) help randomize quantization error sequence
+  * Higher order modulators
+    * Naturally produce "more random" quantization error sequences
+
+
+# Higher Order Modulators
+
+
+
+* Motivation: Better SQNR for a given oversampling ratio \(M\)\, plus improved idle tone performance as a side benefit\.
+* Commonly used architectures:
+  * Single quantizer loop with higher order filtering
+    * Essentially a logical extension to the 1st  order noise shaping concept discussed previously\.
+  * Cascaded\, multi\-stage modulators
+    * Contain a separate quantizer in each stage\.
+
+
+# Higher Order Noise Shaping
+
+Lth order noise transfer function
+
+# In-Band Quantization Noise
+
+For an Lth order modulator\, every doubling of M results in an increase in SQNR of 6L \+ 3 dB \(L \+ 0\.5 bits\)\.
+
+# SQNR with Single Bit Quantizer
+
+# Building a 2nd Order Modulator
+
+General idea: Start with a 1st order modulator and replace quantizer by another 1st order loop\.
+
+# Stability
+
+
+
+* Having more than two integrators in a feedback loop means that the loop can be unstable \(criterion = BIBO\)\.
+* From the diagram of the previous slide\, it is clear that the stability of the loop mostly depends on L1\(z\)\, and therefore the characteristics of the NTF\.
+* How about the nonlinear transfer characteristic of the quantizer?
+  * Unfortunately\, there is no crisp mathematical result that would address this question for all possible configurations\.
+  * One important\, and general aspect of having a nonlinearity in the loop is that the stability becomes dependent on the signal \(and also L0\)\!
+* In practice\, designers rely on a combination of stability analyses using the linear model \(\!\)\, established “heuristics\,” and time domain simulations of the nonlinear model\.
+
+
+# Stability Heuristics
+
+
+
+* Single\-bit
+  * First order modulator is stable \(bounded integrator output\) with arbitrary inputs of less than ∆/2 in magnitude
+  * Second order modulator is known to be stable with arbitrary inputs of less than ∆/20 in magnitude\, and for "reasonable"\, slow varying inputs of magnitude < 0\.8·∆/2\, integrator outputs are "likely" to stay within bounds
+  * Lee's criterion: modulator is “likely” to be stable if max\[He\(ω\)\] < 1\.5
+* Multi\-bit
+  * A modulator with Nth order differentiation using an N\+1 bit quantizer is stable for arbitrary inputs with amplitude less than half the quantizer input range \(Schreier\, p\. 104\)\.
+
+
+# Typical Design Procedure
+
+
+
+* "Cookbook design"
+  * See e\.g\. “Delta\-Sigma Data Converters” by Norsworthy\, Schreier & Temes\, Sec\. 4\.4 and Sec\. 5\.6
+  * Choose order based on desired SQNR and M
+  * Design NTF using filter approximations \(e\.g\. Chebyshev 2\)
+    * Make sure to obey Lee's criterion
+  * Determine loop\-filter transfer function and evaluate performance and stability using simulations
+  * Determine implementation\-specific coefficients
+  * Scale coefficients to restrict integrator outputs to stay within available range \(“dynamic range scaling"\)
+* Delta\-Sigma Toolbox for MATLAB by Richard Schreier
+
+
+![](../images/lec-05a-oversampling_adc_30.png)
+
+# Building Models in Stages (1)
+
+
+
+* When modeling a complex system like a higher\-order SDM\, model development proceeds in stages\.
+  * Each stage builds on its predecessor\.
+* The design goal is to detect and eliminate problems at the highest possible level of abstraction\.
+  * Each successive stage consumes progressively more engineering time\.
+
+
+Rework and re\-verification in early stage models because problems found in later stages are expensive fix\.
+
+Don’t launch a multi\-stage rework cycle every time you fin d a single bug\.
+
+
+
+* Proceed in stages:
+  * Determine requirements and gather references
+  * Design practicle system
+    * Ideal subcircuits
+    * Test under worst\-case conditions
+  * Model key subcircuit nonidealities
+    * Do not overload models with mindless “nonidealities”\.
+  * Circuit design
+
+
+# “Cookbook” NTF Design Example
+
+<span style="color:#4f9192"> _%% Design _ </span>  <span style="color:#4f9192"> _parameters_ </span>
+
+L =  <span style="color:#797979">4</span> ;   <span style="color:#4f9192"> _% _ </span>  <span style="color:#4f9192"> _order_ </span>
+
+<span style="color:#000000">M = </span>  <span style="color:#797979">64</span>  <span style="color:#000000">; </span>  <span style="color:#4f9192"> _% _ </span>  <span style="color:#4f9192"> _oversampling_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _ratio_ </span>
+
+<span style="color:#4f9192"> _%% _ </span>  <span style="color:#4f9192"> _Stop_ </span>  <span style="color:#4f9192"> _\-band _ </span>  <span style="color:#4f9192"> _attenuation_ </span>  <span style="color:#4f9192"> _; _ </span>  <span style="color:#4f9192"> _reduce_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _if_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _needed_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _to_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _make_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _max_ </span>  <span style="color:#4f9192"> _\{_ </span>  <span style="color:#4f9192"> _abs_ </span>  <span style="color:#4f9192"> _\(He\(_ </span>  <span style="color:#4f9192"> _w_ </span>  <span style="color:#4f9192"> _\)\) < 1\.5\}_ </span>
+
+Rstop =  <span style="color:#797979">80</span> ;
+
+<span style="color:#4f9192"> _%% Filter design_ </span>
+
+\[b\, a\] = cheby2\(L\, Rstop\,  <span style="color:#797979">1/</span> M\,  <span style="color:#c8352b">'high'</span> \);
+
+<span style="color:#4f9192"> _% _ </span>  <span style="color:#4f9192"> _Normalize_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _to_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _make_ </span>  <span style="color:#4f9192"> _ He\(_ </span>  <span style="color:#4f9192"> _z_ </span>  <span style="color:#4f9192"> _\->_ </span>  <span style="color:#4f9192"> _inf_ </span>  <span style="color:#4f9192"> _\)=1; _ </span>  <span style="color:#4f9192"> _needed_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _for_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _realizablity_ </span>
+
+<span style="color:#4f9192"> _% _ </span>  <span style="color:#4f9192"> _Makes_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _first_ </span>  <span style="color:#4f9192"> _ sample _ </span>  <span style="color:#4f9192"> _of_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _impulse_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _response_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _of_ </span>  <span style="color:#4f9192"> _ He = 1\._ </span>
+
+<span style="color:#4f9192"> _% _ </span>  <span style="color:#4f9192"> _Makes_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _first_ </span>  <span style="color:#4f9192"> _ sample _ </span>  <span style="color:#4f9192"> _of_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _impulse_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _response_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _of_ </span>  <span style="color:#4f9192"> _ A = 0\._ </span>
+
+<span style="color:#4f9192"> _% Must _ </span>  <span style="color:#4f9192"> _have_ </span>  <span style="color:#4f9192"> _ at least _ </span>  <span style="color:#4f9192"> _one_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _delay_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _around_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _quantizer_ </span>  <span style="color:#4f9192"> _\._ </span>
+
+b = b <span style="color:#797979">/</span> b\( <span style="color:#797979">1</span> \);
+
+<span style="color:#4f9192"> _%% Check _ </span>  <span style="color:#4f9192"> _Lee's_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _rule_ </span>  <span style="color:#4f9192"> _\, _ </span>  <span style="color:#4f9192"> _want_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _max_ </span>  <span style="color:#4f9192"> _\{_ </span>  <span style="color:#4f9192"> _abs_ </span>  <span style="color:#4f9192"> _\(He\(_ </span>  <span style="color:#4f9192"> _w_ </span>  <span style="color:#4f9192"> _\)\) < 1\.5\}_ </span>
+
+NTF = filt\(b\, a\,  <span style="color:#797979">1</span> \)
+
+\[ mag \] = bode\(NTF\,  <span style="color:#008f00">pi</span> \)
+
+<span style="color:#4f9192"> _%% Loop _ </span>  <span style="color:#4f9192"> _filter_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _transfer_ </span>  <span style="color:#4f9192"> _ _ </span>  <span style="color:#4f9192"> _function_ </span>
+
+A = inv\(NTF\)  <span style="color:#797979">\-</span>  filt\( <span style="color:#797979">1</span> \,  <span style="color:#797979">1</span> \,  <span style="color:#797979">1</span> \)
+
+<span style="color:#4f9192"> _%% Check _ </span>  <span style="color:#4f9192"> _realizability_ </span>
+
+a = impulse\(A\);
+
+a\( <span style="color:#797979">1</span> \)
+
+# Commercial Example TI ADS1115
+
+# Decimation Filters
+
+
+
+* Objectives
+  * Remove out\-of band quantization noise
+  * Re\-sample at lower frequency
+    * Ideally at Nyquist rate
+* References
+  * [DSP Related: Halfband Filter Design with Python/SciPy](https://www.dsprelated.com/showcode/270.php)
+  * [half\-band\-filter\-design\-function\-in\-python/](https://www.wavewalkerdsp.com/2021/12/08/half-band-filter-design-function-in-python/)
+  * [Half\-Band\-Filters\-A\-Workhorse\-of\-Decimation\-Filters\.html](https://tomverbeure.github.io/2020/12/15/Half-Band-Filters-A-Workhorse-of-Decimation-Filters.html)
+
+
+# Example
+
+# Filter Requirements
+
+
+
+* Pass band 0 \.\.\. 20 kHz\, transition band 20 \.\.\. 24\.1 kHz \(∆f=4\.1kHz\)\,stop band 24\.1 kHz \.\.\. 5\.65 MHz
+* A digital FIR filter that meets these requirements would require more than fs/∆f = 11\.3MHz/4\.1kHz ≅ 2800 coefficients
+  * Impractical\!
+
+
+# Multi-Step Decimation
+
+# Complete Filter Implementation
+
+# D/A Conversion Revisited
+
+# Frequency Spectra
+
+# Oversampling
+
+Oversampling greatly reduces reconstruction filter requirements
+
+How to create oversampled DAC input from a Nyquist rate signal?
+
+# Interpolation (1)
+
+
+
+* Can increase the sampling rate of a discrete time signal by a factor of M\, by inserting M\-1 zero\-valued samples between the actual Nyquist rate samples \("zero stuffing"\)
+  * Causes an M\-fold periodic repetition of the baseband spectrum
+
+
+
+
+* Why is this a good idea?
+* Can remove images and get wide transition band to play with
+  * Simple reconstruction filter
+  * Possibility of noise shaping
+    * Build a high resolution DAC using a low resolution D/A interface
+
+
+# Example
+
+
+
+* Digital noise shaper is essentially a digital sigma\-delta loop
+  * Shapes „truncation noise“ that results from truncating16\-bit word to a 1\-bit output
+
+
+# Spectra
+
