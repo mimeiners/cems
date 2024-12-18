@@ -240,53 +240,53 @@
 
 ![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-views_on_hardware_2.png)
 
-## Abstraction Layer
+<!-- ## Abstraction Layer -->
 
-![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-abstraction_layer.png)
+<!-- ![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-abstraction_layer.png) -->
 
-## Design Flow
+<!-- ## Design Flow -->
 
-![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-design_flow.png)
+<!-- ![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-design_flow.png) -->
 
-## Verification
+<!-- ## Verification -->
 
-![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-verification.png)
+<!-- ![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-verification.png) -->
 
-## Frontend vs. Backend (analog)
+<!-- ## Frontend vs. Backend (analog) -->
 
-![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-front-end_back-end_analog.png)
+<!-- ![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-front-end_back-end_analog.png) -->
 
-## Frontend vs. Backend (digital)
+<!-- ## Frontend vs. Backend (digital) -->
 
-![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-front-end_back-end_digital.png)
+<!-- ![(c) M. Ortmanns, Univ. Ulm.](../images/lec-01-front-end_back-end_digital.png) -->
 
-## Analog Design Entry
+<!-- ## Analog Design Entry -->
 
-![](../images/lec-01-design_entry_analog.png)
+<!-- ![](../images/lec-01-design_entry_analog.png) -->
 
-## Netlist
+<!-- ## Netlist -->
 
-![](../images/lec-01-netlist.png)
+<!-- ![](../images/lec-01-netlist.png) -->
 
-## Layout
+<!-- ## Layout -->
 
-![](../images/lec-01-inverter_layout.png)
+<!-- ![](../images/lec-01-inverter_layout.png) -->
 
-## Digital Design Entry
+<!-- ## Digital Design Entry -->
 
-![](../images/lec-01-design_entry_digital.png)
+<!-- ![](../images/lec-01-design_entry_digital.png) -->
 
-## Hardware Desciption Language
+<!-- ## Hardware Desciption Language -->
 
-![](../images/lec-01-hdl_inv.png)
+<!-- ![](../images/lec-01-hdl_inv.png) -->
 
-## Technology-Gates and Netlisting
+<!-- ## Technology-Gates and Netlisting -->
 
-![](../images/lec-01-technology_gate_netlist.png)
+<!-- ![](../images/lec-01-technology_gate_netlist.png) -->
 
-## Standard Cell Layout
+<!-- ## Standard Cell Layout -->
 
-![](../images/lec-01-standard_cell_layout.png)
+<!-- ![](../images/lec-01-standard_cell_layout.png) -->
 
 ## Sustainable Electronics ...
 

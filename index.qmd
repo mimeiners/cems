@@ -1,4 +1,28 @@
-# Unsyllabus {.unnumbered}
+---
+title: Concept Engineering Mixed-Technology Systems
+author:
+    - name: Mirco Meiners
+      orcid: 0000-0002-9709-4191
+      email: Mirco.Meiners@hs-bremen.de
+      corresponding: true
+      roles: "Lead author"
+      affiliation:
+        - name: Hochschule Bremen - City University of Applied Sciences (HSB)
+          city: Bremen
+          state: Germany
+          url: 
+    - name: Tim Ziemann
+      email: Tim.Ziemann@hs-bremen.de
+      roles: "Supporting author"
+date: last-modified
+license: "MIT license"
+copyright:
+  holder: "Mirco Meiners and co-authors, Hochschule Bremen (HSB)."
+  year: 2024
+---
+
+
+## Unsyllabus {.unnumbered}
 
 | Name       | Description                                               |
 |------------|-----------------------------------------------------------|
@@ -6,4 +30,4 @@
 | Term       | Winter 2024/25                                            |
 | Instructor | Prof. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann     |
 | Lectures   | Thu., 9:45 h - 13:00 h                                    |
-| Room       | E 507 ELIE Lab                                                 |
+| Room       | E 507 ELIE Lab                                            |
