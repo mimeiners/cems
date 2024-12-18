@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.32">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Systems Engineering for Gyros – M 1.9 Concept Engineering Mixed-Technology Systems (CEMS)</title>
+<title>3&nbsp; Systems Engineering for Gyros – M 1.9 Concept Engineering Mixed-Technology Systems (CEMS)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -38,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8555de54821c8356f4a1cfa7fa0c8ce2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b7c2d8834e08b04a63bb76a724ffbcac.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -113,7 +113,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../class/lec-01-intro.html">Lecture</a></li><li class="breadcrumb-item"><a href="../class/lec-02-gyros.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../class/lec-01-intro.html">Lecture</a></li><li class="breadcrumb-item"><a href="../class/lec-02-gyros.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -149,7 +149,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unsyllabus</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Concept Engineering Mixed-Technology Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -164,13 +164,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../class/lec-01-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../class/lec-02-gyros.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></span></a>
   </div>
 </li>
       </ul>
@@ -187,7 +187,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lab/lab-01-mbse_and_design.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">MBSE and Design of an Inertial Sensor System</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MBSE and Design of an Inertial Sensor System</span></span></a>
   </div>
 </li>
       </ul>
@@ -202,30 +202,30 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#vehicles-without-esp" id="toc-vehicles-without-esp" class="nav-link active" data-scroll-target="#vehicles-without-esp"><span class="header-section-number">2.1</span> Vehicles without ESP</a></li>
-  <li><a href="#vehicle-dynamics-controls-systems---esp" id="toc-vehicle-dynamics-controls-systems---esp" class="nav-link" data-scroll-target="#vehicle-dynamics-controls-systems---esp"><span class="header-section-number">2.2</span> Vehicle Dynamics Controls Systems - ESP</a></li>
-  <li><a href="#consumer-gyroscopes" id="toc-consumer-gyroscopes" class="nav-link" data-scroll-target="#consumer-gyroscopes"><span class="header-section-number">2.3</span> Consumer Gyroscopes</a></li>
-  <li><a href="#mems-for-automotive-and-consumer-applications" id="toc-mems-for-automotive-and-consumer-applications" class="nav-link" data-scroll-target="#mems-for-automotive-and-consumer-applications"><span class="header-section-number">2.4</span> MEMS for Automotive and Consumer Applications</a></li>
-  <li><a href="#mems-gyroscope-in-action" id="toc-mems-gyroscope-in-action" class="nav-link" data-scroll-target="#mems-gyroscope-in-action"><span class="header-section-number">2.5</span> MEMS Gyroscope in Action</a></li>
-  <li><a href="#spring-mass-damping-system" id="toc-spring-mass-damping-system" class="nav-link" data-scroll-target="#spring-mass-damping-system"><span class="header-section-number">2.6</span> Spring-Mass-Damping System</a></li>
-  <li><a href="#functional-block-diagram" id="toc-functional-block-diagram" class="nav-link" data-scroll-target="#functional-block-diagram"><span class="header-section-number">2.7</span> Functional Block Diagram</a></li>
-  <li><a href="#multi-domain-readout-block-diagram" id="toc-multi-domain-readout-block-diagram" class="nav-link" data-scroll-target="#multi-domain-readout-block-diagram"><span class="header-section-number">2.8</span> Multi-Domain Readout Block Diagram</a></li>
-  <li><a href="#multi-domain-modelling" id="toc-multi-domain-modelling" class="nav-link" data-scroll-target="#multi-domain-modelling"><span class="header-section-number">2.9</span> Multi-Domain Modelling</a></li>
-  <li><a href="#rom-modelling---coordinate-transformation" id="toc-rom-modelling---coordinate-transformation" class="nav-link" data-scroll-target="#rom-modelling---coordinate-transformation"><span class="header-section-number">2.10</span> ROM Modelling - Coordinate transformation</a></li>
-  <li><a href="#gyro-behavioural-modelling" id="toc-gyro-behavioural-modelling" class="nav-link" data-scroll-target="#gyro-behavioural-modelling"><span class="header-section-number">2.11</span> Gyro Behavioural Modelling</a></li>
-  <li><a href="#mixed-domain-simulation" id="toc-mixed-domain-simulation" class="nav-link" data-scroll-target="#mixed-domain-simulation"><span class="header-section-number">2.12</span> Mixed-domain simulation</a></li>
-  <li><a href="#analog-closed-loop-simulation" id="toc-analog-closed-loop-simulation" class="nav-link" data-scroll-target="#analog-closed-loop-simulation"><span class="header-section-number">2.13</span> Analog Closed-Loop Simulation</a></li>
-  <li><a href="#ams-closed-loop-simulation" id="toc-ams-closed-loop-simulation" class="nav-link" data-scroll-target="#ams-closed-loop-simulation"><span class="header-section-number">2.14</span> AMS Closed-Loop Simulation</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">2.15</span> Conclusion</a></li>
+  <li><a href="#vehicles-without-esp" id="toc-vehicles-without-esp" class="nav-link active" data-scroll-target="#vehicles-without-esp"><span class="header-section-number">3.1</span> Vehicles without ESP</a></li>
+  <li><a href="#vehicle-dynamics-controls-systems---esp" id="toc-vehicle-dynamics-controls-systems---esp" class="nav-link" data-scroll-target="#vehicle-dynamics-controls-systems---esp"><span class="header-section-number">3.2</span> Vehicle Dynamics Controls Systems - ESP</a></li>
+  <li><a href="#consumer-gyroscopes" id="toc-consumer-gyroscopes" class="nav-link" data-scroll-target="#consumer-gyroscopes"><span class="header-section-number">3.3</span> Consumer Gyroscopes</a></li>
+  <li><a href="#mems-for-automotive-and-consumer-applications" id="toc-mems-for-automotive-and-consumer-applications" class="nav-link" data-scroll-target="#mems-for-automotive-and-consumer-applications"><span class="header-section-number">3.4</span> MEMS for Automotive and Consumer Applications</a></li>
+  <li><a href="#mems-gyroscope-in-action" id="toc-mems-gyroscope-in-action" class="nav-link" data-scroll-target="#mems-gyroscope-in-action"><span class="header-section-number">3.5</span> MEMS Gyroscope in Action</a></li>
+  <li><a href="#spring-mass-damping-system" id="toc-spring-mass-damping-system" class="nav-link" data-scroll-target="#spring-mass-damping-system"><span class="header-section-number">3.6</span> Spring-Mass-Damping System</a></li>
+  <li><a href="#functional-block-diagram" id="toc-functional-block-diagram" class="nav-link" data-scroll-target="#functional-block-diagram"><span class="header-section-number">3.7</span> Functional Block Diagram</a></li>
+  <li><a href="#multi-domain-readout-block-diagram" id="toc-multi-domain-readout-block-diagram" class="nav-link" data-scroll-target="#multi-domain-readout-block-diagram"><span class="header-section-number">3.8</span> Multi-Domain Readout Block Diagram</a></li>
+  <li><a href="#multi-domain-modelling" id="toc-multi-domain-modelling" class="nav-link" data-scroll-target="#multi-domain-modelling"><span class="header-section-number">3.9</span> Multi-Domain Modelling</a></li>
+  <li><a href="#rom-modelling---coordinate-transformation" id="toc-rom-modelling---coordinate-transformation" class="nav-link" data-scroll-target="#rom-modelling---coordinate-transformation"><span class="header-section-number">3.10</span> ROM Modelling - Coordinate transformation</a></li>
+  <li><a href="#gyro-behavioural-modelling" id="toc-gyro-behavioural-modelling" class="nav-link" data-scroll-target="#gyro-behavioural-modelling"><span class="header-section-number">3.11</span> Gyro Behavioural Modelling</a></li>
+  <li><a href="#mixed-domain-simulation" id="toc-mixed-domain-simulation" class="nav-link" data-scroll-target="#mixed-domain-simulation"><span class="header-section-number">3.12</span> Mixed-domain simulation</a></li>
+  <li><a href="#analog-closed-loop-simulation" id="toc-analog-closed-loop-simulation" class="nav-link" data-scroll-target="#analog-closed-loop-simulation"><span class="header-section-number">3.13</span> Analog Closed-Loop Simulation</a></li>
+  <li><a href="#ams-closed-loop-simulation" id="toc-ams-closed-loop-simulation" class="nav-link" data-scroll-target="#ams-closed-loop-simulation"><span class="header-section-number">3.14</span> AMS Closed-Loop Simulation</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.15</span> Conclusion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mimeiners/cems/edit/main/class/lec-02-gyros.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/cems/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../class/lec-01-intro.html">Lecture</a></li><li class="breadcrumb-item"><a href="../class/lec-02-gyros.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../class/lec-01-intro.html">Lecture</a></li><li class="breadcrumb-item"><a href="../class/lec-02-gyros.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Systems Engineering for Gyros</span></h1>
 </div>
 
 
@@ -242,8 +242,8 @@ window.Quarto = {
 </header>
 
 
-<section id="vehicles-without-esp" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="vehicles-without-esp"><span class="header-section-number">2.1</span> Vehicles without ESP</h2>
+<section id="vehicles-without-esp" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="vehicles-without-esp"><span class="header-section-number">3.1</span> Vehicles without ESP</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/lec-02-moose.png" class="img-fluid figure-img"></p>
@@ -251,8 +251,8 @@ window.Quarto = {
 </figure>
 </div>
 </section>
-<section id="vehicle-dynamics-controls-systems---esp" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="vehicle-dynamics-controls-systems---esp"><span class="header-section-number">2.2</span> Vehicle Dynamics Controls Systems - ESP</h2>
+<section id="vehicle-dynamics-controls-systems---esp" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="vehicle-dynamics-controls-systems---esp"><span class="header-section-number">3.2</span> Vehicle Dynamics Controls Systems - ESP</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/lec-02-esp.png" class="img-fluid figure-img"></p>
@@ -260,8 +260,8 @@ window.Quarto = {
 </figure>
 </div>
 </section>
-<section id="consumer-gyroscopes" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="consumer-gyroscopes"><span class="header-section-number">2.3</span> Consumer Gyroscopes</h2>
+<section id="consumer-gyroscopes" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="consumer-gyroscopes"><span class="header-section-number">3.3</span> Consumer Gyroscopes</h2>
 <p><em>Market segments.</em> * Mobile phones * Digital cameras * Pointing devices * Gaming consoles * GPS portables</p>
 <p><img src="../images/lec-02-ipad.png" class="img-fluid"></p>
 <p><img src="../images/lec-02-samsung.png" class="img-fluid"></p>
@@ -269,20 +269,20 @@ window.Quarto = {
 <p><img src="../images/lec-02-ixus.png" class="img-fluid"></p>
 <p><img src="../images/lec-02-wii.png" class="img-fluid"></p>
 </section>
-<section id="mems-for-automotive-and-consumer-applications" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="mems-for-automotive-and-consumer-applications"><span class="header-section-number">2.4</span> MEMS for Automotive and Consumer Applications</h2>
+<section id="mems-for-automotive-and-consumer-applications" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="mems-for-automotive-and-consumer-applications"><span class="header-section-number">3.4</span> MEMS for Automotive and Consumer Applications</h2>
 <ul>
 <li>Jiri Marek, Senior Vice President, Robert Bosch, Reutlingen, Germany</li>
 </ul>
 <div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/5MKnlsLtK34" width="640" height="365" title="Plenary Sessions from the 2010 ISSCC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
-<section id="mems-gyroscope-in-action" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="mems-gyroscope-in-action"><span class="header-section-number">2.5</span> MEMS Gyroscope in Action</h2>
+<section id="mems-gyroscope-in-action" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="mems-gyroscope-in-action"><span class="header-section-number">3.5</span> MEMS Gyroscope in Action</h2>
 <div class="quarto-video"><video id="video_shortcode_videojs_video1" width="640" height="365" class="video-js vjs-default-skin " controls="" preload="auto" data-setup="{}" title="Drive movement as model animation."><source src="../mov/lec-02-mm3drive.mp4"></video></div>
 <div class="quarto-video"><video id="video_shortcode_videojs_video2" width="640" height="365" class="video-js vjs-default-skin " controls="" preload="auto" data-setup="{}" title="Sense movement as model animation."><source src="../mov/lec-02-mm3sense.mp4"></video></div>
 </section>
-<section id="spring-mass-damping-system" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="spring-mass-damping-system"><span class="header-section-number">2.6</span> Spring-Mass-Damping System</h2>
+<section id="spring-mass-damping-system" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="spring-mass-damping-system"><span class="header-section-number">3.6</span> Spring-Mass-Damping System</h2>
 <ul>
 <li><p>1-D equation of motion (EoM) <span class="math inline">\(F = m\ddot{x} + d\dot{x} + kx\)</span></p></li>
 <li><p>Laplace transformation</p></li>
@@ -292,8 +292,8 @@ H(s) &amp;= \frac{1}{m s^2 +  d s + k} \\
 &amp;= \frac{\frac{1}{m}}{s^2 + \frac{\omega_0}{Q} s + \omega_0^2}
 \end{align}\]</span></p>
 </section>
-<section id="functional-block-diagram" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="functional-block-diagram"><span class="header-section-number">2.7</span> Functional Block Diagram</h2>
+<section id="functional-block-diagram" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="functional-block-diagram"><span class="header-section-number">3.7</span> Functional Block Diagram</h2>
 <p><img src="../images/lec-02-gyroblock.png" class="img-fluid"></p>
 <ul>
 <li><p>Coriolis force principle, <span class="math inline">\(F_C = 2 m \left(\mathbf{v} \times \Omega \right)\)</span></p></li>
@@ -302,8 +302,8 @@ H(s) &amp;= \frac{1}{m s^2 +  d s + k} \\
 <li><p>Distinction of closed-loop and open-loop system</p></li>
 </ul>
 </section>
-<section id="multi-domain-readout-block-diagram" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="multi-domain-readout-block-diagram"><span class="header-section-number">2.8</span> Multi-Domain Readout Block Diagram</h2>
+<section id="multi-domain-readout-block-diagram" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="multi-domain-readout-block-diagram"><span class="header-section-number">3.8</span> Multi-Domain Readout Block Diagram</h2>
 <p><img src="../images/lec-02-sdsystem.png" class="img-fluid"></p>
 <p><span class="math display">\[\begin{align}
 H_s(s) &amp;= \frac{\frac{1}{m}}{s^2 + \frac{\omega_0}{Q}s + \omega_0^2} &amp;\quad \mbox{sensor} \\
@@ -311,8 +311,8 @@ H_{CV}(s) &amp;= \frac{g_m}{C_L}\frac{1-e^{-sT_{int}}}{s} &amp;\quad \mbox{CV co
 H_{lf}(z) &amp;= -\frac{z}{z+a}\frac{z^2 +b_1z +b_0}{z^2 +c_1z +c_0} &amp;\quad \mbox{loop filter}
 \end{align}\]</span></p>
 </section>
-<section id="multi-domain-modelling" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="multi-domain-modelling"><span class="header-section-number">2.9</span> Multi-Domain Modelling</h2>
+<section id="multi-domain-modelling" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="multi-domain-modelling"><span class="header-section-number">3.9</span> Multi-Domain Modelling</h2>
 <ul>
 <li><p>Describing kinematic and electrical behaviour with the help of HDL</p>
 <ul>
@@ -323,8 +323,8 @@ H_{lf}(z) &amp;= -\frac{z}{z+a}\frac{z^2 +b_1z +b_0}{z^2 +c_1z +c_0} &amp;\quad 
 <li><p>Parasitic SPICE circuit equivalent from FEM sensor model and layout extraction</p></li>
 </ul>
 </section>
-<section id="rom-modelling---coordinate-transformation" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="rom-modelling---coordinate-transformation"><span class="header-section-number">2.10</span> ROM Modelling - Coordinate transformation</h2>
+<section id="rom-modelling---coordinate-transformation" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="rom-modelling---coordinate-transformation"><span class="header-section-number">3.10</span> ROM Modelling - Coordinate transformation</h2>
 <p><img src="../images/lec-02-rom.png" class="img-fluid"></p>
 <p><span class="math display">\[\begin{align}
 M \ddot{x} &amp;+ K x &amp;= F &amp;\quad \mbox{FEM, 100.000 DOF}\\
@@ -333,8 +333,8 @@ M \phi \ddot{q} &amp;+ K \phi q &amp;= F &amp; \\
 \tilde{M} \ddot{q} &amp;+ \tilde{K} q &amp;= \tilde{F} &amp; \quad \mbox{ROM, approx. 10 DOF}
 \end{align}\]</span></p>
 </section>
-<section id="gyro-behavioural-modelling" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="gyro-behavioural-modelling"><span class="header-section-number">2.11</span> Gyro Behavioural Modelling</h2>
+<section id="gyro-behavioural-modelling" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="gyro-behavioural-modelling"><span class="header-section-number">3.11</span> Gyro Behavioural Modelling</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/lec-02-gyromodel.png" class="img-fluid figure-img"></p>
@@ -342,8 +342,8 @@ M \phi \ddot{q} &amp;+ K \phi q &amp;= F &amp; \\
 </figure>
 </div>
 </section>
-<section id="mixed-domain-simulation" class="level2" data-number="2.12">
-<h2 data-number="2.12" class="anchored" data-anchor-id="mixed-domain-simulation"><span class="header-section-number">2.12</span> Mixed-domain simulation</h2>
+<section id="mixed-domain-simulation" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="mixed-domain-simulation"><span class="header-section-number">3.12</span> Mixed-domain simulation</h2>
 <ul>
 <li><p>All models from previous slide can be used in Cadence design frame work</p></li>
 <li><p>Pure analog closed-loop transient simulation with Spectre (turbo, aps), circuits and verilog-a model</p></li>
@@ -351,8 +351,8 @@ M \phi \ddot{q} &amp;+ K \phi q &amp;= F &amp; \\
 <li><p>Mixed-domain, mixed-mode simulation with AMSDesigner (ncsim, spectre-turbo/aps)</p></li>
 </ul>
 </section>
-<section id="analog-closed-loop-simulation" class="level2" data-number="2.13">
-<h2 data-number="2.13" class="anchored" data-anchor-id="analog-closed-loop-simulation"><span class="header-section-number">2.13</span> Analog Closed-Loop Simulation</h2>
+<section id="analog-closed-loop-simulation" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="analog-closed-loop-simulation"><span class="header-section-number">3.13</span> Analog Closed-Loop Simulation</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/lec-02-analogsim.png" class="img-fluid figure-img"></p>
@@ -360,8 +360,8 @@ M \phi \ddot{q} &amp;+ K \phi q &amp;= F &amp; \\
 </figure>
 </div>
 </section>
-<section id="ams-closed-loop-simulation" class="level2" data-number="2.14">
-<h2 data-number="2.14" class="anchored" data-anchor-id="ams-closed-loop-simulation"><span class="header-section-number">2.14</span> AMS Closed-Loop Simulation</h2>
+<section id="ams-closed-loop-simulation" class="level2" data-number="3.14">
+<h2 data-number="3.14" class="anchored" data-anchor-id="ams-closed-loop-simulation"><span class="header-section-number">3.14</span> AMS Closed-Loop Simulation</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/lec-02-amssim.png" class="img-fluid figure-img"></p>
@@ -369,8 +369,8 @@ M \phi \ddot{q} &amp;+ K \phi q &amp;= F &amp; \\
 </figure>
 </div>
 </section>
-<section id="conclusion" class="level2" data-number="2.15">
-<h2 data-number="2.15" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">2.15</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="3.15">
+<h2 data-number="3.15" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.15</span> Conclusion</h2>
 <p><em>Vibratory Gyroscopes.</em></p>
 <ul>
 <li><p>Automotive and consumer applications</p></li>
@@ -471,8 +471,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -583,7 +581,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -812,12 +809,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../class/lec-01-intro.html" class="pagination-link" aria-label="Introduction and Survey">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lab/lab-01-mbse_and_design.html" class="pagination-link" aria-label="MBSE and Design of an Inertial Sensor System">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">MBSE and Design of an Inertial Sensor System</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">MBSE and Design of an Inertial Sensor System</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
