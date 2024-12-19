@@ -4,404 +4,394 @@
     "href": "index.html",
     "title": "Concept Engineering Mixed-Technology Systems",
     "section": "",
-    "text": "Unsyllabus",
+    "text": "Unsyllabus\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\nCourse\nM 1.9 Concept Engineering Mixed-Technology Systems (CEMS)\n\n\nTerm\nWinter 2024/25\n\n\nInstructor\nProf. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Concept Engineering Mixed-Technology Systems</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#unsyllabus",
-    "href": "index.html#unsyllabus",
-    "title": "Concept Engineering Mixed-Technology Systems",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nCourse\nM 1.9 Concept Engineering Mixed-Technology Systems (CEMS)\n\n\nTerm\nWinter 2024/25\n\n\nInstructor\nProf. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann\n\n\nLectures\nThu., 9:45 h - 13:00 h\n\n\nRoom\nE 507 ELIE Lab",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Concept Engineering Mixed-Technology Systems</span>"
+      "Unsyllabus"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html",
     "href": "class/lec-01-intro.html",
-    "title": "2  Introduction and Survey",
+    "title": "1  Introduction and Survey",
     "section": "",
-    "text": "2.1 Course Objectives",
+    "text": "1.1 Course Objectives",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#course-objectives",
     "href": "class/lec-01-intro.html#course-objectives",
-    "title": "2  Introduction and Survey",
+    "title": "1  Introduction and Survey",
     "section": "",
     "text": "Interfacing Microsystems\n\nMixed-technology systems (System-on-Chip, SoC)\nSystem analysis\nSystem specification\n\nDesign Methodology\n\nSeamlessly modeling and design over all physical domains\n\nPCB (System) and IC Design\n\nArchitecture\nPartitioning\nLayout",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#scientific-computing",
     "href": "class/lec-01-intro.html#scientific-computing",
-    "title": "2  Introduction and Survey",
-    "section": "2.2 Scientific Computing",
-    "text": "2.2 Scientific Computing\n\nPython (Anaconda)\nMatlab (Campus Lizenz)\nCommand-line tools",
+    "title": "1  Introduction and Survey",
+    "section": "1.2 Scientific Computing",
+    "text": "1.2 Scientific Computing\n\nPython (Anaconda)\nMatlab (Campus Lizenz)\nCommand-line tools",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#eda-tools",
     "href": "class/lec-01-intro.html#eda-tools",
-    "title": "2  Introduction and Survey",
-    "section": "2.3 EDA Tools",
-    "text": "2.3 EDA Tools\n\nPCB / System Design\n\nLTspice\nKiCad EDA\nAltium Designer\nSiemensEDA PCB tools\ncadence System Design & Analysis\n\nIC / Silicon Design\n\nIIC-OSIC-TOOLS (open-source)\nSiemensEDA IC tools\ncadence IC Design & Verification\nsynopsys silicon design (IC)",
+    "title": "1  Introduction and Survey",
+    "section": "1.3 EDA Tools",
+    "text": "1.3 EDA Tools\n\nPCB / System Design\n\nLTspice\nKiCad EDA\nAltium Designer\nSiemensEDA PCB tools\ncadence System Design & Analysis\n\nIC / Silicon Design\n\nIIC-OSIC-TOOLS (open-source)\nSiemensEDA IC tools\ncadence IC Design & Verification\nsynopsys silicon design (IC)",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#os-tools",
     "href": "class/lec-01-intro.html#os-tools",
-    "title": "2  Introduction and Survey",
-    "section": "2.4 OS-Tools",
-    "text": "2.4 OS-Tools\n\nMicrosoft-Terminal\nMicrosoft-PowerShell\nMacOS-Terminal\nLinux/MacOS Shell zsh-tools,\ngit (Versionskontrolle)",
+    "title": "1  Introduction and Survey",
+    "section": "1.4 OS-Tools",
+    "text": "1.4 OS-Tools\n\nMicrosoft-Terminal\nMicrosoft-PowerShell\nMacOS-Terminal\nLinux/MacOS Shell zsh-tools,\ngit (Versionskontrolle)",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#code-editors",
     "href": "class/lec-01-intro.html#code-editors",
-    "title": "2  Introduction and Survey",
-    "section": "2.5 Code Editors",
-    "text": "2.5 Code Editors\n\nVisual Studio Code\nSpyder IDE\nThonny (Micro-)Python IDE\nEmacs\nVim",
+    "title": "1  Introduction and Survey",
+    "section": "1.5 Code Editors",
+    "text": "1.5 Code Editors\n\nVisual Studio Code\nSpyder IDE\nThonny (Micro-)Python IDE\nEmacs\nVim",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#data-science",
     "href": "class/lec-01-intro.html#data-science",
-    "title": "2  Introduction and Survey",
-    "section": "2.6 Data Science",
-    "text": "2.6 Data Science\n\nFile system: Files and directories\nTabular data: Comma/Tab-Separated-Values (CSV/TSV), Spreadsheet (.xlsx, .ods)\nSpecial formats, e.g. MATLAB mat, HDF5\nEmbedded Databases\n\nSQL, z.B. SQlite\nOLAP, z.B. DuckDB",
+    "title": "1  Introduction and Survey",
+    "section": "1.6 Data Science",
+    "text": "1.6 Data Science\n\nFile system: Files and directories\nTabular data: Comma/Tab-Separated-Values (CSV/TSV), Spreadsheet (.xlsx, .ods)\nSpecial formats, e.g. MATLAB mat, HDF5\nEmbedded Databases\n\nSQL, z.B. SQlite\nOLAP, z.B. DuckDB",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#publish-computational-content",
     "href": "class/lec-01-intro.html#publish-computational-content",
-    "title": "2  Introduction and Survey",
-    "section": "2.7 Publish Computational Content",
-    "text": "2.7 Publish Computational Content\n\nJupyter-Book\nquarto\n\nManuscripts",
+    "title": "1  Introduction and Survey",
+    "section": "1.7 Publish Computational Content",
+    "text": "1.7 Publish Computational Content\n\nJupyter-Book\nquarto\n\nManuscripts",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#are-you-writing-or-texing",
     "href": "class/lec-01-intro.html#are-you-writing-or-texing",
-    "title": "2  Introduction and Survey",
-    "section": "2.8 Are you writing or TeXing?",
-    "text": "2.8 Are you writing or TeXing?\n\nMikTeX (Windows, MacOS, Linux)\nMacTeX (MacOS)\nTeXLive (Linux)",
+    "title": "1  Introduction and Survey",
+    "section": "1.8 Are you writing or TeXing?",
+    "text": "1.8 Are you writing or TeXing?\n\nMikTeX (Windows, MacOS, Linux)\nMacTeX (MacOS)\nTeXLive (Linux)",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#latex-editors",
     "href": "class/lec-01-intro.html#latex-editors",
-    "title": "2  Introduction and Survey",
-    "section": "2.9 LaTeX Editors",
-    "text": "2.9 LaTeX Editors\n\nIDE’s\n\nTeXStudio\nTeXMaker\n\nCollaborative Frameworks\n\nOverleaf, Online LaTeX\nCoCalc - Online LaTeX",
+    "title": "1  Introduction and Survey",
+    "section": "1.9 LaTeX Editors",
+    "text": "1.9 LaTeX Editors\n\nIDE’s\n\nTeXStudio\nTeXMaker\n\nCollaborative Frameworks\n\nOverleaf, Online LaTeX\nCoCalc - Online LaTeX",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#bibliography-and-latex",
     "href": "class/lec-01-intro.html#bibliography-and-latex",
-    "title": "2  Introduction and Survey",
-    "section": "2.10 Bibliography and LaTeX",
-    "text": "2.10 Bibliography and LaTeX\n\nCitavi im Detail &gt; Titel exportieren &gt; Export nach BibTeX\nRefWorks - Library Guide Univ. Melbourne\nBenutzerdefinierte BibTex-Keys mit Zotero | nerdpause\nJabRef - Library Guide Univ. Melbourne\nEndNote - Library Guide Univ. Melbourne",
+    "title": "1  Introduction and Survey",
+    "section": "1.10 Bibliography and LaTeX",
+    "text": "1.10 Bibliography and LaTeX\n\nCitavi im Detail &gt; Titel exportieren &gt; Export nach BibTeX\nRefWorks - Library Guide Univ. Melbourne\nBenutzerdefinierte BibTex-Keys mit Zotero | nerdpause\nJabRef - Library Guide Univ. Melbourne\nEndNote - Library Guide Univ. Melbourne",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#design-project",
     "href": "class/lec-01-intro.html#design-project",
-    "title": "2  Introduction and Survey",
-    "section": "2.11 Design Project",
-    "text": "2.11 Design Project\nModel-Based Systems Engineering of an Inertial Sensor System (MBSE).\n\nSystem level, behavioural model\n\nMatlab/Simulink,\nPython\nHDL (Verilog-ams, VHDL-AMS)\n\nCircuit level, SPICE with behavioural blocks, e.g. OTA and comparator\nPCB level\n\nESP8266 NodeMCU,\nTIs ADS1115,\nADs ADXL335\n\nIC level\nFinal Oral Exam/Project Presentation",
+    "title": "1  Introduction and Survey",
+    "section": "1.11 Design Project",
+    "text": "1.11 Design Project\nModel-Based Systems Engineering of an Inertial Sensor System (MBSE).\n\nSystem level, behavioural model\n\nMatlab/Simulink,\nPython\nHDL (Verilog-ams, VHDL-AMS)\n\nCircuit level, SPICE with behavioural blocks, e.g. OTA and comparator\nPCB level\n\nESP8266 NodeMCU,\nTIs ADS1115,\nADs ADXL335\n\nIC level\nFinal Oral Exam/Project Presentation",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#course-prerequisites",
     "href": "class/lec-01-intro.html#course-prerequisites",
-    "title": "2  Introduction and Survey",
-    "section": "2.12 Course Prerequisites",
-    "text": "2.12 Course Prerequisites\n\nFundamentals of linux operating systems\nFundamentals of microelectronics\n\nDevice physics and models\nTransistor level analog circuits, elementary gain stages\n\nFundamentals of analog circuit design\n\nOperational amplifier\nActive filter design\nNoise analysis\nSwitched-capacitor techniques\n\nPrior exposure to SPICE, Matlab, Python or equivalent.",
+    "title": "1  Introduction and Survey",
+    "section": "1.12 Course Prerequisites",
+    "text": "1.12 Course Prerequisites\n\nFundamentals of linux operating systems\nFundamentals of microelectronics\n\nDevice physics and models\nTransistor level analog circuits, elementary gain stages\n\nFundamentals of analog circuit design\n\nOperational amplifier\nActive filter design\nNoise analysis\nSwitched-capacitor techniques\n\nPrior exposure to SPICE, Matlab, Python or equivalent.",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#brave-new-world",
     "href": "class/lec-01-intro.html#brave-new-world",
-    "title": "2  Introduction and Survey",
-    "section": "2.13 Brave New World",
-    "text": "2.13 Brave New World\n\n\n\nAMD Jaguar APU (CPU/GPU), 16 nm, 325 sqmm, 2016",
+    "title": "1  Introduction and Survey",
+    "section": "1.13 Brave New World",
+    "text": "1.13 Brave New World\n\n\n\nAMD Jaguar APU (CPU/GPU), 16 nm, 325 sqmm, 2016",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#from-sand-to-silicon-infineon-dresden",
     "href": "class/lec-01-intro.html#from-sand-to-silicon-infineon-dresden",
-    "title": "2  Introduction and Survey",
-    "section": "2.14 From Sand to Silicon (Infineon, Dresden)",
-    "text": "2.14 From Sand to Silicon (Infineon, Dresden)",
+    "title": "1  Introduction and Survey",
+    "section": "1.14 From Sand to Silicon (Infineon, Dresden)",
+    "text": "1.14 From Sand to Silicon (Infineon, Dresden)",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#sand-to-silicon-globalfoundries-desden",
     "href": "class/lec-01-intro.html#sand-to-silicon-globalfoundries-desden",
-    "title": "2  Introduction and Survey",
-    "section": "2.15 Sand to Silicon (GlobalFoundries, Desden)",
-    "text": "2.15 Sand to Silicon (GlobalFoundries, Desden)",
+    "title": "1  Introduction and Survey",
+    "section": "1.15 Sand to Silicon (GlobalFoundries, Desden)",
+    "text": "1.15 Sand to Silicon (GlobalFoundries, Desden)",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#finfet-intel",
     "href": "class/lec-01-intro.html#finfet-intel",
-    "title": "2  Introduction and Survey",
-    "section": "2.16 FinFET (Intel)",
-    "text": "2.16 FinFET (Intel)",
+    "title": "1  Introduction and Survey",
+    "section": "1.16 FinFET (Intel)",
+    "text": "1.16 FinFET (Intel)",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#tsmc-fab-next-gen-75-nm",
     "href": "class/lec-01-intro.html#tsmc-fab-next-gen-75-nm",
-    "title": "2  Introduction and Survey",
-    "section": "2.17 TSMC Fab (Next Gen 7/5 nm)",
-    "text": "2.17 TSMC Fab (Next Gen 7/5 nm)",
+    "title": "1  Introduction and Survey",
+    "section": "1.17 TSMC Fab (Next Gen 7/5 nm)",
+    "text": "1.17 TSMC Fab (Next Gen 7/5 nm)",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#once-upon-a-time",
     "href": "class/lec-01-intro.html#once-upon-a-time",
-    "title": "2  Introduction and Survey",
-    "section": "2.18 Once upon a time …",
-    "text": "2.18 Once upon a time …\n\n\n\n1906 Electron Tube\n\n\n\n\n\n1947 1st Transistor, Bell Labs",
+    "title": "1  Introduction and Survey",
+    "section": "1.18 Once upon a time …",
+    "text": "1.18 Once upon a time …\n\n\n\n1906 Electron Tube\n\n\n\n\n\n1947 1st Transistor, Bell Labs",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#first-ic-and-todays-chips",
     "href": "class/lec-01-intro.html#first-ic-and-todays-chips",
-    "title": "2  Introduction and Survey",
-    "section": "2.19 First IC and today’s chips",
-    "text": "2.19 First IC and today’s chips\n\n\n\n1958 Jack Kilby’s 1st IC\n\n\n\n\n\nModern IC",
+    "title": "1  Introduction and Survey",
+    "section": "1.19 First IC and today’s chips",
+    "text": "1.19 First IC and today’s chips\n\n\n\n1958 Jack Kilby’s 1st IC\n\n\n\n\n\nModern IC",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#packaging-densities",
     "href": "class/lec-01-intro.html#packaging-densities",
-    "title": "2  Introduction and Survey",
-    "section": "2.20 Packaging Densities",
-    "text": "2.20 Packaging Densities\n\n\n\nWafer generations",
+    "title": "1  Introduction and Survey",
+    "section": "1.20 Packaging Densities",
+    "text": "1.20 Packaging Densities\n\n\n\nWafer generations",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#moores-law",
     "href": "class/lec-01-intro.html#moores-law",
-    "title": "2  Introduction and Survey",
-    "section": "2.21 Moore’s Law",
-    "text": "2.21 Moore’s Law",
+    "title": "1  Introduction and Survey",
+    "section": "1.21 Moore’s Law",
+    "text": "1.21 Moore’s Law",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#system-hierarchy",
     "href": "class/lec-01-intro.html#system-hierarchy",
-    "title": "2  Introduction and Survey",
-    "section": "2.22 System Hierarchy",
-    "text": "2.22 System Hierarchy\n\n\n\nBlocks of an electronic system.\n\n\n\nUse hierarchy to describe complex systems\nDevide and conquer",
+    "title": "1  Introduction and Survey",
+    "section": "1.22 System Hierarchy",
+    "text": "1.22 System Hierarchy\n\n\n\nBlocks of an electronic system.\n\n\n\nUse hierarchy to describe complex systems\nDevide and conquer",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#system-assembly",
     "href": "class/lec-01-intro.html#system-assembly",
-    "title": "2  Introduction and Survey",
-    "section": "2.23 System Assembly",
-    "text": "2.23 System Assembly\n\n\n\nBottom-up Prozess, Integration.",
+    "title": "1  Introduction and Survey",
+    "section": "1.23 System Assembly",
+    "text": "1.23 System Assembly\n\n\n\nBottom-up Prozess, Integration.",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#interfacing",
     "href": "class/lec-01-intro.html#interfacing",
-    "title": "2  Introduction and Survey",
-    "section": "2.24 Interfacing",
-    "text": "2.24 Interfacing\n\n\n\nInterfacing.",
+    "title": "1  Introduction and Survey",
+    "section": "1.24 Interfacing",
+    "text": "1.24 Interfacing\n\n\n\nInterfacing.",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#meeting-a-system-1",
     "href": "class/lec-01-intro.html#meeting-a-system-1",
-    "title": "2  Introduction and Survey",
-    "section": "2.25 Meeting a System (1)",
-    "text": "2.25 Meeting a System (1)\n\n\n\nWireless Communication System.",
+    "title": "1  Introduction and Survey",
+    "section": "1.25 Meeting a System (1)",
+    "text": "1.25 Meeting a System (1)\n\n\n\nWireless Communication System.",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#system-in-a-package-sip",
     "href": "class/lec-01-intro.html#system-in-a-package-sip",
-    "title": "2  Introduction and Survey",
-    "section": "2.26 System in a Package (SiP)",
-    "text": "2.26 System in a Package (SiP)\n\n\n\nAccelerometer.",
+    "title": "1  Introduction and Survey",
+    "section": "1.26 System in a Package (SiP)",
+    "text": "1.26 System in a Package (SiP)\n\n\n\nAccelerometer.",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#you-will-become-an-expert",
     "href": "class/lec-01-intro.html#you-will-become-an-expert",
-    "title": "2  Introduction and Survey",
-    "section": "2.27 You will become an expert",
-    "text": "2.27 You will become an expert\nIndicators.\n\nBackground Knowledge\n\nSystem Knowledge, Architecture, Processing, Implementation\n\nSubconscious Knowledge\n\nMemorized experiences of success stories and dead ends\n\nSpecial Knowledge\n\nDicipline related knowledge, e.g. physics, hardware, software\n\nTeamwork\n\nCommunication abilities, reporting and presentation\n\nCreativity\nTool-Knowlege",
+    "title": "1  Introduction and Survey",
+    "section": "1.27 You will become an expert",
+    "text": "1.27 You will become an expert\nIndicators.\n\nBackground Knowledge\n\nSystem Knowledge, Architecture, Processing, Implementation\n\nSubconscious Knowledge\n\nMemorized experiences of success stories and dead ends\n\nSpecial Knowledge\n\nDicipline related knowledge, e.g. physics, hardware, software\n\nTeamwork\n\nCommunication abilities, reporting and presentation\n\nCreativity\nTool-Knowlege",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#views-on-hardware",
     "href": "class/lec-01-intro.html#views-on-hardware",
-    "title": "2  Introduction and Survey",
-    "section": "2.28 Views on Hardware",
-    "text": "2.28 Views on Hardware\n\n\n\n(c) M. Ortmanns, Univ. Ulm.",
+    "title": "1  Introduction and Survey",
+    "section": "1.28 Views on Hardware",
+    "text": "1.28 Views on Hardware\n\n\n\n(c) M. Ortmanns, Univ. Ulm.",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#sustainable-electronics",
     "href": "class/lec-01-intro.html#sustainable-electronics",
-    "title": "2  Introduction and Survey",
-    "section": "2.29 Sustainable Electronics …",
-    "text": "2.29 Sustainable Electronics …",
+    "title": "1  Introduction and Survey",
+    "section": "1.29 Sustainable Electronics …",
+    "text": "1.29 Sustainable Electronics …",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#why-it-is-worth",
     "href": "class/lec-01-intro.html#why-it-is-worth",
-    "title": "2  Introduction and Survey",
-    "section": "2.30 Why it is worth …",
-    "text": "2.30 Why it is worth …",
+    "title": "1  Introduction and Survey",
+    "section": "1.30 Why it is worth …",
+    "text": "1.30 Why it is worth …",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "class/lec-01-intro.html#lets-go-to-the-beach",
     "href": "class/lec-01-intro.html#lets-go-to-the-beach",
-    "title": "2  Introduction and Survey",
-    "section": "2.31 Let’s go to the beach …",
-    "text": "2.31 Let’s go to the beach …",
+    "title": "1  Introduction and Survey",
+    "section": "1.31 Let’s go to the beach …",
+    "text": "1.31 Let’s go to the beach …",
     "crumbs": [
       "Lecture",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction and Survey</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
     ]
   },
   {
     "objectID": "lab/lab-01-mbse_and_design.html",
     "href": "lab/lab-01-mbse_and_design.html",
-    "title": "3  MBSE and Design of an Inertial Sensor System",
+    "title": "2  MBSE and Design of an Inertial Sensor System",
     "section": "",
-    "text": "3.1 Design Project",
+    "text": "2.1 Design Project",
     "crumbs": [
       "Lab",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
     ]
   },
   {
     "objectID": "lab/lab-01-mbse_and_design.html#design-project",
     "href": "lab/lab-01-mbse_and_design.html#design-project",
-    "title": "3  MBSE and Design of an Inertial Sensor System",
+    "title": "2  MBSE and Design of an Inertial Sensor System",
     "section": "",
     "text": "System level, behavioural model\n\nMatlab/Simulink,\nPython\nHDL (Verilog-ams, VHDL-AMS)\n\nCircuit level, SPICE with behavioural blocks, e.g. OTA and comparator\nPCB level\n\nESP8266 NodeMCU,\nTIs ADS1115,\nADs ADXL335\n\nIC level",
     "crumbs": [
       "Lab",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
     ]
   },
   {
     "objectID": "lab/lab-01-mbse_and_design.html#design-project-flow",
     "href": "lab/lab-01-mbse_and_design.html#design-project-flow",
-    "title": "3  MBSE and Design of an Inertial Sensor System",
-    "section": "3.2 Design Project Flow",
-    "text": "3.2 Design Project Flow\n\nLiterature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor companies) and library\nSet-up bibliography, e.g. JabRef, Citavi\nConcept of your system\n\nPartitioning\nFunctions\nWork packages\n\nDesign, implementation and validation\n\nMathmatical description, e.g. Matlab/Simulink model\nSPICE modeling and simulation, LTspice circuit\nData analysis and validation, Serial monitor",
+    "title": "2  MBSE and Design of an Inertial Sensor System",
+    "section": "2.2 Design Project Flow",
+    "text": "2.2 Design Project Flow\n\nLiterature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor companies) and library\nSet-up bibliography, e.g. JabRef, Citavi\nConcept of your system\n\nPartitioning\nFunctions\nWork packages\n\nDesign, implementation and validation\n\nMathmatical description, e.g. Matlab/Simulink model\nSPICE modeling and simulation, LTspice circuit\nData analysis and validation, Serial monitor",
     "crumbs": [
       "Lab",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
     ]
   }
 ]
