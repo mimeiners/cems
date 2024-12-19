@@ -1,1 +1,3 @@
-# Jupyter-Book for MScEE Class M 1.2 Concept Engineering Mixed-Technology Systems (CEMS)
+# Concept Engineering Mixed-Technology Systems (CEMS)
+
+MScEE Class at Hochschule Bremen, Bremen, Germany
