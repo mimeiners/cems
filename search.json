@@ -80,7 +80,7 @@
     "href": "class/lec-01-intro.html#data-science",
     "title": "1  Introduction and Survey",
     "section": "1.6 Data Science",
-    "text": "1.6 Data Science\n\nFile system: Files and directories\nTabular data: Comma/Tab-Separated-Values (CSV/TSV), Spreadsheet (.xlsx, .ods)\nSpecial formats, e.g. MATLAB mat, HDF5\nEmbedded Databases\n\nSQL, z.B. SQlite\nOLAP, z.B. DuckDB",
+    "text": "1.6 Data Science\n\nJournaled File System\n\nDirectories\nFiles\n\nRectangular Data\n\nComma-Separated-Values (CSV), Tab-Separated-Values (TSV)\ncsvkit: A suite of utilities for converting to and working with CSV, the king of tabular file formats.\n[miller: Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON] (https://github.com/wireservice/csvkit)\nSpreadsheet (.xlsx, .ods)\napache/iceberg: Apache Iceberg\napache/iceberg-python: Apache PyIceberg\n\nSerialisation\n\nData Serialization — The Hitchhiker’s Guide to Python\nJSON\nMessagePack: It’s like JSON. but fast and small.\n\nData Frames\n\nMastering Python Dictionaries: Efficient Data Storage and Retrieval - Adventures in Machine Learning\nMAT-File Versions - MATLAB & Simulink - MathWorks Deutschland\nHDF5 Or How I Learned To Love Data Compression And Partial I/O\nWhat is Apache Parquet?\nFeather File Format\npola-rs/polars: Dataframes powered by a multithreaded, vectorized query engine\nibis-project/ibis: Portable Python dataframe library\n\nEmbedded Databases\n\nSQL, z.B. SQlite\nOLAP, z.B. DuckDB",
     "crumbs": [
       "Lecture",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
@@ -91,7 +91,7 @@
     "href": "class/lec-01-intro.html#publish-computational-content",
     "title": "1  Introduction and Survey",
     "section": "1.7 Publish Computational Content",
-    "text": "1.7 Publish Computational Content\n\nJupyter-Book\nquarto\n\nManuscripts",
+    "text": "1.7 Publish Computational Content\n\nquarto\n\nManuscripts\n\nJupyter-Book",
     "crumbs": [
       "Lecture",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
@@ -131,11 +131,11 @@
     ]
   },
   {
-    "objectID": "class/lec-01-intro.html#design-project",
-    "href": "class/lec-01-intro.html#design-project",
+    "objectID": "class/lec-01-intro.html#model-based-systems-engineering-mbse-of-an-inertial-sensor-system-and-ic-design",
+    "href": "class/lec-01-intro.html#model-based-systems-engineering-mbse-of-an-inertial-sensor-system-and-ic-design",
     "title": "1  Introduction and Survey",
-    "section": "1.11 Design Project",
-    "text": "1.11 Design Project\nModel-Based Systems Engineering of an Inertial Sensor System (MBSE).\n\nSystem level, behavioural model\n\nMatlab/Simulink,\nPython\nHDL (Verilog-ams, VHDL-AMS)\n\nCircuit level, SPICE with behavioural blocks, e.g. OTA and comparator\nPCB level\n\nESP8266 NodeMCU,\nTIs ADS1115,\nADs ADXL335\n\nIC level\nFinal Oral Exam/Project Presentation",
+    "section": "1.11 Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design",
+    "text": "1.11 Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design\nThis winter term, the defining idea of the CEMS course is a modular board-level sensor system consisting of ADXL335 accelerometer, ADS1115 ADC and ESP8266 NodeMCU. The ADC module has to be replaced by a custom IC design.\n\n\n\n\n\n\nflowchart LR\n    A(ADXL335) --&gt; B(ADS1115)\n    B --&gt; C(ESP8266)\n    C --&gt; D{Measurement}\n    D --&gt; E(Thonny Micropython)\n    D --&gt; F(Arduino IDE C)\n\n\n\n\nFigure 1.1: Modular board-level sensor system.\n\n\n\n\n\n\nSystem level, behavioural model\n\nMatlab/Simulink,\nPython\n\nPCB level\n\nESP8266 NodeMCU,\nTIs ADS1115,\nADs ADXL335\n\nIC level, SPICE with behavioural blocks, e.g. OTA and comparator\n\nIIC-OSIC-TOOLS IHP130-based analog and digital chip design\n\nFinal Oral Exam/Project Presentation",
     "crumbs": [
       "Lecture",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction and Survey</span>"
@@ -362,36 +362,36 @@
     ]
   },
   {
-    "objectID": "lab/lab-01-mbse_and_design.html",
-    "href": "lab/lab-01-mbse_and_design.html",
-    "title": "2  MBSE and Design of an Inertial Sensor System",
+    "objectID": "class/references.html",
+    "href": "class/references.html",
+    "title": "Bibliography",
     "section": "",
-    "text": "2.1 Design Project",
+    "text": "Boser, Bernhard E. 2003. “EECS247: Analog-Digital Interface\nIntegrated Circuits.” University of California Berkeley: Course\nnotes.\n\n\nMurmann, Boris. 2011. “EE315B: VLSI Data Conversion\nCircuits.” Stanford University, Dept. of Electrical Engineering,\nCalifornia, U.S.: Course notes reader.\n\n\nSchreier, Richard, and Gabor C. Temes. 2004. Understanding\nDelta-Sigma Data Converters. Wiley-IEEE Press.",
     "crumbs": [
-      "Lab",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
+      "Lecture",
+      "Bibliography"
     ]
   },
   {
-    "objectID": "lab/lab-01-mbse_and_design.html#design-project",
-    "href": "lab/lab-01-mbse_and_design.html#design-project",
-    "title": "2  MBSE and Design of an Inertial Sensor System",
+    "objectID": "lab/lab-01-mbse_and_design.html",
+    "href": "lab/lab-01-mbse_and_design.html",
+    "title": "2  Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design",
     "section": "",
-    "text": "System level, behavioural model\n\nMatlab/Simulink,\nPython\nHDL (Verilog-ams, VHDL-AMS)\n\nCircuit level, SPICE with behavioural blocks, e.g. OTA and comparator\nPCB level\n\nESP8266 NodeMCU,\nTIs ADS1115,\nADs ADXL335\n\nIC level",
+    "text": "2.1 Design Project Flow\nThis winter term, the defining idea of the CEMS course is a modular board-level sensor system consisting of ADXL335 accelerometer, ADS1115 ADC and ESP8266 NodeMCU. The ADC module has to be replaced by a custom IC design.",
     "crumbs": [
       "Lab",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design</span>"
     ]
   },
   {
     "objectID": "lab/lab-01-mbse_and_design.html#design-project-flow",
     "href": "lab/lab-01-mbse_and_design.html#design-project-flow",
-    "title": "2  MBSE and Design of an Inertial Sensor System",
-    "section": "2.2 Design Project Flow",
-    "text": "2.2 Design Project Flow\n\nLiterature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor companies) and library\nSet-up bibliography, e.g. JabRef, Citavi\nConcept of your system\n\nPartitioning\nFunctions\nWork packages\n\nDesign, implementation and validation\n\nMathmatical description, e.g. Matlab/Simulink model\nSPICE modeling and simulation, LTspice circuit\nData analysis and validation, Serial monitor",
+    "title": "2  Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design",
+    "section": "",
+    "text": "Literature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor companies) and library\nSet-up bibliography, e.g. JabRef, Citavi\nConcept of your system\n\nPartitioning\nFunctions\nWork packages\n\nDesign, implementation and validation\n\nMathmatical description, e.g. Matlab/Simulink model\nSPICE modeling and simulation, LTspice and ngspice circuits\nData analysis and validation, Serial monitor\n\n\n\n\n\n\nBoser, Bernhard E. 2003. “EECS247: Analog-Digital Interface Integrated Circuits.” University of California Berkeley: Course notes.\n\n\nMurmann, Boris. 2011. “EE315B: VLSI Data Conversion Circuits.” Stanford University, Dept. of Electrical Engineering, California, U.S.: Course notes reader.\n\n\nSchreier, Richard, and Gabor C. Temes. 2004. Understanding Delta-Sigma Data Converters. Wiley-IEEE Press.",
     "crumbs": [
       "Lab",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>MBSE and Design of an Inertial Sensor System</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design</span>"
     ]
   }
 ]
