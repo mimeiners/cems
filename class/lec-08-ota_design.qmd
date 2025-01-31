@@ -1,10 +1,4 @@
-# Lecture 8
-
-OTA Design for Integrators
-
-# Outline
-
-
+# OTA Design for Integrators
 
 * Basic considerations
   * Application requirements for OTAs used in filters
@@ -14,14 +8,13 @@ OTA Design for Integrators
   * Telescopic architecture
   * Folded cascode architecture
 
-
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
-# OTA Application in Filters
+## OTA Application in Filters
 
 Switched Capacitor
 
-# Requirements
+## Requirements
 
 |  | <span style="color:#003f64">Active RC</span> | <span style="color:#003f64">G</span>  <span style="color:#003f64">m</span>  <span style="color:#003f64">\-OTA\-C</span> | <span style="color:#003f64">SC</span> |
 | :-: | :-: | :-: | :-: |
@@ -33,10 +26,6 @@ Switched Capacitor
 | Fast settling |  |  | X |
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
-
-# Requirements (cont.)
-
-
 
 * Special requirements in active\-RC and SC circuits
   * Tend to narrow design space\.
@@ -52,8 +41,6 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Fully Differential vs. Single Ended
-
-
 
 * Symmetrical
   * Immune to coupling and power supply noise
@@ -80,8 +67,6 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Fully Differential vs. Single Ended
 
-
-
 * Most precision analog integrated circuits are based on fully differential stages
   * Filters\, data converters\, etc\.
 * In contrast\, printed circuit board circuits tend to be single ended
@@ -92,8 +77,6 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Basic Differential Pair OTA
-
-
 
 * Fundamentals of Feedback
 * Common mode feedback
@@ -115,16 +98,12 @@ Quelle: EE114\, B\. Murmann\, Stanford Univ\.
 
 # Interpretation
 
-
-
 * As long as we have  <span style="color:#008000">large</span>  gain in the forward path a\, the overall  gain will depend only on f\.
 * Since vout/vin ~1/f\, we often make f ≤ 1
   * E\.g\. for a "closed loop" gain of two\, we need f = 0\.5
 * f ≤ 1 is easy to implement\, and ratiometric\!
   * A  <span style="color:#008000">wire</span>  \(f=1\) or resistive or capacitive voltage divider\.
 
-
-Quelle: EE114\, B\. Murmann\, Stanford Univ\.
 
 # Example
 
@@ -137,8 +116,6 @@ Case 2: a=1000
 Quelle: EE114\, B\. Murmann\, Stanford Univ\.
 
 # Gain Sensitivity
-
-
 
 * Fractional change in gain is reduced by product of a and f\, which can be made arbitrarily large \(conceptually\)
   * Loop gain T
@@ -160,13 +137,10 @@ Quelle: EE114\, B\. Murmann\, Stanford Univ\.
 
 # Negative Feedback and Bandwidth
 
-
-
 * Closed loop transfer function:
 * Bandwidth increases by \(1\+T\)\!
   * But gain is reduced by \(1\+T\)
 * Product of gain and bandwidth remains constant
-
 
 Quelle: EE114\, B\. Murmann\, Stanford Univ\.
 
@@ -175,8 +149,6 @@ Quelle: EE114\, B\. Murmann\, Stanford Univ\.
 Quelle: EE114\, B\. Murmann\, Stanford Univ\.
 
 # Inverting Configuration
-
-
 
 * Circuit does not map directly into generic block diagram
   * Cannot directly identify a and f\, if we only use voltages    \(due to fact that O/A is voltage\-voltage; the feedback is current as a function of output voltage\)
@@ -317,8 +289,6 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # OTA with Capacitive Feedback
 
-
-
 * Let’s get started by placing our simple OTA into a capacitive feedback loop \(as encountered e\.g\. in an SC circuit\)\.
 * Questions:
   * What is the phase margin?
@@ -341,8 +311,6 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Return Ratio Analysis (1)
 
-
-
 * Does not attempt to identify forward gain and feedback network transfer functions separately\.
 * Analysis aims to identify gain around feedback loop
   * Loop gain\, loop transmission\,
@@ -357,8 +325,6 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 Ref\. Gray et\. al\.\,  _Analysis and Design of Analog Integrated Circuits_ \, 4th ed\.\, ch\. 8\.8
 
 Quelle: EE114\, B\. Murmann\, Stanford Univ\.
-
-
 
 * Set all independent sources to zero
 * Identify a  _controlled source_  in the feedback loop that you want to analyze and break the loop by disconnecting the source
@@ -427,15 +393,11 @@ Source: EE315a\, B\. Murmann\, Stanford Univ\.
 
 # Folded Cascode OTA
 
-
-
 * High\- and low\-frequency behavior similar to telescopic OTA
   * But noise is much worse
 * Advantage: Input common mode can be chosen without taking away output signal range
 * If slewing is not an issue\, the current in the output branches can be reduced below ITAIL/2
 
-
 \(CMFB not shown\)
 
 Source: EE315a\, B\. Murmann\, Stanford Univ\.
-

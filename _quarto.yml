@@ -1,0 +1,83 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Concept Engineering Mixed-Technology Systems"
+  author:
+    - name: Mirco Meiners
+      orcid: 0000-0002-9709-4191
+      email: Mirco.Meiners@hs-bremen.de
+      corresponding: true
+      roles: "Lead author"
+      affiliation:
+        - name: Hochschule Bremen - City University of Applied Sciences (HSB)
+          city: Bremen
+          state: Germany
+          url: https://www.hs-bremen.de/person/mimeiners/ 
+    - name: Tim Ziemann
+      email: Tim.Ziemann@hs-bremen.de
+      roles: "Supporting author"
+  date: last-modified
+  license: "Apache-2.0 license"
+  reader-mode: true
+
+  page-footer:
+    left: |
+      Concept Engineering Mixed-Technology Systems
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+#  cover-image: images/hsb-logo.png
+  favicon: images/hsb-logo.png
+  site-url: https://mimeiners.github.io/cems/
+  repo-url: https://github.com/mimeiners/cems/
+  repo-branch: main
+  repo-actions: [edit, issue]
+  downloads: [pdf,epub]
+
+  chapters:
+    - index.qmd
+    - part: Lecture
+      chapters:
+        - class/lec-01-intro.qmd
+#        - class/lec-02-gyros.qmd
+#        - class/lec-03-sampling_quantization.qmd
+#        - class/lec-04-adc_metrics.qmd
+#        - class/lec-05a-oversampling_adc.qmd
+#        - class/lec-06-app-ideal-opamp.qmd
+#        - class/lec-07-sampling_circuits.qmd
+#        - class/lec-08-ota_design.qmd
+        - class/references.qmd
+    - part: Lab
+      chapters:
+        - lab/lab-01-mbse_and_design.qmd
+          
+bibliography: _bibliography/references.bib
+
+format:
+  html:
+    theme: flatly
+  pdf:
+    documentclass: scrbook
+    lof: true
+    lot: true
+    toc: true    
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    hyperrefoptions:
+      - linktoc=all
+    colorlinks: true
+    linkcolor: "blue"
+    biblio-style: apalike
+    #    keep-tex: true
+    output-file: cems
+  epub:
+    theme: flatly
+    output-file: cems
+
+latex-auto-install: true
+
+execute:
+  freeze: auto

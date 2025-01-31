@@ -1,10 +1,6 @@
-# Lecture 7
-
-Sampling Circuits
+# Sampling Circuits
 
 # Circuit Level Considerations
-
-
 
 * How to build circuits that “sample”?
 * Ideal Dirac sampling is impractical
@@ -480,7 +476,6 @@ Charge injection and clock feedthrough
 # Charge Cancellation
 
 
-
 * Cancellation is never perfect\, since channel charge of M1 will not exactly split 50/50
   * E\.g\. if Rs is very small\, most of M1’s channel charge will flow toward the input voltage source
 * Not a precision technique\, just an attempt to do a partial clean\-up
@@ -489,8 +484,6 @@ Charge injection and clock feedthrough
 # Differential Sampling
 
 # CMOS Switch
-
-
 
 * Design
   * Size P/N ratio to minimize change in R over input range
@@ -501,4 +494,3 @@ Charge injection and clock feedthrough
 # Clock Generation
 
 # Fully Differential Circuit
-
