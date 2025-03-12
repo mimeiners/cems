@@ -39,7 +39,7 @@ book:
     - index.qmd
     - part: Lecture
       chapters:
-        - class/lec-01-intro.qmd
+        - lec/lec-01-intro.qmd
 #        - class/lec-02-gyros.qmd
 #        - class/lec-03-sampling_quantization.qmd
 #        - class/lec-04-adc_metrics.qmd
@@ -47,11 +47,17 @@ book:
 #        - class/lec-06-app-ideal-opamp.qmd
 #        - class/lec-07-sampling_circuits.qmd
 #        - class/lec-08-ota_design.qmd
-        - class/references.qmd
     - part: Lab
       chapters:
         - lab/lab-01-mbse_and_design.qmd
-          
+        - lab/elie-01.qmd
+        - lab/elie-02.qmd
+        - lab/elie-03.qmd
+        - lab/elie-04.qmd
+        - lab/elie-05.qmd
+        - lab/elie-06.qmd
+    - references.qmd
+
 bibliography: _bibliography/references.bib
 
 format:
