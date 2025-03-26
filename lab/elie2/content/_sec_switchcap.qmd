@@ -1,0 +1,54 @@
+# Realisation of discrete time second order switch capacitor circuit {#sec-SwitchCap}
+
+![Integrator ](figures/_fig_graph.svg){#fig-graph}
+
+If we want to realize any discrete time transfer function **H(z)**, we need a. discrete time switch-capacitor amplifier and b. discrete time switch capacitor integrator. @fig-graph shows the integrator in continuous time where the area under the curve shows the integrated output at any time instant 't' and its equivalent in discrete time where the output at sample 'n' is sum of all samples till that sample.
+But now we have two possibilities:
+
+(a) we sum up all the samples excluding the current sample. Where we get a transfer function as follows;
+
+$$
+V_{out}[n] = \sum_{m=0}^{n-1} V_{in}[m]
+$$
+
+(b) we sum up all the samples including the current sample. Where we get a transfer function as follows;
+
+$$
+V_{out}[n-1] = \sum_{m=0}^{n-2} V_{in}[m]
+$$
+
+Now, writing $V_{out}[n]$ in terms of $V_{out}[n-1]$, 
+
+$V_{out}[n] - V_{out}[n-1] = V_{in}[n-1]$ this yeilds,
+
+$V_{out}[n] = V_{out}[n-1] + V_{in}[n-1]$ for case (a) where the current sample is excluded giving us a **Transfer function: $H(z) = \frac{z^{-1}}{1-z^{-1}}$**. This gives us the 'Delayed Switch-Capacitor Integrator'
+
+and if we include the current sample then we have, $V_{out}[n] = V_{out}[n-1] + V_{in}[n]$ giving us a **Transfer function: $H(z) = \frac{1}{1-z^{-1}}$**. This gives us the 'Non-Delayed Switch-Capacitor Integrator'
+
+## Implementation of Delayed Switch-Capacitor Integrator
+
+So essentially, the equation speaks that we are storing the output and adding the input to the existing output. Therefore, to store the output we need a capacitor $(C_1)$, and we want to process this voltage onto the next capacitor $(C_2)$, but we also need to make sure that no current is being derived from it. Thus, we need to use a voltage controlled voltage source (Op-amp) but while designing on IC level, mosfets are always current sources controlled by voltage and its better to use OTA instead of Op-amps in our design. So, we need an OTA.
+
+@fig-phis shows that in phase1, $C_1$ will store the charge from $V_{in}$ and in phase2, the charge will be transfered to $C_2$ and it will store charge from previous sample. To put this together (see @fig-Club)
+
+
+![](figures/_fig_phis.svg){#fig-phis}
+![](figures/_fig_Club.svg){#fig-Club}
+
+
+
+
+
+
+Now, we also need to take charge injection into consideration and implement bottom plate sampling. Our derived switch-capacitor integrator will be having a **Transfer function: $H(z) = \frac{C_1}{C_2}\frac{z^{-1}}{1-z^{-1}}$** (See @fig-switchcap-integrator)
+
+![Delayed Switch capacitor Integrator](figures/_fig_switchcap_integrator.svg){#fig-switchcap-integrator}
+
+The input is sampled in track phase $\phi_1$ and transferred to $C_2$ in hold phase $\phi_2$  again in next $\phi_1$, new $V_{in}$ is sampled and hence, the sampled signal is available at output after one cycle proving the delay. (see @fig-delay)
+
+![](figures/_fig_delay.svg){#fig-delay}
+
+
+This boils down to a second order switch capacitor circuit follwed by a single bit quantizer as shown in @fig-switchcap-dsm.
+
+![Second order switch capacitor DSM](figures/_fig_switchcap_dsm.svg){#fig-switchcap-dsm}

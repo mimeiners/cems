@@ -1,0 +1,4 @@
+## Digital Output Filtering
+
+The topic of digital filtering and decimation after the actual modulator stage could not be explored extensively during this semester. We do however want to briefly describe that subsystem from a conceptual perspective.
+

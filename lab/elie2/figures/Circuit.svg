@@ -1,0 +1,342 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="font-size: 10pt; overflow: visible;"
+    viewBox="-153.1811065673828 -399.11602783203125 741.008056640625 365.85406494140625"
+>
+    <defs>
+        <symbol id="node_nmosd">
+            <g stroke="currentStroke" stroke-miterlimit="10" stroke-width=".4">
+                <path
+                    stroke-width=".53134"
+                    d="M19.05087 19.44772h3.70415v20.372h-3.70415Z"
+                    fill="currentColor"
+                />
+                <path
+                    fill="none"
+                    stroke-width=".53134"
+                    d="M37.57039.26569v19.18203h-18.51952m0 20.372h18.51952v19.18204"
+                />
+                <path
+                    fill="none"
+                    stroke-width="1.06267"
+                    d="M19.05087 15.08254v29.10237m-4.4445-24.73719v20.372"
+                />
+                <path
+                    fill="none"
+                    stroke-width=".53134"
+                    d="M14.60638 29.63372h-14.34069"
+                />
+            </g>
+        </symbol>
+    </defs>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(1,0,0,1,245.13761000000002,-245.44472000000002)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(-1,1.2246467991473532e-16,1.2246467991473532e-16,1,471.45939,-245.44472000000002)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(-1,1.2246467991473532e-16,1.2246467991473532e-16,1,396.62539,-397.38172)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(-1,1.2246467991473532e-16,1.2246467991473532e-16,1,180.79939000000002,-95.01971999999999)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(-1,1.2246467991473532e-16,1.2246467991473532e-16,1,180.80039,-180.05972)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(-1,1.2246467991473532e-16,1.2246467991473532e-16,1,180.80039,-397.38172)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(-1,1.2246467991473532e-16,1.2246467991473532e-16,1,180.80039,-321.79172)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(1,0,0,1,547.50061,-94.26371999999999)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(1,0,0,1,547.50061,-179.30372)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(1,0,0,1,547.50061,-396.62672)"
+            style="color: #000;"
+        />
+    </g>
+    <g class="draggable">
+        <use
+            xlink:href="#node_nmosd"
+            fill="#fff"
+            stroke="#000"
+            transform="matrix(1,0,0,1,547.50061,-321.03571999999997)"
+            style="color: #000;"
+        />
+    </g>
+    <g>
+        <polyline
+            points="0,8.692999999999984 0,-8.69300000000004"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,143.23,-329.953)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="0.7489999999999952,-41.76350000000002 0.7489999999999952,41.76349999999999 -0.7489999999999952,41.76349999999999"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,142.481,-221.29149999999998)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="0.7489999999999952,-13.417500000000004 0.7489999999999952,13.41749999999999 -0.7489999999999952,13.41749999999999"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,142.481,-107.90549999999999)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-0.3784999999999741,47.62199999999996 0.3784999999999741,47.62199999999996 0.3784999999999741,-47.622000000000014"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,283.0865,-292.53499999999997)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="37.795000000000016,0.7554999999999836 37.795000000000016,-0.7554999999999836 -37.795000000000016,-0.7554999999999836"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,321.26,-339.4015)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-37.795500000000004,-46.11100000000005 37.795500000000004,-46.11100000000005 37.795500000000004,-47.622000000000014 37.795500000000004,47.62199999999996 37.0385,47.62199999999996"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,396.8505,-292.53499999999997)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-0.37800000000004275,-8.315499999999986 0.37799999999992906,-8.315499999999986 0.37799999999992906,8.315500000000043"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,585.4490000000001,-329.57550000000003)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="0,-41.76400000000001 0,41.76400000000001"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,585.071,-220.536)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="0,-13.417999999999992 0,13.418000000000006"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,585.071,-107.15)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-368.50393700787396,-0.7558227952755985 -74.09383464566923,-0.7558227952755985 -74.09383464566923,0.7558227952755985 368.503937007874,0.7558227952755985 368.503937007874,-0.7558227952755985"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,217.32283464566925,-37.03945279527558)"
+        />
+    </g>
+    <g class="">
+        <polyline
+            points="70.86614173228344,-37.79527559055117 70.86614173228344,37.79527559055117 -70.86614173228347,37.79527559055117"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,212.59842519685037,-151.1811023622047)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-75.96888582677161,-36.66140161417323 -75.21221653543307,-36.66140161417323 -75.21221653543307,36.66140161417323 75.96888582677161,36.66140161417323"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,509.8578858267716,-150.04722838582677)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-255.11834720472444,-0.7554685039369815 255.1183472047244,-0.7554685039369815 255.1183472047244,0.7554685039369815"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,292.9136227952756,-367.748468503937)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-255.1181102362205,0 255.11811023622045,0"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,292.9133858267717,-292.9133858267716)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="28.346296023622074,0.7559173228346197 28.346296023622074,-0.7559173228346481 -28.346296023622074,-0.7559173228346481"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,217.32267397637796,-216.56691732283463)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-29.10291413385829,0.7559173228346197 29.102914133858235,0.7559173228346197 29.102914133858235,-0.7559173228346481"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,500.03094413385827,-216.56691732283463)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-255.1181102362205,0 255.11811023622045,0"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,292.9133858267717,-151.1811023622047)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-255.11834720472444,-0.7558661417322838 255.1183472047244,-0.7558661417322838 255.1183472047244,0.7558661417322838"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,292.9136227952756,-65.38586614173228)"
+        />
+    </g>
+    <g>
+        <polyline
+            points="-368.12605118110235,-0.37751685039370386 -75.21266535433074,-0.37751685039370386 142.11016929133856,-0.37751685039370386 368.1260511811024,-0.37751685039370386 368.1260511811024,0.37751685039370386"
+            fill="none"
+            stroke-dasharray="0.4pt 0pt"
+            stroke-opacity="1"
+            stroke-width="0.5333333333333333"
+            stroke="#000"
+            transform="matrix(1,0,0,1,216.94494881889764,-396.4728768503937)"
+        />
+    </g>
+</svg>

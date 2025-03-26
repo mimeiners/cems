@@ -1,0 +1,36 @@
+\begin{figure}[!ht]
+\centering
+\resizebox{1\textwidth}{!}{%
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\LARGE]
+\draw  (-9.5,14.75) rectangle (-4.5,11);
+\draw  (11.5,14) rectangle (14.5,11.75);
+\draw  (-1.75,13) circle (0.5cm);
+\draw [->, >=Stealth] (-14,13) -- (-12,13);
+\draw [->, >=Stealth] (-4.5,13) -- (-2.25,13);
+\draw [->, >=Stealth] (6.75,12.75) -- (11.5,12.75);
+\draw  (1.75,14.75) rectangle (6.75,11);
+\draw [->, >=Stealth] (-1.25,13) -- (1.75,13);
+\draw  (-11.5,13) circle (0.5cm);
+\draw [->, >=Stealth] (-11.5,9) -- (-11.5,12.5);
+\draw [short] (16.25,12.75) -- (16.25,9);
+\draw [short] (16.25,9) -- (-11.5,9);
+\draw [->, >=Stealth] (-1.75,9) -- (-1.75,12.5);
+\draw [->, >=Stealth] (14.5,12.75) -- (17.75,12.75);
+\draw [->, >=Stealth] (-11,13) -- (-9.5,13);
+\node [font=\LARGE] at (-11.5,13) {+};
+\node [font=\LARGE] at (-1.75,13) {+};
+\node [font=\LARGE] at (-7,12.75) {$1/1-z^-^1$};
+\node [font=\LARGE] at (4,12.75) {$z^-^1/1-z^-^1$};
+\draw [short] (13,12.25) -- (13,13.5);
+\draw [short] (13,13.5) -- (13.75,13.5);
+\draw [short] (12.25,12.25) -- (13,12.25);
+\draw [short] (12.5,12.75) -- (13.5,12.75);
+\node [font=\LARGE] at (-14.5,13) {u};
+\node [font=\LARGE] at (18.25,12.75) {v};
+\node [font=\LARGE] at (10.75,13.25) {Y};
+\end{circuitikz}
+}%
+
+\label{fig:my_label}
+\end{figure}

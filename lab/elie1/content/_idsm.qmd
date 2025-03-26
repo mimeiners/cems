@@ -1,0 +1,492 @@
+# Incremental Delta Sigma Modulators
+As mentioned above Delta-Sigma Modulators play a huge role in electronics. In the following chapters we will take a look at our design steps, understand the fundamental building blocks of our Modulator and discuss the working principles. 
+
+While in continues time delta-sigma ADCs the analog input voltage is converted to a digital bitsteam continuesly, in incremental dsm's this happens in small "blocks". After each block the internal circuitry is resettet by a pulse and the conversion happens again. [@incrementaldsm] In our circuits we will see the timing requirements of the two clock phases and the timing of the reset pulse which is applied to different stages like the integrating capacitor. 
+
+## IIC-Tools and IHP-SG13G2 PDK
+The IIC-OSIC-Tools Repo is a collection of different tools used for open source IC design, simulation and layout. This repository is forked from the origial Repo written by efabless. It contains xschem, klayout, the open pdk's and ngspice which is used to simulate the drawn circuits in xschem [@IIC_OSIC_TOOLS].
+
+The open source SG13G2 PDK from the Leibniz Institute for High Performance Electronics contains different building blocks like pmos and nmos field effect transistors as well as polysiicon resistors and MIM capacitors. The smallest structures that can be made are 130 nm small. This feature size is utilized in FETs and is the lower limit. In electronics design and engineering in general we have to be careful with designing circuits and systems at their limits. This feature size is called the lower limit for a reason and should only be utilized if necessary. [@IHP_SG13G2] 
+
+
+# Ingegrated Circuit Design
+
+## Operational Amplifier
+
+One of the most important components in analog electronics is the operational amplifier. The OpAmp can be used to amplifiy or attenuate signals, to decouple signals (unity-gain amplifier) in order not to load a signal sources, to build filters (biquad filters) and other signal processing circuits and to build circuits like integrators, comparators and summing amplifiers. 
+
+Operational Amplifiers basically amplify the voltage difference between their input terminals, the inverting and non-inverting input. This amplified differential voltage can then be further processed by the following circuitry. By applying some of the output signal back to the input more complex behaviour and also mathematical operations can be performed. By for example adding a feedback capacitor from the output to the inverting input togehter with a resistor at the inverting input an integrator can be realized. Depending on the type of feedback we get the following behaviour:
+
+- Series-Shunt Feedback: Voltage Amplification
+- Shunt-Shunt Feedback: Transimpedance Amplification
+- Shunt-Series Feedback: Current Amplification
+- Series-Series Feedback: Transconductance Amplification
+
+The Amplification for these variants can be described by the following ratios:
+
+
+- $A_{va} = \frac{v_{out}}{v_{in}}$
+- $A_{tia} = \frac{v_{out}}{i_{in}}$
+- $A_{ca} = \frac{i_{out}}{i_{in}}$
+- $A_{tca} = \frac{i_{out}}{v_{out}}$
+
+
+Capacitors in the feedback path or at the inputs create frequency dependant behaviour like filters. Without any feedback the OpAmp amplifies the differential input voltage with it's open-loop gain $A_{OL}$. The output voltage in this case can be calculated by the following formula:
+
+$$
+V_{out} = A_{OL} \cdot (V_{inv} - V_{ninv}) = A_{OL}V_{diff} \tag{26}
+$$
+
+The open-loop configuration is mostly used in comparators, because here we usually want the output of the OpAmp to saturate to the supply voltage $V_{DD}$ or negative supply $V_{SS}$ ground potential. This happens because the smallest deviation at the input of the amplifier is in most cases enough to drive the output to the supply voltage or ground since in real operational amplifiers the open-loop gain is usually in the range of ten thousand to a few hundred thousands. In ideal OpAmps this value is infinite. Other metrics of the OpAmp are the input impedance $z_{in}$, the output impedance $z_{out}$, the input offset voltage $v_{os}$ and input offset current which ultimately limit the performance. [@Gift2022] 
+
+
+The  following table illustrates the metrics and gives examples for different technologies (added frequency ranges): 
+
+| Parameter      | Bipolar           | JFET               | CMOS                   | Ideal OpAmp      |
+|----------------|------------------ |------------------  |------------------      |------------------|
+| $z_{in}$       | $ 6 M \Omega$     | $10^{13} \Omega$   | $10^{12} \Omega$       | $\infty$         |
+| $z_{out}$      | $\leq 100 \Omega$ | $\leq 100 \Omega$  | $\leq 100 \Omega$      | $0$              |
+| $A_{OL}$       | $10^3 - 10^6$     | $10^3 - 10^6$      | $10^3 - 10^6$          | $\infty$         |
+| $i_{off}$      | $\pm 40 \mu A$    | $\pm 1 pA$         | $\leq 1 pA$            | $0 A$            |
+| $v_{os}$       | $\approx 25 \mu V$| $\approx 5 mV$     |  $\approx 1 - 50 \mu V$| $0\ V$           |
+| $f_{max}$      | $1 - 500 MHz$     | $100 kHz - 30 MHz$ | $10 kHz - 100 MHz$     | $\infty$         |
+
+
+Table: **Comparison of different OpAmp semiconductor types vs. ideal OpAmps ** [@Gift2022].
+
+The components described at the beginning of this chapter are needed to implement the incremental delta-sigma converter and later the analog-to-digital converter. But not all of these components need the functionality modern OpAmps have. They for example don't necessarily need current-limiting or rail-to-rail outputs, they don't need very high bandwidths or other features. 
+
+Here in IC design and ultimately in chip level circuit design we need to carefully balance the trade-offs between power consumption, bandwidth and chip area. In the following chapter we will see that for this balance or rather operation type between power or area efficiency and frequency range we need to design our circuits for certain qualities. Here we want to note that every single square-milimeter of area on the die is costly and therefore careful design is required. To give an example the price per $mm^2$ for the IHP-SG13G2 PDK we're also using in this project is 7300€. (as of March 2025)[@IHP-Pricing]
+
+
+
+## gm/ID - Methodology
+One of the first questions we have to ask in IC design is how small or how large we can design the MOSFETs we're using in the circuits. MOSFETs can be used in saturation mode or in the triode state (as well as in cut-off but this is not relevant for us). When the FET is in saturation the drain current $I_{D}$ is controlled primarily by the gate-source voltage $V_{GS}$. In this case the drain-source voltage has a smaller impact on the drain current. For the Transistor to work in saturation the drain-source terminals need to be driven with a voltage high enough so this "saturates" the FET and the highest drain-current is achieved. 
+
+On the other hand if the voltage applied across the drain-source contacts (on a NMOS for example) is relatively low (compared to the voltage for saturation), the FET will operate in the so called triode mode. In triode mode the drain-source voltage $V_{DS}$ has a fundamentally larger impact on the drain current then in the saturation mode. [@hpretlacd] 
+
+ One Methodology to solve the question we asked at the beginning of this chapter is the $\frac{gm}{I_{D}}$ methodology which we will introduce in a moment. There are basically three MOSFET characteristics directly describing the behaviour of it:
+
+
+- $\frac{g_m}{I_D}$ : Transconductance Efficiency 
+- $\frac{\omega_{T}}{f_T}$  : Transit frequency
+- $\frac{g_m}{g_{ds}}$ : Intrinsic Gain
+
+
+To understand the first characteristic for our FETs we have to take a look at the different operating points which depend on the applied voltages. Whenever we apply voltages to a FET in order to control a specific drain current $I_{D}$, we can operate the FET in either weak inversion, strong inversion or moderate inversion. This behaviour is controlled by the Overdrive Voltage $V_{OV}$ which is defined as the difference between the gate-source voltage and the threshold voltage. To note this small point the drain-current is controlled by the voltage between gate and source. Whenever an nmos is not being used as a low-side switch or amplifier or the pmos is being used as a low-side component problems can arise. Since we are using FETs in our switched capacitor integrator for example this is quite important. 
+
+$$
+    V_{OV} = V_{GS} - V_{TH} \tag{27}
+$$
+
+We have to keep in mind that the threshold voltage isn't a magical number that can be applied to every MOSFET, it rather depends on the geometry (with W and L for example) and other factors. For the example nmos given in the Analog Circuit Design IHP SG13G2 Devices Table by Professor Pretl, the threshold voltage is 0.5V. Therefore the overdrive voltage describes how "much" the gate-source voltage is above the threshold of the FET. Depending on this overdrive voltage the circuit/ic designer can apply different $\frac{g_{M}}{I_{D}}$ values with the unit [$\frac{1}{V}$]. This unit is derived in the following way:
+
+With $g_{M}$ defined by:
+
+$$
+g_{M} = \frac{\partial I_D}{\partial V_{GS}}  \tag{28}
+$$
+
+and $I_{D}$ having the unit Ampere [A] and the voltage $V_{GS}$ we get:
+
+$$
+\frac{\frac{A}{V}}{A} = \frac{1}{V} \tag{29}
+$$
+
+
+Before we continue with the $\frac{g_{M}}{I_{D}}$ method we want to note that there also is the *square-law* model with which circuit designers can design MOSFET circuits. This model is usually applicable for PCB circuits and takes the situation into account where the MOSFET is driven in the stong inversion state. The square-law model is being applied assuming that the FET is operating in the "linear" or "triode" mode, however on nanometer scale FETs (down to 130 nm with the IHP-SG13G2 PDK) this model doesn't give us precise solutions anymore. Many effects like parasitic capacitances alter the operational behaviour of the FET and lead to the square-law model deviating afar from the real-world behaviour in many situations [@SQRLaw].
+
+The square-model drain-current behavior is being described by the following formula:
+
+$$
+I_{D} = \frac{Z \cdot \overline{\mu_n} \cdot C_{OX}}{L} [(V_{GS} - V_{T}) \cdot V_{DS} - \frac{V_{DS}^2}{2}]  \tag{30}
+$$
+
+with the two conditions:
+
+$0 \leq V_{DS} \leq V_{D_{SAT}}$ and $V_{GS} \geq V_T$
+
+with following definitions:
+
+- $C_{OX} = \frac{\epsilon_{ox}}{x_{ox}}$
+- Z = MOSFET width
+- L = MOSFET Channel length
+- $V_T$ = Threshold voltage
+- $\overline{\mu_n}$ = effective electron mobility
+
+The threshold voltage is defined as:
+
+$$
+V_T = 2 \phi_F + \frac{\epsilon_s}{C_{OX}} \sqrt{\frac{2q N_{A}}{\epsilon} (2\phi_F)} \tag{31}
+$$
+
+with:
+
+$\phi_F$ being the Fermi Potential (surface potential) defined by:
+
+$$
+\phi_F = \frac{kT}{q} \cdot ln (\frac{N_A}{n_i}) \tag{32}
+$$
+
+with $N_A$ being the acceptor doping concentration and $n_i$ being the intrinsic carrier concentration. 
+The term 2 $\phi_F$ corresponds to the surface potential required to achieve strong inversion. 
+
+
+For more details the reader can consult [@SQRLaw],[@MurmannGmId] or [@gmId].
+
+To illustrate the problems of the square-law model when designing MOSFET circuits at nanometer scale we will look at some graphs visualizing it's limitation. First of all let's look at the formulas for the square-law when we want to achieve more performance with our FETs:
+
+Transconductance Efficiency:
+$$
+\frac{g_m}{I_D} \cong \frac{2}{V_{OV}} \tag{33}
+$$
+
+higher efficiencs here means more transconductance for the same drain current.
+
+Transit Frequency: 
+
+$$
+\frac{g_M}{C_{gg}} \cong \frac{3}{2}\frac{\mu V_{OV}}{L^2} \tag{34}
+$$
+
+higher transit frequency for the same gate-capacitance.
+
+
+Intrinsic Gain:
+
+$$
+\frac{g_m}{g_{ds}} \cong \frac{2}{\lambda V_{OV}} \tag{35}
+$$
+
+high transconductance (at same drain-current $I_D$) without higher output conductance. 
+
+The square-law model completely fails in these cases when the MOSFET is not operation in strong inversion. In moderate and weak inversion we are forced to use a different mathmatical model , and the $\frac{g_M}{I_D}$ method is a really good starting point [@RWalker].
+
+The following figures will show the deviation between square-law and measurements as well as the $\frac{g_M}{I_D}$ methodology:
+
+So first of all when we use $g_M$ and $I_D$ we specify that for a specific drain-current we get a specific transconductance, for example with a $\frac{g_M}{I_D}$ of 10 S/A we get 10 $\mu$ S per 1 $\mu$ A of bias current. And depending on how "much" the transistor is operating above it's threshold voltage $V_{th}$ (basically the Overdrive Voltage $V_{OV}$ ) you get different inversion levels. From weak inveresions for low overdrive voltages to moderate inversion when operating at approximately $V_{OV}$ = $V_{th}$ to high inversion when $V_{OV}$ > $V_{th}$. 
+
+With the square-law value for transconductance efficiency we completely deviate with that approximation in weak and moderate inversion:
+
+![Inversion level vs. Overdrive Voltage [@RWalker]](figures/ac_inversion_vs_vov.png){#fig-inversion-vs-vov width=100%}
+
+
+Another deviation from square-law to real MOSFET behaviour can be seen when we increase the gate-source voltage of the FET and measure the drain-current. According to square-law formual for the drain-current the current should just increase to the square with increasing gate-source voltage. But by taking the square of the drain-current and increasing $V_{GS}$ we can see that the drain-current does not magically start flowing above the threshold-voltage and also the behaviour is also not linear (quadratically when not taking the square of the current):
+
+
+![Drain Current over Gate-Source Voltage, Simulation vs. square-law [@RWalker]](figures/ac_id_vs_gs.png){#fig-id_vs_gs width=80%}
+
+This simulation is done for a n-channel MOSFET with a drain-source voltage of 1.8 V and a size of L = 180 nm and W = 5 $\mu$m. 
+
+
+The drain-current behaviour at sub-threshold gate voltages is completely inaccurate for the square-law too, and the following graph visualizes the limitation of the square-law at this point again:
+
+
+![Drain Current over Gate-Source Voltage, comparison between an nmos, a bjt and the square-law [@RWalker]](figures/ac_gmid_vs_gs.png){#fig-gmid_vs_gs width=90%}
+
+
+These three examples show that the approach using square-law to size MOSFETs is not sufficient when the transistor is operating in weak or moderate inversion and when driving the FET (nmos for example) with a low gate-source (or overdrive-) voltage. To cite Mr. Walker on this topic:
+"This means that the square law equation (which assumes 100% drift current) does not work unless the gate overdrive is several $\frac{kT}{q}$, [@RWalker]". 
+
+To conclude this, we can keep in mind that there is no simple formula that can describe the drain-current behaviour in all situations and be universally used. So using the $\frac{g_m}{I_D}$ methodology is the way to go in our project. 
+
+
+Now with that out of the way we can design our circuits using the $\frac{g_m}{I_D}$ methodology. The main properties of our MOSFETs we can manipulate in xschem are the lenght of the channel L, the width W and the bias current $I_D$. The common way to use this method is to first characterize nmos and pmos field effect transistors and then use this data to design the circuits. In the chapter "MOSFET characterization Testbench" chapter in [@hpretlacd] we can see how the values for the $\frac{g_m}{I_D}$ methodology are being simulated for later use. 
+
+The lenght of the MOSFET channel also has a large influence on it's frequency characteristic as it can be seen in this simulation:
+
+![transit frequency vs. channel length L [@hpretlacd]](figures/ac_eaa_ft_vs_L.png){#fig-ft_vs_L width=80%}
+
+
+The operating areas of interest for us are the saturation region (when using the FET as an amplifier for example) and the region when the FET is being used to "just" work as a switch. With setting $V_{DS}$ to $\frac{V_{DD}}{2}$ we keep the FET in saturation. Reminding ourselves again that with larger $g_M$ we have more "gain" and with a smaller $I_D$ we have higher efficiency we try to hit the sweetspot between size (as every square milimeter has it's cost) and current consumption (if we have wearable battery powered devices for example). Keeping also in mind that temperature has a large effect we cannot use arbitratily large drain currents. 
+
+Following plot visualizes the dependancy of $\frac{g_M}{I_D}$ to the gate-source voltage and shows the transit frequency behaviour too:
+
+![$\frac{g_M}{I_D}$ and $f_T$ over the gate-source voltage [@hpretlacd]](figures/ac_ft_vs_gm_vgs.png){#fig-gm_vs_gs_vs_ft width=80%}
+
+## Subcomponents/-systems of the incremental Delta-Sigma Modulator
+
+Our incremental $\Delta \Sigma$-Modulator is made up of different clocked non-clocked components. To have a working converter at the end we first build the circuit according to circuits from Professor Pretl and also made use of several circuits which were proved functional from different IEEE publications and other references from literature. Another important source of knowledge were the lecture slides of Professor Boris Murmann from the University of Hawai'i at Mānoa from the lecture: EE 628 - Analysis and Design of Integrated Circuits, which can be found here: [@EE628].
+
+
+### Voltage Reference
+The first circuit we want to take a look at is the voltage reference in our delta-sigma modulator. The comparator in the delta-sigma converter compares the output voltage of the integrator to the reference voltage and outputs a high- or low-signal (depending on the circuit for example 1.2 V or 0 V). So to set a voltage to which the output of the integrator can be compared against we utilize a bandgap-reference to generate our output voltage. In the case where the reference voltage is not ground this circuit will be used. 
+
+Another reason to use a voltage-reference is to create the biasing-currents used to drive the 5T-OTA and other circuits where we need a current to shift the voltages (and currents) in a way to the MOSFETs are at their biasing-point (20 $\mu$ A for example at the OTA).
+
+The bandgap-reference utilizes the base-emitter voltage $V_{BE}$ of bipolar junction transistors. In the IHP-SG13G2 pdk we can implement the needed pnp-layers and therefore use the badgap-voltage $V_{g0}$ of silicon which is 1.205 V at 0 K. Even tho, as can be seen from the bandgap-voltage $V_{g0}$, this voltage is temperature dependant, by using two BJTs with different current densities we can generate a refernce voltage that is indepentant of the temperature. The full equasion for the $V_{ref}$ is:
+
+$$
+V_{ref} = V_{g0} (1-\frac{T}{T_0}) + V_{BE0}(\frac{T}{T_0}) + \frac{kT}{q} ln(\frac{J1}{J2}) \tag{36}
+$$
+
+with J1 and J2 being the differnet emitter current densities. 
+
+The improvised BJTs don't have great specs regarding speed and other performance metrics, but this implementation can reach accuracies of $\pm$ 1 to 3 % [@hpretlacd].
+
+![Bandgap Reference Circuit [@hpretlacd]](figures/ac_simple_bandgap.svg){#fig-ac_simple_bandgap width=80%}
+
+With the two Resistors R1 and R2 in this circuit we were able to change the reference voltage at the output. The output voltage $V_{ref}$ can be calculated by the following formula:
+
+$$
+V_{ref} = V_{BE} + \frac{R2}{R1} \frac{kT}{q} ln(m) \tag{37}
+$$
+
+
+Our implementation in xschem looks like this:
+
+
+![Our Bandgap Reference Circuit ](figures/ac_eaa_vref_sch.png){#fig-ac_eaa_vref_sch width=70%}
+
+Using the formula we changed the resistors R1 and R2 to get a reference voltage of 729 mV. This voltage was used to see how much we can change the reference voltage. In the application we use the half of the supply voltage for the comparator reference and according voltages for the biasing currents for the MOSFET circuits like the OTA. 
+
+
+
+
+Following picture shows the output voltage over time:
+
+![Our Bandgap Reference Voltage, transient simulation ](figures/ac_eaa_vref_tran.png){#fig-ac_eaa_vref_tran width=70%}
+
+
+
+Even tho the temperature dependencies canceled out each other in the formuals above, second-order effects still lead to some voltage variation over temperature [@hpretlacd]. The next picture graph shows the temperature sensitivity of our voltage-reference:
+
+![Bandgap reference voltage over temperature ](figures/ac_eaa_vref_temp.png){#fig-ac_eaa_vref_temp width=70%}
+
+
+
+
+
+### Voltage Controlled Ring Oscillator
+Another important circuit is the Oscillator which is ultimately used to create the system clock. The system clock can be transferred to all circuit elements which need to switch like the switched-capacitor integrator or reset-circuitry to start a new integration cycle. This clock generator ensures together with the clock-splitter that all circuits are synchronized to each other (keep in mind that clock shall never overlap when there are FETs connected in series, or otherwise there can be dead-shorts from $V_{DD}$ to ground).
+
+The basic building blocks of our ring oscillator are the inverters working as delay stages (plays an important role for the frequency). Each stage has a specific delay and in total multiple stages cascaded need to have a total phase shift of 2 $\pi$ or 360°. They also need to have a voltage gain of one at the oscillation frequency. With each stage having a gain of:
+
+$$
+A(j\omega) \tag{38}
+$$
+
+we get the gain of each stage: 
+
+$$
+A_1(j\omega) = A_2(j\omega) = A_3(j\omega) = \frac{-g_MR}{1 + j\omega RC} \tag{39}
+$$
+
+Since we have an odd number of stages (N) every stage of the inverters needs to provide $\frac{\pi}{N}$ phase shift so that with the dc-inversion at the end of the ring (adds another phase-shift of $\pi$ or 180°) we can fulfill the Barkhausen criterion and our circuit will oscillate:
+
+$$
+|A_1(j\omega) \cdot A_2(j\omega) \cdot A_3(j\omega)| = 1 \tag{40}
+$$
+
+The R's and C's are coming from the input capacitances of the FETs and are modeled in the formula as being the loads to the transconductances of each stage. 
+
+With each stage having a phase-shift of:
+
+$$
+\angle A(j\omega) = \theta = arctan (\omega RC) = \frac{2 k \pi}{N} \tag{41}
+$$
+
+we get an oscillation frequency of:
+
+$$
+\omega_0 = \frac{tan (\theta)}{RC} \tag{42}
+$$
+
+or with the time-delay $t_d$ of each stage:
+
+$$
+f = \frac{1}{2Nt_d} \tag{43}
+$$
+
+Since in our application we want to have a period of 4.5 $\mu s$ we need a oscillation frequency of 
+
+$$
+f_{osc} = \frac{1}{4.5 \mu s} = 222.2222 kHz
+$$
+
+and we have three stages, we need to have a delay of:
+
+$$
+t_d = \frac{1}{2Nf_{osc}} = \frac{1}{2\cdot3\cdot222.22 kHz} = 75 \mu s
+$$
+
+
+In our implementation of the ring oscillator we are intentionally using the voltage controlled (VCO) oscillator. The inverter stages are biased by the current sources which are fed by the MOSFETs M11, M13, M15 and M16. Here we are limiting the biasing current and we can control this current through the voltage applied to the FET M17. This voltage then controls the current and ultimately the delay of each inverter which in turn allows us to change the frequency of our oscillator. The following pictures illustrate our oscillator circuit and additional circuitry:
+
+
+![Ring-Oscillator implemented in xschem](figures/ac_eaa_ring_osc_sch.png){#fig-ac_eaa_ring_osc_sch width=80%}
+
+
+
+In the middle part of the circuit we can see the three inverter stages. These are supplied by the four MOSFETs at the edges with current which is in turn controlled by the voltage applied to the nmos on the left-hand side [@vcoring]. 
+After implementing multiple different oscillator circuits this was the one that finally oscillated:
+
+
+![Ring-Oscillator output voltage](figures/ac_eaa_ring_osc_out.png){#fig-ac_eaa_ring_osc_out width=70%}
+
+
+We can see in this plot that after around 10 $\mu$s the circuit starts to oscillate. This is a sinusodial oscillation and since we need a rectangular clock signal we implemented a schmitt-trigger circuit after the oscillator in order to get a PWM signal with a duty cycle of 0.5 and a frequency of 222 kHz. The Schmitt-Trigger circuit looks like this [@schmitt]:
+
+
+![Schmitt-Trigger](figures/ac_eaa_schmitt_sch_w.png){#fig-ac_eaa_schmitt_w width=70%}
+
+
+Whenever the input signal of the schmitt-trigger crosses a set limit the output is pulled to a high state. And if the input signal falls below a certain threshold the output signal goes low again. This transfer function is visualizes in this graph:
+
+![Schmitt-Trigger, [@schmittcurve]](figures/ac_eaa_schmitt_curve.png){#fig-ac_eaa_schmitt_curve width=70%}
+
+
+Unfortunately the output of our schmitt-trigger stayed low at all times so we assume that the setpoints for the change of the states from high to low and from low to high were not set correctly. 
+
+To see if the clock signal from the VCO at least has the right frequency we plotted a reference clock-signal and compared both of them:
+
+
+![VCO Signal compared to a reference clock signal with , [@schmittcurve]](figures/ac_eaa_ring_osc_vs_ref.png){#fig-ac_eaa_osc_vs_ref width=80%}
+
+
+As can be seen from this plot there's only a slight difference in frequency and this can be easily compensated by the control-voltage of the VCO.
+
+
+### Clock Generator/Splitter with delay circuit
+Now assuming we have a clean clocking signal we need to split this clock into two non-overlapping clock signals so the switched-capacitor integrator stage and the other circuit elements can be clocked. Our clock splitter circuit is a circuit based on the given splitter in the lecture number 13 from [@EE628] the lectures of Professor Murmann. This in turn is a circuit designed in the Ph. D. Thesis of Dr. Andrew Abo and utilizes inverters and nand-gates to generate four output signals from the one input clock. These four clock-signals come in pairs of two, so two clock signals which are inverted to each other and then another two signals which have a slightly larger delay (or dead-time) in between them ensuring no overlapping. We implemented this circuit not only using logic gates like the mentioned inverters and nand-gates but also transistorized this circuit. 
+
+Each inverter in our Clock-Splitter looks like this:
+
+![Inverter for our Clock-Splitter](figures/ac_eaa_inverter.png){#fig-ac_eaa_inverter width=70%}
+
+And we also implemented nand gates with nmos and pmos FETs and added an output driving stage for each nand gate:
+
+![NAND-Gate with output driving stage](figures/ac_eaa_nand.png){#fig-ac_eaa_nand width=70%}
+
+
+Before continueing with the circuit design we simulated the nand gate to ensure that it operated as we intended. For that we applied clocked signals and checked whether the gate output was low whenever both signal input signals were high and vice versa or not:
+
+![Input Signals [V] at the two inputs of the NAND Gate](figures/ac_eaa_nand_in.png){#fig-ac_eaa_nand_in width=70%}
+
+![Output Voltage of the NAND Gate](figures/ac_eaa_nand_out.png){#fig-ac_eaa_nand_out width=70%}
+
+From these simulations we can see that the nand gate is working. 
+
+Now let's continue with the complete circuit:
+
+![Clocksplitter from Dr. Andrew Abo [@aabo]](figures/ac_eaa_clksplitter_logic.png){#fig-ac_eaa_clocksplitter_logic width=70%}
+
+
+
+
+Starting from this we implemented the inverters and nand gates with discrete MOSFETs and designed a testbench in xschem:
+
+![Clocksplitter implemented with n- and pmos FETs from IHP-SG13G2 PDK](figures/ac_eaa_clksplitter.png){#fig-ac_eaa_clocksplitter width=90%}
+
+
+
+Below you can see the setup for the simulation. The input is fed by a clock signal with a period time of 4.5 $\mu$ s:
+
+![Simulation setup for the clocksplitter in xschem](figures/ac_eaa_clksplitter_simsetup.png){#fig-ac_eaa_clocksplitter_simsetup width=90%}
+
+
+
+Now let's look at the outputs:
+
+![Clock Phases from our Clocksplitter](figures/ac_eaa_clksplitter_out.png){#fig-ac_eaa_clocksplitter_out width=90%}
+
+
+We can see that the clock-signal edges have some overshoot and ringing. This is a point at which the clock splitter circuit should be further optimized. 
+
+### Inverter as Integrator
+
+While we could use an operational transconductance amplifier at the heart of our SC-Integrator we implemented an inverter as the core of the integrator. Inverters can be used since the main goal of the integrator stage is to transfer the charge from the sample capacitor $C_s$ and integrate it with the help of the integration capacitor $C_i$. For this operation the inverter is enough and we utilize it here. Another drawback with using an OTA or an OpAmp for the integrator is the additional power consumption and area. Additional informations regarding the inverter as an integrator can be found here: [@cmosadc].  
+
+Our implementation in xschem looks like this:
+
+![Inverter in our first order idsm](figures/ac_eaa_inv_int.png){#fig-ac_eaa_inv_int width=90%}
+
+In this Figure we can see three capacitors. Usually we have two capacitors in the SC-Integrator but in this schematic we have a third one. While we know the input capacitor being the sampling capacitor $C_S$ and the integrating capacitor $C_I$ the third capacitor after $C_S$ is the holding capacitor $C_H$ which holds the charge from the input capacitor for further processing. Also the switches aren't yet transistorized. But for now lets look at the outputs of this circuit and the clock signals:
+
+
+![Inverter output](figures/ac_eaa_inv_int_plot.png){#fig-ac_eaa_inv_int_plot width=90%}
+
+
+We can see that the voltage after the inverter working as an integrator rises. With the constant input voltage at the input this means that our integrator is indeed working. But the other signals are not correct yet since for example q would need to be a PCM signal. 
+
+The clocking signals are as shown:
+
+![Clocking signals](figures/ac_eaa_inv_int_clk.png){#fig-ac_eaa_inv_int_clk width=70%}
+
+The values for the mentioned three capacitors are as follows:
+
+- $C_S$ = 1 pF
+- $C_H$ = 1 pF
+- $C_I$ = 2 pF
+
+
+
+### Clocked Comparator
+
+Another important subcircuit is the clocked comparator. The output of our integrator is fed into the comparator and being compared to eiter half of the supply voltage $V_{DD}$ or to 0 V. After the comparator the voltage signal is now digital (since the comparator only puts our high or low) and this signal is further processed for the feedback with the 1-Bit DAC and the digital filter and decimator. 
+
+For our implementation of the comparator and latch we used the StrongARM latch which was utilized in the StrongARM microprocessor from Digital Equipment Corporation. The fundamental circuit was originally introduced by Kobayashi et al. from Toshiba [@strongARM]. This circuit consists of a differential pair, two cross-coupled pairs and four precharge switches. By applying the clock signal to the comparator we can compare the inputs of the comparator and provide a clocked output as opposed to "classical" comparators which output their states continuesly. 
+
+![StrongARM Comparator](figures/ac_eaa_comparator.png){#fig-ac_eaa_comparator width=80%}
+
+
+After the comparison stage we latch the output and store it until in the next clock cycle the comparison happens again. This is the latching circuit after the comparator:
+
+
+![StrongARM Latch after the comparator](figures/ac_eaa_comparator_latch.png){#fig-ac_eaa_comparator_latch width=80%}
+
+
+As can be seen after the latching circuit we added an output driving stage again to ensure that our comparator can drive loads accordingly. We verified the functioality by applying signals to the input and plotting the output. Our comparator works as intended:
+
+First lets see the input signal circuitry. We had to connect a resistor to the two positive input voltage sources because we wanted to skip one pulse at which then the voltage pulse at the negative input would be higher than the voltage of the positive input:
+
+
+![Input voltage circuitry](figures/ac_eaa_comparator_vin.png){#fig-ac_eaa_comparator_latch width=80%}
+
+
+![Input Signals at the two inputs of our comparator](figures/ac_eaa_comparator_in.png){#fig-ac_eaa_comparator_latch width=80%}
+
+
+![Output signal and the clock signal](figures/ac_eaa_comparator_out.png){#fig-ac_eaa_comparator_latch width=80%}
+
+
+We observe that whenever the negative input of the comparator is higher than the positive input the output goes low. Otherwise the output signal is high. This verifies the functionality of our StrongArm comparator and latch.
+
+
+
+### 1-Bit DAC
+
+The last circuitry we want to take a look at is the 1-Bit DAC in the feedback path. This DAC is basically implemented as an inverter. Whenever the output of the comparator is a logical one the output of the DAC is a logical low or 0V. By connecting the inverter between $V_{DD}$, GND and the input signal we can fulfill this functionality of it. A transmission gate is added to the input to switch the signal. This consists of two MOSFETs connected as complementary switch, a cmos. That circuitry looks like this:
+
+
+![The transmission gate at the input](figures/ac_input_transmission_gate.png){#fig-ac_input_transmission_gate width=70%}
+
+
+## First Order Delta-Sigma Modulator
+
+Our methodology to implement the first-order delta-sigma modulator was to verifiy the functionality of each subcircuit and then implement this in a complete circuit. We first started by substituting the switches of the SC-Integrator by pmos- and nmos-FETs and then continued with the integrator which was implemented by an inverter and the integrating capacitor. Then we added the comparator and latching circuit after the integrator. After this was implemented we added our bandgap voltage-reference and the clock splitter. We then connected the four phases of our clock splitter to the FETs of the SC-Integrator as well as to the clocked-comparator. Unfortunately the first order idsm does not work yet and we suspect that there is a problem with the Sample- and Hold-Stage or with the SC-Integrator.
+
+
+
+![SC-Integrator Stage and transmission gate as well as 1-Bit DAC at the bottom left](figures/ac_eaa_sc_integrator_stage.png){#fig-ac_eaa_sc_integrator_stage width=80%}
+
+
+The following plot shows the different signals of the first order idsm:
+
+
+![Output of our first order idsm](figures/ac_eaa_real_idsm1_out.png){#fig-ac_eaa_real_idsm1_out width=80%}
+
+
+## Second Order Delta-Sigma Modulator
+
+The second-order idsm has two integrators back to back as well as the feedback signal fed into the summing nodes twice. We would have implemented the second-order idsm once the first order circuit worked. As mentioned in the lecture slides by Professor Meiners it's not so smart to try and find the error in the finalized circuit. We rather did what he suggested and verified the functionality of most of the circuits. 
+
+This picture is from the first order idsm but is should give the reader the understanding why errors are harder to fix when the circuit is combined and then harder to fix: 
+
+
+![Schematic of our complete first order idsm](figures/ac_eaa_complete_first_order.png){#fig-ac_eaa_complete_first_order width=80%}
+
+
+
+
+

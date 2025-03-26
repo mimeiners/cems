@@ -1,0 +1,67 @@
+---
+title: "Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design"
+
+---
+
+# Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design
+
+This winter term, the defining idea of the CEMS course is a modular board-level sensor system consisting of ADXL335 accelerometer,
+ADS1115 ADC and ESP8266 NodeMCU. The ADC module has to be replaced by a custom IC design.
+
+```{mermaid}
+%%| label: fig-system
+%%| fig-cap: "Modular board-level sensor system."
+flowchart LR
+	A(ADXL335) --> B(ADS1115)
+	B --> C(ESP8266)
+	C --> D{Measurement}
+	D --> E(Thonny Micropython)
+	D --> F(Arduino IDE C)
+```
+
+
+| Spec               |             | Audio           | Example         | ADS1115         |
+|:-------------------|:------------|:---------------:|:---------------:|:---------------:|
+| Dynamic Range      | DR          | 16 Bits (98 dB) | 16 Bits (98 dB) | 16 Bits (98 dB) |
+| Signal Bandwidth   | B, $f_B$    | 20 kHz          | 1 kHz           | 215 Hz          |
+| Nyquist Freqeuncy  | $f_N$       | 44.1 kHz        | 2 kHz           | 430 Hz          |
+| Modulator Order    | L           | 5               | 2               | 2               |
+| Oversampling Ratio | $M=f_s/f_N$ | 64              | 512             | 512             |
+| Sampling Frequency | $f_s$       | 2.822 MHz       | 1.024 MHz       | 220 kHz         |
+| Supply Voltage     | $V_{DD}$    | 3 V             | 3 V             | 3 V             |
+
+: Specifications of selected ADCs taken from [@schreier2004], [@boser2003] and [@murmann2011a]. {#tbl-spec}
+
+
+-   System level, behavioural model
+
+    -   Matlab/Simulink,
+    -   Python
+
+-   PCB level
+
+    -   [ESP8266 NodeMCU](https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/),
+    -   [TIs ADS1115](https://www.ti.com/product/ADS1115),
+    -   [ADs ADXL335](https://www.analog.com/en/products/adxl335.html)
+
+-   IC level, SPICE with behavioural blocks, e.g. OTA and comparator
+
+	- [IIC-OSIC-TOOLS IHP130-based analog and digital chip design](https://github.com/iic-jku/IIC-OSIC-TOOLS)
+
+## Design Project Flow
+
+* Literature research in journals, professional (serious) internet forums (e.g. application notes of semiconductor
+  companies) and library 
+
+* Set-up bibliography, e.g. [JabRef](http://www.jabref.org),
+  [Citavi](https://www.suub.uni-bremen.de/literatur-verwalten/refworks/citavi/) 
+
+* Concept of your system
+  * Partitioning
+  * Functions
+  * Work packages
+
+* Design, implementation and validation
+  * Mathmatical description, e.g. Matlab/Simulink model
+  * SPICE modeling and simulation, LTspice and ngspice circuits
+  * Data analysis and validation, Serial monitor

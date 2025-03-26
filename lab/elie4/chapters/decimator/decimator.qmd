@@ -1,0 +1,27 @@
+# Digital Section
+
+The PWM signal output by the comparator represents the input signal but also the quantization error. Thanks to the noise shaping, this error is found at higher frequencies. By applying a lowpass filter, one can reduce this error while retaining the original signal. The requirements for this lowpass filter can be quite strict thus requiring a high order digital filter. With the high frequency error removed, the signal still possesses a high sample rate. However, these samples do not carry additional information, their number can be reduced due to the nyquist theorem. [@schreier] [@ti_delsigb] This allows the output data rate of the decimator to be much lower and thus relaxes the speed requirements for the following processing unit.\
+\ 
+Conceptually, the digital section can be represented as seen in figure @fig-digital. The signal is lowpass filtered and then decimated for a significantly lower output data rate.
+
+![Decimator of a $\Delta \Sigma$ ADC](figures/digital/decimator.png){#fig-digital}
+
+The high oversampling ratio of $M = 512$, together with the tight transition band of the filter, increases the computational complexity. In MatLab, the decimation can be done by use of the _decimate_ function. This takes the signal to be downsampled, as well as the downsampling factor, automatically creates a lowpass Chebyshev Type 1 IIR filter and returns the decimated signal. The result can be observed in figure @fig-decimated-signal.
+
+![Decimated $\Delta \Sigma$ modulator output](figures/ltspice_ideal/filter_output.png){#fig-decimated-signal}
+
+As can be seen, this signal is quite noisy. This can be attributed to poor filtering. Unfortunately, due to timing reasons the proper filtering using an FIR filter could not be further explored. It is however noteworthy, that the use of an IIR filter is generally not recommended. The use of FIR filters leads to a factor of $M$ savings in the computaional complexity. Assume the structure in figure @fig-digital, where $H_d(z)$ is a length-N FIR filter with
+
+\begin{equation}
+    v[n] = \sum_{m=0}^{N-1} h[m]x[n-m]
+\end{equation}
+
+The down-sampler only keeps every M-th sample of v[n], hence it is sufficient to only compute v[n*M], skipping the computations in between. 
+
+Due to the feedback structure inherent to IIR filters however, where
+
+\begin{equation}
+    H_d(z) = \frac{\sum_{n=0}^Kp_nz^{-n}}{1+\sum_{n=1}^Kd_nz^{-n}}
+\end{equation}
+
+the feedback signal $w[n]$ must be computed for all values of $n$. Therefore, the savings are always less than $M$. [@wolter]

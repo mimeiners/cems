@@ -1,0 +1,44 @@
+# Capacitor Sizing {#sec-capacitor-sizing}
+
+The capacitance ratio in the first stage can be computed using
+$$
+a_1 = \frac{C_1 V_{\text{ref}}}{C_2} = \frac{C_1 V_{\text{dd}}}{C_2}
+$$
+
+The absolute value of C1 is determined by a thermal noise constraint. The meansquare
+noise voltage yielding an SNR of 101 dB (98 dB plus 3 dB margin) relative to the
+power of a full-scale sine wave is
+$$
+\overline{\nu_n^2} = \frac{(V_{dd}/2)^2/2}{10^{SNR/10}} = \frac{(0.75)^2/2}{10^{(101/10)}} = (22.3\,\mu V)^2 
+$$
+
+The in-band input-referred mean-square noise voltage associated with the first integrator is
+approximately
+$$
+v_n^2 = \frac{kT}{OSR \cdot C_1}
+$$
+
+The $c1$ coefficient specifies the weighting factor connecting the first integrator to the second
+
+$$
+c_1 = \frac{C_3}{C_5}
+$$
+
+$a_2$ is related to the feedback capacitor $C_4$ and
+the 1-bit DAC’s differential reference voltage via following equation and setting $C_4 = 0.1$  picofarrad arbitraryly
+
+$$
+a_2 = \frac{C_4 V_{dd}}{C_5}
+$$
+
+This [matlab code](https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m) yeilds the capacitor values according to the desired equations as follows:
+
+| Parameter  | Value | Units
+|------------|-------|------
+| C_1        |  0.3  | pF  
+| C_2        |  2.06 | pF   
+| C_3        |  0.21 | pF  
+| C_4        |  0.1  | pF
+| C_5        |  0.7  | pF
+
+: **Capacitor Sizes** 
