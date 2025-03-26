@@ -1,0 +1,129 @@
+## Comparator Design
+
+As the output stage of the modulator subsystem of the desired $\Delta\Sigma$ modulator, the comparator stage serves to realize the desired quantization to discretize the amplitude of our analog signal.
+A comparator suffices to realize a 1-bit quantization, where the representative output from our data samples is either "high" or "low", which will do fine to give us the PWM signal at the output.
+
+
+### Model-/ Architecture elaboration
+
+The considered implementation of our comparator utilizes an initial inverter based comparator stage, followed by a latching circuit to account for the reseting within the comparator and the resulting "invalid" outputs it would provide.
+Lastly we could consider utilizing a d-flip-flop for the "digitized" output signal(-s), also to be fed back to the loopfilter structures.
+
+### Comparator Stage
+
+The inverter-based comparator structure is realized through a symmetric architecture that is closely assossiated to the so called "StrongArm" architecture, depicted in @fig-strongarm_circuit.
+
+While the classical StrongArm would utilize pmos transistors for M3 & M4 (with their sources being pulled to $V_{DD}$ and their drains connected to the node above M1 and M2) instead, the behaviour would in both cases be the same, as tested in simulations.
+
+It utilizes both n- and pmos transistors that are generally sized with small values for L, due to the main usage as switches. 
+
+![Comparator, realized through inverter based architecture](figures/comp/comp_architecture.svg){#fig-strongarm_circuit}
+
+(to be cited:
+
+- Low Voltage, Low Power, Inverter-Based
+Switched-Capacitor Delta-Sigma Modulator
+- Murmann lectures (e.g. 6)
+)
+
+This circuits behaviour is fundamentally tied to the clock states, leading to either the so called "precharge" phase during low clock levels, or the "amplification" phase during an active clock phase.
+
+During low clock phases the pmos transistors, directly tied to the supply rail, open up and therefore pull both the output nodes to $V_{DD}$, charging the internal capacitances of the structure. 
+
+During high clock phases the nmos transistors (above the input nmos transistors) start to conduct and allow for current to flow to the shared source contact of the input differential pair, so to $V_{SS}$ 
+
+Depending on the conductivity of the MOSFETS that are fed by the input signals, one branch will "discharge" quicker. This in turn will lead to either M7 or M8 conducting again, once the applied gate voltage drops below the $V_{DD}-V_{th}$ (since they are pmos). So, in case of $in+ > in-$, the gate of M8 would reach that level faster, therefore conducting earlier and in the process pulling outp back to $V_DD$, while this in turn ultimately negates M7 from reaching that level, leading to outn decaying further to $V_{SS}$.
+
+### Latching Circuit
+
+After the StrongArm comparator, as mentioned previously, a latching circuit is implemented for improved validity of the final outputs. The way this was done in our case is through an "SR-Latch", which stands for "set" and "reset".
+
+In general, such a latch utilizes two logic gates with 2 inputs and one output each, where one of the inputs will be one of the input signals, while the other will be the fed-back output signal from the respective other logic gate.
+The provided logic should result in only the Q output or it's complement nQ to be high, depending.
+
+The main task of this block is to only change it's output, while either the positive or negative output of our comparator is "high". For SR-latches there will be one case for equal inputs (either both "high" or both "low") where one will not result in a change to the output while the other will ultimately result in an output, where the intended logic of the circuit is violated. With the chosen NOR gates (including inverted inputs) depicted in @fig-sr_latch, that violation would occur for a high level on both inputs, which is not given due to the StrongArm comparators operation paired with the inverters. 
+
+![SR-Latch for Comparator Application](figures/comp/SR_latch.png){#fig-sr_latch}
+
+Therefore, this logic block should change with each positive clockphase where either S (outp) or R (outn) will be high, while keeping that state during the negative clock phases where both outp and outn are "high".
+
+
+### Implementation
+
+The comparator is realised in the following way
+
+![StrongArm Circuit](figures/comp/comp_test.svg){#fig-xschem_comp}
+
+This circuit is proposed by Boris Murmann in his EE628 lecture series (e.g. lec 6, [@murmann]), while he himself adopted the design from the paper given in [@low_pwr_comp]. The MOSFET lengths (L) can be chosen minimal ($\approx$ 130 nm), since almost all of them simply serve as switches, with only those for the inputsignal are choosen with a slightly greater margin.
+
+While the mentioned sources also propose a latching circuit, we will directly utilize the logic gates available through the used PDK, which generally helps to make the comparator system more universally applicable. Specifically, the proposed design showed a lesser tolerence for very small differences between the input signals, once the latch was cascaded. This becomes worse for higher supply voltages (e.g. 3V3 instead of 1V5).
+
+The testbench file is shown next in @fig-xschem_comp_tb.
+
+![Comparator Testbench](figures/comp/comp_tb.png){#fig-xschem_comp_tb}
+
+### Validation
+
+The following plots show the outputs of both the comparator and the cascaded SR-latch. For the first 8 ns, the positive input voltage of the comparator is 1 mV higher than the negative input. At around 8.1 ns, that polarityis reversed.
+
+```{python}
+#| label: fig-comp_plot
+#| fig-cap: Waveworms of Comparator Subsystem
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+import ltspice as lt
+
+#parse data from .raw file
+#for compiling the finished document this path needs to be relative to "report_grp4.qmd"
+fpath       = '../../ic_design/design_comp/simulations/tb_comp_test.raw'
+l           = lt.Ltspice(fpath)
+l.parse()
+
+#extract relevant data
+time        = l.get_time()
+clk         = l.get_data('v(clk)')
+outp        = l.get_data('v(outp)')
+outn        = l.get_data('v(outn)')
+out2dff     = l.get_data('v(out2dff)')
+nout2dff    = l.get_data('v(nout2dff)')
+
+#redefine data arrays considering new length
+'''
+factor = 10
+length = round(len(time)/factor)
+
+time        = time[:length]
+clk         = np.flip(clk[:length])
+outp        = np.flip(outp[:length])
+outn        = np.flip(outn[:length])
+out2dff     = np.flip(out2dff[:length])
+nout2dff    = np.flip(nout2dff[:length])
+'''
+
+#plot data
+plt.close('all')
+plt.figure(1)
+plt.plot(time*1e9, clk, label=r'clk')
+plt.plot(time*1e9, outp, label=r'outp')
+plt.plot(time*1e9, outn, label=r'outn')
+plt.title('Output Voltages from StrongArm Comparator')
+plt.xlabel('time/ ns'); plt.ylabel('Voltage/ V')
+plt.legend(); plt.grid()
+
+plt.figure(2)
+plt.plot(time*1e9, out2dff, label=r'to d-flip-flop')
+plt.plot(time*1e9, nout2dff, label=r'complement')
+plt.title('Output of RS-Latch')
+plt.xlabel('time/ ns'); plt.ylabel('Voltage/ V')
+plt.legend(); plt.grid()
+```
+
+A clock period of 10 ns is chosen, which is much shorter then for our actual application. Therefore proving, that even for a fraction of the desired clock period, the circuit is sufficiently fast when it comes to settling. The latch outputs show the desired behavior, where only during the active clock periods the output will change in case the polarity of the input difference has changed, while remaining constant during the reseting of the comparator.
+
+The output "out2dff" can now be forwarded to a d-flip-flop, which most comparator designs for ADCs would utilize to gain the "final" clk-controlled digitized output sample.
+
+The behavior is the pretty much the same, both for $V_{DD}$ equaling 3.3 V or 1.5 V, where only the small spikes on the latch output are smaller for 3.3 V. 
+
+The designs that are considerable as the final results are given within our design directory with "final_working_comp.sch", "latched_comp.sch" and "latched_comp_dff.sch", the latter also including a d-flip-flop based on design objects PDK.

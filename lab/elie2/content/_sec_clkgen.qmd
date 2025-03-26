@@ -1,0 +1,118 @@
+# Clock Generator 
+
+Mixed-signal systems must balance elements that are critical in the digital domain as well as the analog domain. One important area of digital interface design in mixed-signal systems is clocking, which must be used to enforce timing between components and to read data from ADCs. Many mixed-signal systems operating in the low-to-moderate frequency range will use a reference oscillator, and there may be a need to synchronize multiple clocks across a system to accurately sample and synchronize the entire system.
+
+In designing a sigma- delta ADC, we can say that the clock is the heartbeat of the ADC, synchronizing all operations. It means that the clock plays a crucial role in the overall system operation. The clock precisely controls the timing of various ADC components, and without it, neither sampling nor processing can occur.
+
+
+
+
+let's see clock's role precisely:
+
+**1. Sampling Control:**
+
+The clock determines when the ADC should take a sample of the analog signal. In our system, the sampling frequency is 220 kHZ, meaning a new sample is taken every 4.545 seconds. 
+
+
+$$
+T_s = \frac{1}{f_s} = \frac{1}{220 \times 10^3} = 4.545 \mu s \, 
+$$
+
+If the clock is too slow, insufficient data is captured, leading to signal degradation. 
+If the clock is too fast, the circuit may not respond correctly, introducing noise and errors.
+
+
+**2. Control of the $\Delta\Sigma$ Modulator Processing:**
+
+The $\Delta\Sigma$ ADC operates using a feedback loop, which consists of:
+ Integrators
+ Comparator
+ Flip-Flop
+
+ The clock synchronizes these components, ensuring the correct generation of the digital output. 
+ 
+Every clock cycle, the following steps occur:
+integrator updates its value.
+The integrator accumulates past values and combines them with the new input.
+This operation occurs once per clock cycle.
+Comparator determines if the new value is above or below zero.
+The comparator outputs a digital 0 or 1 at each clock edge.
+This output is directly sent to the digital processing stage.
+Feedback loop adjusts the input based on the digital output.
+The feedback system returns a digital signal to the integrator to correct conversion errors.
+If the clock is not properly configured, the modulator may malfunction, leading to incorrect digital output.
+If the clock is too fast, noise increases, and synchronization between analog and digital circuits is lost.
+
+
+**3. Flip-Flop Control and Comparator Decision-Making:**
+
+The comparator evaluates the integrator’s output and determines a digital 0 or 1 at each clock edge.
+Every time the clock triggers, a new digital value is stored, preparing it for further processing.
+The D Flip-Flop stores this digital value and generates the final bitstream.
+Without clock flip-flops store the data randomly and that is not the thing we want, because it leads to corrupt digital output.
+
+
+**4. Digital Filter (Decimation Filter) Control:**
+
+After the modulator, a digital filter (Decimation Filter) processes the high-speed output data.
+This filter, operating with the system clock and its divided versions, reduces the data rate to generate the final 16-bit digital output.
+
+
+To design this $\Delta\Sigma$ ADC clock, we must consider that we need two non-overlapping clock signals for proper operation. 
+In a $\Delta\Sigma$ ADC, capacitor switching and signal processing occur in two consecutive steps.
+One phase is used for sampling, while the other is used for integration and processing.
+If both clocks are high at the same time, it may cause signal interference and increased noise.
+To avoid this issue, two non-overlapping clocks are used, ensuring that they never go high simultaneously.
+The Sample-and-Hold circuit in an ADC requires two separate phases:
+In Phase 1, sampling takes place.
+In Phase 2, signal processing and data transfer occur.
+This circuits operation is based on charge transfer by switching. As shown by the time-domain waveforms in figure, during integrating phase ∅2, the charge stored in a sampling capacitor Cs is transferred to an integrating capacitor C1 of the switch. The discharging of Cs takes place at an exponentially decaying rate.
+ 
+@fig-switchcap-integrator 
+
+in switch capacitor circuits, the maintenance you should ensure is that the clocks never overlap.
+
+## Why non-overlapping phases?
+
+
+**1. Preventing short circuit current:**
+   
+In switched-capacitor circuits, two switches are controlled by complementary clock phases.
+If both clock signals go high simultaneously, both switches turn on, creating a short circuit to ground or supply voltage.
+A non-overlapping clock eliminates this issue by ensuring a small delay (Dead Time) between the two clock phases.
+
+**2. Improving Sampling Accuracy:**
+
+In $\Delta\Sigma$ ADCs, capacitors require sufficient time to charge or discharge before the clock phase changes.
+If the clock phases overlap, the capacitor may not fully charge, leading to sampling errors.
+A non-overlapping clock ensures accurate data transfer and minimizes noise.
+
+**3. Reducing Charge Injection & Clock Feedthrough:**
+
+Overlapping clock phases can cause charge injections and clock feedthrough, leading to signal distortion and increased noise.
+A non-overlapping clock helps to reduce these effects significantly.
+
+![Block Diagram](figures/_fig_waveform_Clkphase.svg){#fig-Block-Diagram}
+
+## How to Generate a Non-Overlapping Clock?
+
+To generate ϕ1 and ϕ2 clock phases that never overlap, delay elements (RC delay, buffers, inverters) and AND/NOR gates are commonly used.
+The propagation delay is determined by the number and sizing of inverters in the non-overlapping circuit. While increasing the number of inverters extends the delay, it also increases power consumption and chip area. Transmission gates can be used alongside inverters to optimize delay and reduce the number of inverter stages. Switched capacitor circuits are widely used in ADCs, comparators, filters, and sample-and-hold circuits due to their compact and reliable design. The inverter chain configuration affects clocking sequences, where odd/even numbers of inverters generate specific logic transitions. Proper inverter sizing is crucial for achieving high-speed operation while minimizing area. 
+
+So, we saw that for example we don’t need 2 clocks to be high. At the same time phase 2 is going high after phase 1 is low by this you need logic to give you an output of 1 when both inputs are zero so that’s a NOR gate.     
+As you can see in the picture The basic non-overlapping clock generator consists of a S-R flip-flop, with inverters in series before the feedback, to add delay as required.
+Each sub-block contains inverters and one transmission gate to produce desired delay in the falling or rising edge.
+
+
+![Block Diagram](figures\Untitled Diagram-Page-3.drawio (1).svg){#fig-Block-Diagram}
+
+
+## Schematic entry of Clock Generator 
+
+There is the design of the non-overlapping clock phases with our project specifications.
+
+![CLK_GEN_output](figures/_fig_clk_output.svg){#fig-blocks}
+
+![CLK_GEN_testbench](figures/_fig_tb_ClkG.svg){#fig-blocks}
+
+

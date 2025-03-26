@@ -1,0 +1,21 @@
+# Sizing using gm over Id method{#sec-gmid-method}
+
+Now that we have designed the topology of our OTA(refer to foldedCascode) and 
+we already know the value of $g_\mathrm{m}$, and $I_\mathrm{D}$, we need to derive the widths $W$ $L$ and lengths of our design. 
+
+In nanometer CMOS, the MOSFET behavior is much more complex than these simple models. Also, this highly simplified derivations introduce concepts like the threshold voltage or the overdrive voltage, which are interesting from a theoretical viewpoint, but bear little practical use. Modern compact MOSFET models (like the PSP model used in SG13G2) use hundreds of parameters and fairly complex equations to somewhat properly describe MOSFET behavior over a wide range of parameters like width, length and temperature. A modern approach to MOSFET sizing is thus based on the thought to use exactly these MOSFET models, characterize them, put the resulting data into tables and charts, and thus learn about the complex MOSFET behavior and use it for MOSFET sizing.
+
+The gm over Id methodology has the huge advantage that it catches MOSFET behavior quite accurately over a wide range of operating conditions, and the curves look very similar for pretty much all CMOS technologies, from micrometer bulk CMOS down to nanometer FinFET devices. Of course the absolute values change, but the method applies universally.
+
+A brief is available [here](https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/Ref_Murmann_gmID.pdf)
+
+## Testbench for MOSFETSWEEP{#sec-techsweep-testbench}
+
+In order to get all the operating points for lv nmos shown in @fig-techsweep-nmos-tb, and lv pmos shown in @fig-techsweep-pmos-tb, we run a techsweep and obtain curves related to parameters such as ${g_\mathrm{m}}$, ${g_\mathrm{ds}}$, ${C_\mathrm{gs}}$, ${I_\mathrm{d}}$, ${V_\mathrm{GS}}$, ${V_\mathrm{DS}}$, $L$, $W$. We create a testbench in Xschem which sweeps the terminal voltages, and records various large- and small-signal parameters, which are then stored in large tables.
+
+![Testbench for LV NMOS $\gmid$ characterization.](figures/tb_sg13_lv_nmos.svg){#fig-techsweep-nmos-tb}
+
+![Testbench for LV PMOS $\gmid$ characterization.](figures/tb_sg13_lv_pmos.svg){#fig-techsweep-pmos-tb}
+
+
+After obtaining the parameters we plot them using Matlab, and obtain some important curves or graphs in order to understand the MOSFET's behaviour.

@@ -1,0 +1,262 @@
+# Theory and Charactersitics of Delta-Sigma Modulators
+
+
+## Top-Level Overview 
+Delta-Sigma modulators ($\Delta\Sigma$) are generally speaking 1-bit sampling systems that utilize the principle of "oversampling".
+To start this chapter of, we would like to briefly elaborate on some of the key elements of these modulator systems.
+
+An ADC with respect to $\Delta\Sigma$ modulator systems can be represented, using the following block diagram for the case of analog-to-digital conversion.
+
+```{mermaid}
+flowchart LR
+  A[Anti-Alias Filtering] --> B[Sampling]
+  B --> C[Quantization]
+  C --> D[Digital Filtering]
+```
+
+
+Anti-Aliasing measures have to be considered to ensure a "clean" input signal to the modulator system, without unwanted parasitic components. 
+
+The sampling then discretizes the input signal in time, before the quentization does the same with regard to its value (or amplitude).
+
+The digital filtering is then responsible to transform the discrete signal into an output from which the original input can be extracted. This typically involves lowpass filtering, specifically utilizing a "moving-average" filter. In case of $\Delta\Sigma$ modulators, which utilize oversampling, it also includes down-sampling/ decimating. The resulting data rate then most often resembles something close to the Nyquist rate of the signal band.
+
+## System overview of $\Delta\Sigma$ Modulators
+
+The modulator, which is a 1-bit sampling system, gets it's name from two fundamental characteristics of it's functionality.
+
+![Starting Model of the $\Delta\Sigma$ Modulator](figures/theory/Delt_Sig_Behav_2.png){#fig-basic_system}
+
+@fig-basic_system shows the fundamental block diagram of the modulator. The delta ($\Delta$) is realised through the fact that we take the difference between our input signal and the fed back signal from the output as our reference. Therefore we are not exactly sampling the input, but instead the difference/ delta between our input and our previous reference point. 
+
+The next fundamental block in an integrator, which in the discrete domain is also considered an accumulator or summator ($\sum$). Therefore, our established difference at it's input is continuously summed up. 
+
+It is because of this that the system is characterizable as an "error accumulation structure".
+
+The result of that summation is then fed into a quantizer, which is realized through a 1-Bit ADC, which is in essence a comparator. this checks the incomming accumulator output at the defined high sampling rate and outputs either a '1' or '0', resulting in a 1-Bit datstream that resembles a pulse-width-modulated signal, correlated to the duration of the "rising" and "falling" slopes of the accumulator/ integrators outputs. 
+
+The resulting duty-cycle of the PWM-datastream will then be an indication for the inputsignal of the modulator. Assuming an initial condition of the quantizer output, an input level of zero would result in a $\Delta$ that shifts between the two extremes of the quantizer, equally around 0. The integrator would therefore have equal slope speeds for both the rising and falling periods, leading to equal pulse lengths at the output. 
+
+In case of a non-zero input, e.g. positive, the high-pulses of the PWM will be longer, due to the integrator being fed with a "lower magnitude" of $\Delta$ during this time, therefore showing a slower change at the output, compared to the complementary case.
+
+The resultig PWM can then lead to valid representations of our input samples by utilizing digital filtering. As mentioned previously, we average a bunch of samples from the PWM datastream, using triangularly weighted coefficients within the filter structure, to get proper individal samples. Those in turn are then down-sampled to the requiered Nyquist rate.
+
+![Filterstages after the Modulator](figures/theory/Filter_stages.png){#fig-filterblocks}
+
+So summarized, the digital filtering will reduce high-frequency noise while passing the input signal to the output of the converter at a reduced data rate.
+
+The reason why we oversampled in the first place, only to end-up with a lower datarate anyways, will be discussed in the next chapter.
+
+### Oversampling and Noise Shaping
+
+Oversampling converters offer an alternative to the classical Nyquist-Converters. The latter utilize sampling rates that are either equal or slightly higher than the Nyquist-frequency of the system, meaning at least twice the required signal bandwidth $f_B$, so that the input can be reconstructed reliably afterwards, according to the Nyquist-Theorem (in turn avoiding aliasing) [@schreier]. 
+\begin{align}
+  f_s \geq 2\cdot f_B 
+\end{align}
+
+
+Nyquist-converters generally suffer from the following aspects, limiting them in their potential to offer outputs with high resolution at decent speeds. They require a high degree of complexity and matching accuracy regarding their analog components for proper precision, which even than is still constrained. Those that can achieve high resolution, meaning a high number of effective bits (ENOB), need circuitries that ultimately result in major slow-downs. They also require more complex anti-aliasing filters due to higher demand for sharp transition bands. Lastly, it has to deal with quantization noise that is uniformly spread across the given sampling bandwidth (assuming it to be white noise).
+
+Oversampling converters are able to out-perform such classical converters by utilize sampling rates that are well beyond the minimum required Nyquist-rate, while also utilizing multiple samples (so including preceeding ones) for their outputs. 
+
+The oversampling ratio (OSR) denotes the factor by which the Nyquist rate is exceeded.
+
+\begin{align}
+  OSR = \frac{f_s}{2 \cdot f_B}
+\end{align}
+
+Oversampling systems require high precision & -speed digital circuitry which, as we stated initially, has evolved significantly while becoming increasingly more affordable throughout recent years. Therefore it is a reasonable trade-off. The analog sections in turn are generally less demanding and complex compared to Nyquist converters, e.g. the anti-aliasing filters which can be simpler and of lower order due to lesser likelyhood of "signal folding" [@schreier].
+
+
+The key advantage that Delta-Sigma Modulation brings to the table is "noise shaping". This is enabled by the feedback structure that is given in our modulator system.
+
+For that, let's observe the following block diagram of a first order model.
+
+![Linear Model of the 1st-Order Modulator](figures/theory/Simple_1stOrder_Mod_sys.png){#fig-loopfilter_sys_1st_order}
+
+It showcases a simple I/O behavioural model of a system that is inherently representative of what a Delta-Sigma modulator is. 
+
+$'U(z)'$ is our input signal, in case of an ADC application it should therefore denote our "analog input", which we will assume to be handled in a discrete fashion. $'V(z)'$ denotes the output of our feedback system, which should contain sufficient information about our original input, leading to $\hat{U}(z)$ after the averaging- and decimation process mentioned earlier.
+
+The system contains the so called "loopfilter", the elemental block for the desired shaping process which is ultimately a delayed discrete integrator, indicating the impact of past samples on the current computation. We also include an additive error, representing the error in our output due to quantization. 
+
+Using the markings $*_1$ and $*_2$, we can derive the transfer behaviour of our system as follows:
+
+\begin{align}
+  V(z) &= E(z) + *_2\,;\quad *_2 = \Big(\frac{z^{-1}}{1-z^{-1}}\Big) \, *_1\,; \quad *_1 = U(z) - V(z)\,z^{-1} \\
+  \Rightarrow& *_2 = \Big(\frac{z^{-1}}{1-z^{-1}}\Big)\, (U(z)-V(z)\,z^{-1})\\
+  \Rightarrow& V(z) = E(z) + \Big(\frac{z^{-1}}{1-z^{-1}}\Big)\,(U(z)-V(z)\,z^{-1})\\
+  \Leftrightarrow&\, V(z) = \frac{U(z)\,z^{-1}}{1-z^{-1}} - \frac{V(z)\,z^{-1}}{1-z^{-1}} + E(z) \\
+  \Leftrightarrow&\, V(z)\,(1-z^{1}) = U(z)\,z^{-1} - V(z)\,z^{-1} + e(1-z^{-1}) \\
+  \Leftrightarrow&\, V(z) \cancel{-V(z)\,z^{-1}} \cancel{+ V(z)\,z^{-1}} = U(z)\,z^{-1} + E(z)\,(1-z^{-1})
+\end{align}
+
+This shows that the output V(z) is comprised of the delay input and the filtered quantization error. We can denote these functions of $z$ as our transfer functions for either the signal ($STF(z) = z^{-1}$) or our quantization "noise" ($NTF(z) = 1-z^{-1}$)
+
+\begin{align}
+  V(z) = STF(z)\,U(z) + NTF(z)\,E(z)
+\end{align}
+
+The noiseshaping is now privided due to the given NTF, which will apply a high-pass characteristic onto the internal quantization noise, with a slope of about 20 dB/decade. 
+As a first general validation of that, if we check over a normalized frequency range of $\omega = [0, \pi]$ we derive for $z = e^{j\omega}$ at either z = e^{j\cdot 0} = 1 or z = e^{j\cdot \pi} = -1. Plugging that into the proposed NTF will lead to:
+
+\begin{align}
+  NTF(z) &= 1-z^{-1} \hat{=} 1-\frac{1}{e^{j\omega}} = 0\,; \quad \text{for}\ \omega \rightarrow 0  \\
+  NTF(z) &= 1-z^{-1} \hat{=} 1-\frac{1}{e^{j\omega}} = 2\,; \quad \text{for}\ \omega \rightarrow \pi  \\
+
+\end{align}
+
+Hence, the noise is attenuated for low frequencies, while amplified for high frequencies.
+
+### SQNR and ENOB
+
+Having effective noise shaping will increase the Signal-to-Quantazation-Noise-Ratio (SQNR) of the system within the band of interest. The SQNR is fundamentally tied to the "effective number of bits" (ENOB) that can be converted reliably, which is obviously of great interest for our applications.
+
+ For a sine wave input to an ideal Nyquist converter, the relation between SNR and the ENOB is given through the following equation, which will serve as our approximation.[@lec05]
+
+\begin{align}
+  SNR_{dB} = 6.02 \cdot ENOB + 1.76 \\
+  \Leftrightarrow ENOB = \frac{SNR_{dB}}{6.02} - 1.76 
+\end{align}
+
+For oversampling circuits, the resulting SQNR of a system is tied to the applied OSR.
+
+In case of the first order system the peak in-band SQNR can be denoted with the following equation
+
+\begin{align}
+  SQNR_{1, peak, dB} = 10\,\log \Big(\frac{9\,M^2\, (OSR)^3}{2\,\pi^2}\Big)
+\end{align}
+where $M$ indicates the quantizer levels.
+
+The "in-band" region shall be defined from $\omega = 0$ up to $\omega = \frac{\pi}{OSR}$.
+ Applying different values for the OSR to this shows, that for each doubling of the oversampling ratio an SNR increase of about 9 dB results. 
+
+Using the relation between the SNR and ENOB we can further derive that such an increase in the OSR results in +1.5 effective bits. 
+
+Lastly, the topic of stability. The first order model is, in theory, inhereantly stable, due to it's pole in the very center of the $z$-domains unit circle. The only consideration has to be given in the context of the quantizers gain. This however will only result in the condition, that the input has to be chosen bounded, in order to ensure a bounded output (BIBO stability). bounded means, that the input stays within the systems full-scale range (normalized: |u| $\leq$\, '1')
+
+There are more non-ideal aspects to be considered when it comes to the first order $\Delta\Sigma$ modulator, such as finite accumulator gain, the generation of idle tones or possible deadzones for weak inputs level. We will however not elaborate on those here and instead go over to the topic of increasing our models order.
+
+### 2nd-Order Modulator Extension
+
+A fundamental second order $\Delta\Sigma$ modulator can be realized by simply exchanging the quantizer of the first order system with yet another instance of the first-order system. This is an alternative way of increasing the in-band noise suppression instead of utilizing more quantizer levels.
+
+The Blockdiagram will end-up like in @fig-loopfilter_sys_2st_order.
+
+![Linear Model of the 2nd-Order Modulator](figures/theory/Simple_2nd_order_Mod_sys.png){#fig-loopfilter_sys_2st_order}
+
+Regarding the noise shaping we will ultimately end up with 
+\begin{align}
+  NTF_2(z) &= (1-z^{-1})^2 \\
+           & = 1 - 2\cdot z^{-1} + z^{-2}
+\end{align}
+, so the square of the previous NTF.
+
+From that we can see that by making this substitution, we are reducing the in-band quantization noise further.
+As typical for 2nd-order filters, we can now expect a slope with an inclide of 40 dB/ decade for the highpass characteristic of the new $NTF$.
+
+The peak SQNR achievable with a 2nd order structure, dependend on the given $OSR$, while M denotes the quantization levels, is given by [@schreier]:
+
+\begin{align}
+  SQNR_{2, peak, dB} = 10\,\log \Big(\frac{15\,M^2\, (OSR)^5}{2\,\pi^4}\Big)
+\end{align}
+
+The in-band noise is proportional to $OSR^{-5}$ (prev.: $OSR^{-5}$). 
+From the equation we can observe that for doubling the OSR we will achieve approximately +15 dB in SQNR, which in turn results in roughly +2.5 ENOB, which are both reasonable increases to the 1st-order case.
+
+The second order model may require non-linear considerations for the quantizers gain, tied to the relationship between the quant. noise and the input amplitudes. 
+More representative estimations would require adjustments to the $NTF$. Something that might for example be done for the synthesis of NTFs in MATLAB when using functions from the "delsig" toolbox [@schreier]. 
+
+For a gain of $k$, we can rewrite the $NTF_k(z)$ as
+
+\begin{align}
+  NTF_k(z) = \frac{NTF_1(z)}{k+(1-k)\,NTF_1(z)}
+\end{align}
+
+The topic of stability generally gains more importance for the MOD2 system, due to the chance of second-order oscillatory behaviour.
+
+This will result in the need to consider further tweaks to ones model to, leading to the consideration of gain coefficients to sections of the model shown in @fig-loopfilter_sys_2st_order. The previous "BIBO" stable condition is also more stright, where the input usually has to be bound to less then the systems full-scale range (e.g. < 0.9). [@schreier]
+
+
+@tbl-2nd_vs_1st shows some of the main impacts that the transformation of our system to the one of second order has.
+
+| Aspect                        | Due to $2^{nd}$-Order                 | 
+|-------------------------------|---------------------------------------|
+| Noise Shaping                 | 40dB/dec instead of 20db/dec          | 
+| 2xOSR impact: Noise Reduction | 9dB -> 15 dB                          |
+| 2xOSR impact: Extra ENOB      | 1.5 bit -> 2.5 bit                    |
+| Stability                     | increased risk -> tighter bounds
+| Complexity                    | more circuitry (+ stability concerns)
+: Impacts for changing to $2^{nd}$-Order System {#tbl-2nd_vs_1st}
+
+### Specifications for the System
+
+To later interface the system in the context of a system-chain, given e.g. by our meassurement system, a few things should be specified about our desired converter system up front, given the now séstablished theory. Among them are for example the following things, mainly related to our expected inputs.
+
+| Parameter                       | Value             | 
+|---------------------------------|-------------------|
+| Dynamic Range                   | 16 Bit ~ 98 dB    |
+| System Order L                  | 2                 |
+| Signal Bandwidth f_B            | 215 Hz            |
+| Nyq. Frequency f_N              | 430 Hz            |
+| Sampling Frequency f_s          | 220 kHz           |
+| Oversampling Ratio (OSR)        | 512               |
+| Samples per Second (SPS_{max})  | 860               |
+
+
+### Behavioural Analysis/ Confirmation using MATLAB
+
+The behavioural analysis in MATLAB starts by setting some specifications for the system, which are the following:
+
+| Parameter | Value |
+|-----------|----------------|
+|  Order of modulator                            | L = 1 or 2 (order)      |
+|  Structure                | form = 'CIFB' % Cascade of Integrators Feedback;                        |
+|  No optimisation                               | opt = 0;                              |
+|  Quantizer level                               | nLev = 2;                             |
+| Sampling frequency                             | fs = 220e3;                           |
+|  Sampling time                                 | Ts = 1/fs;                            |
+|  OSR                                           | M = 512;                              |
+|  Sim. length (output samples), FFT points      | N = 16*M;                             |
+|  Bandwidth                                     | fB = fs/2/M;                          |
+|  Number of sinusoids                           | cycles = 9;                           |
+|  Test tone                                     | fx = cycles * fs/N;                   |
+|  Signal amplitude                              | A = 0.8;                              |
+|  Time vector                                   | t = Ts * [0:N-1];                     |
+|  Input signal                                  | u = A * sin(2 * pi * fx/fs * [0:N-1]);|
+
+
+To validate some of the behavioural characteristics, given by the established theoretical concepts, models for the the 1st- and 2nd order modulators were used within MATLAB & MATLAB Simulink. We will mainly focus on the results from the 2nd-order model to keep this section concise
+
+![Utilized 2nd-Order Model in Simulink (CIFB)](figures/theory/simulink_2ndOrd_model.PNG){#fig-simulink_MOD2}
+
+The second order model, as mentioned before, requires tighter bounds, enforced e.g. by gain coefficients which are computed within the initial cells of our MATLAB code, taking into acount the specifications above.
+
+![I/O behaviour from MATLAB simulation model](figures/theory/2nd_order_behav_output.png){#fig-matlab_MOD2_IO_plot}
+
+The plot of the model output in the time domain shows the expected indirect representation of the input signal in the momentary duty-cycle of the PMW output, from which one could obtain the input signal by applying a moving average filter to the PMW datastream.
+
+![Pole-Zero Plot from the NTF, synthesized by MATLAB](figures/theory/2nd_order_pz_plot.png){#fig-matlab_MOD2_pz_plot}
+
+The pole-zero plot from the synthesized NTF object 'H' shows the adjusted locations, due to dynamic quantization gain.
+
+MATLAB provides us in this case with an NTF of
+
+\begin{align}
+  H = \frac{(z-1)^2}{(z^2 - 0.7639\,z + 0.2361)}
+\end{align}
+
+![Spectral Analysis from Models for L=1 & L=2](figures/theory/spectral_analysis_L1_and_L2.svg){#fig-matlab_MOD1_2_NTF}
+
+Lastly, we do observe the expected PSD change betwee the 1st- and 2nd order models, where for the latter the noise power close to dc is lower than for the former, before indicating a slope that is inclining faster (seemingly twice as much, as to be expected) until eventually surpassing the level of the first order PSD. For both cases we observe a signal peak that is clearly separated from the shaped noise power.
+
+
+
+
+
+
+
+
+
+
+

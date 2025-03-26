@@ -1,0 +1,12 @@
+# System Overview 
+**Concept Engineering of Mixed Signals and Systems**
+
+![Concept](figures/_fig_nature.svg){#fig-nature}
+
+We all live in an analog world where all we percieve is analog in nature but at the same time our technology process on digital data. We have **sensors** as input nodes. They can be voice signals, RF signals, pressure. temperatur, etc. Every system acquires the analog data and results in analog data which is called as **actuators** such as Speakers, etc. So the point is we need something which converts the data from analog domain to discrete or digital domain and again converts back to analog domain. Here comes the concept of **Data Converters**.
+
+![Concept](figures/_fig_domains.svg){#fig-domains}
+
+@fig-domains tells us that we have **Continuous Domain** where a signal can be represented as continuous in time and continuous in amplitude and **Discrete Domain** where the signal can be represented as discrete in time and amplitude. By sampling we discretise the signal from continuous time to discrete time and then by quantizing it we discretise its amplitude.
+
+Our main focus will be on the design of **Analog to Digital Converter**

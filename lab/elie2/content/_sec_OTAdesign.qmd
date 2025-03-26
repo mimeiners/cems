@@ -1,0 +1,94 @@
+# OTA design for Switch Capacitor integrators {#sec-OTA}
+
+As we now enter on IC design level, we need to implement the discrete time integrator using CMOS elements. We will use [Xschem](https://xschem.sourceforge.io) for schematic entry and [ngspice](https://ngspice.sourceforge.io) for simulation. The 130nm CMOS technology **IHP-SG13G2** from [IHP Microelectronics](https://www.ihp-microelectronics.com). Tools and PDK are integrated in the [IIC-OSIC-TOOLS](https://github.com/iic-jku/IIC-OSIC-TOOLS) Docker image. This PDK is open-source, and the complete process specification can be found at [SG13G2 process specification](https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.doc/doc/SG13G2_os_process_spec.pdf)
+
+## Deriving required parameters for design
+
+As mention in @sec-SwitchCap the load driven by our circuit is purely capacitive and hence taking consideration of swing over gain, **Folded Cascode** topology (see @fig-OTA) is what best suited in our case, where we have PMOS input pair.
+
+
+![Candidate OTA](./figures/_fig_OTA_SlewCurrents.svg){#fig-OTA-SlewCurrents}
+
+
+Detailed analysis of **Folded Cascode** topology can be accessed [here](https://github.com/pangavhanehreeshi/SecondOrder_SingleBit_DSM/blob/main/DSM/Designs_Hrishi/RealCircuits/Folded%20Cascode/FoldedCascode%20_Theory.pdf). You can find the **quantitative** as well as **qualitative** analysis , **noise analysis**, **offset / mismatch analysis**.
+
+
+
+### Deriving $I$
+As shown in @fig-OTA-SlewCurrents the magnitude of the output
+current under these conditions is $I$, where $I$ is the bias current in each half of the differential
+pair. ($I$ is also assumed to be the standing current in the output cascodes.) Clearly, $I$
+must be large enough to transfer the charge from the input capacitor(s) to the integrating
+capacitor in the allotted time.[@Understanding_Delta-Sigma_Data_Converters] 
+
+Let’s allocate half of a clock phase (i.e., one quarter of a
+clock period) for slewing. Since the voltage on the left side of the input capacitor C1 can change by as much as ${{V_\mathrm{DD}}} = 1.5 V$ , we therefore need 
+
+$$
+I > \frac{C_1 VDD}{T/4} = \frac{0.36 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{1.13 \, \mu\mathrm{s}} = 0.8 \, \mu\mathrm{A}.
+$$
+
+### Deriving ${g_\mathrm{m}}$ from Time-constant calculation
+
+![Time Constant Calculation](figures/_fig_RC_Calculation.png){#fig-RC-Calculations}
+
+@fig-RC-Calculations shows the small-signal model of an integrator in the charge-transfer
+phase and an equivalent circuit from which we see that the time-constant is 
+
+$$
+\tau = RC = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{g_\mathrm{m}}
+$$
+
+ 
+Now let's say we take the linera settling to provide attenuation of 100 $dB$
+
+$$
+\frac{T}{4} = \tau \ln(10^5) \approx 12\tau
+$$
+
+This gives us 
+$$
+{g_\mathrm{m}} = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{\frac{T}{48}} = 5.7 \, \mu\frac{A}{V}
+$$
+
+### Deciding $L$ and $W$ for MOSFETS 
+
+Now that we have the exact values for ${g_\mathrm{m}}$ and ${I_\mathrm{D}}$, we can derive the values of $L$ and $W$ by making use of ${g_\mathrm{m}}$_${I_\mathrm{D}}$ vs ${I_\mathrm{D}}$_$W$ curve.
+ Refer to @sec-gmid-method for detailed discussion regarding sizing.
+
+
+We already know the current flowing throught each MOSFET (See @fig-OTA-SlewCurrents). As shown in @fig-gm_IdvsId_W-nmos and @fig-gm_IdvsId_W-pmos, by appropriately choosing the $L$, we can obtain $W$ for $\frac{g_m}{I_D} = 7.12 $
+
+::: {.callout-note title="Important"}
+The minimum length consideration while designing in low voltage CMOS technology should be atleast **3 to 4 times** the $L_\min$. In our case $L_\min = 0.13 \, \mu$.
+:::
+
+
+![${g_\mathrm{m}}$_${I_\mathrm{D}}$ vs ${I_\mathrm{D}}$_$W$ curve for nmos](figures/_fig_gmid_vs_idw_nmos.svg){#fig-gm_IdvsId_W-nmos}
+
+![${g_\mathrm{m}}$_${I_\mathrm{D}}$ vs ${I_\mathrm{D}}$_$W$ curve for pmos](figures/_fig_gmid_vs_idw_pmos.svg){#fig-gm_IdvsId_W-pmos}
+
+### OTA biasing using **current mirror**
+
+![OTA Biasing](figures/_fig_biased_OTA.svg){#fig-OTA-Biasing}
+
+@fig-OTA-Biasing explains the biasing of the OTA using **Wilson's current mirror** topology. 
+
+### Performance of designed OTA {#sec-Performance-OTA}
+
+For understanding how the designed OTA is performing, we run transient analysis, ac analysis and dc analysis. In order to achieve these analysis, we need to put our OTA in negative feedback loop (unity feedback loop in our case) and realize the plots. @fig-OTA-tran shows the transient plot and gives us the time constant in which it reaches the steady state. NgSpice yeilds tsettle = 8.663771e-09
+
+
+@fig-OTA-ac-mag and @fig-OTA-ac-phase shows us the magnitude and phase over a range of frequency.Where NgSpice yeilds dc_gain = 9.156547e-01
+fbw = 7.544229e+07
+Gain_error = -8.41453e-02 
+
+
+
+![Transient Analysis](figures/_fig_Tran_OTA.svg){#fig-OTA-tran}
+
+
+![AC Analysis](figures/_fig_Magnitude_OTA.svg){#fig-OTA-ac-phase}
+
+
+![AC Analysis](figures/_fig_Phase_OTA.svg){#fig-OTA-ac-mag}

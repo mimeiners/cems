@@ -1,0 +1,44 @@
+# Introduction
+Since more and more manufacturers are ending their production of integrated circuit solutions, the development of full custom solutions is becoming increasingly attractive. Thus, the different subgroups of the course "Concept Engineering Mixed-Technology Systems", held by Professor Meiners at Hochschule Bremen, are tasked with the development of an Analog-Digital-Converter, roughly modeled in a way to replace the ADS1115 by Texas Instruments within a specified measurement system-chain. 
+
+Data conversion is a hot topic in the world of electronics. Most signal processing nowadays has shifted to the digital domain, due to the enourmous pace with which digital electronics have evolved in terms of speed and size, to the point where data rates in the Gigahertz range are becoming the norm, while the underlying semiconductor technologies continuously shrink to mere nanometers.
+
+However, this does not change our analog world, nor the need to interface data from that domain into that of our "state-of-the-art" technologies. This consideration applies to all sorts of trackable or sensable data, of accustic, optical or mechanical nature.
+To fit into the evolving nature of the digital domain, converters should be able to keep up, regarding the speed, precision and reliability with which they interface. 
+
+![Interfacing between Analog and Digital Domain](figures/introduction/AD_DA_signal_chain.png){#fig-ad_da}
+
+For this reason, we shall attempt to outline one of the most popular ways to convert data given the technology of our time. The approach is that of the Sigma-Delta converter. In the following we present our approach to designing such an ADC. This includes a theoretical analysis of the workings of $\Sigma \Delta$ ADC's, an exploration of it's basic behavioural characteristics on system-level, deriving basic and idealized circuits to match the behaviour, and lastly a detailed design of the established circuit-level system using SPICE simulations within the xschem design environment, where concrete solutions on IC-level will be proposed. 
+
+## Top-Level Overview of Considered System
+
+The considered system of interest for this semester is a classical meassurement system, consisting of an accelerometer as our analog data source, an ADC to convert said analog data to the digital domain, which can then be handled by a microcontroller as our processing unit.
+
+The specific board-level components that are considered for this signal-chain are the ADXL335 accelerometer, the ADS1115 ADC and an ESP8266 microcontroller.
+
+![Concerned Top-Level Measurement System](figures/introduction/toplvl_sys_overview.png){#fig-toplvl_view}
+
+The mentioned ICs are given as evaluation- & breakout boards as part of the lab inventory.
+
+![ADXL335 Functional Block Diagram [@adx_datasheet]](figures/introduction/ADXL335.PNG){#fig-ADXL_block}
+
+The accelerometer is a specific example of a micro electro-mechanical system (MEMS) used for the purpuse of sensing. This in essence utilizes capacitive Accelerometer, where the plates of that capacitor are within the internal structure, which allows for varying distances of the plates (or potentially "fingers") resulting in a varying capacitance given an acceleration. The analog change in capacitance is what we will ultimately need to consider when it comes to system interfacing. [@fraden]
+
+![ADS1115 Functional Block Diagram [@ads_datasheet]](figures/introduction/ADS1115.PNG){#fig-ADS_block}
+
+The ADS1115 is a Delta-Sigma ADC which includes various auxillary subsystems, like a multiplexer for the multiple input channels, an input programmable gain amplifier (PGA), an interface section to support the I2C communication protocol, etc.
+
+![ESP8266 Breakoutboard Pinout](figures/introduction/ESP8266_breakout.PNG){#fig-ESP8266}
+
+The ESP8266 is a typical microcontroller, which allows us to measure data either directly through analog pins, which would utilize internal ADCs, or we can use the digital pins to utilize the full-fletched ADS1115 for the job of data conversion.
+
+
+## General Overview of given ADC
+
+@fig-adc_overview shows a more detailed block diagram of the ADS1115, which adopts informations from it's datasheet [@ads_datasheet]. The focus of our work lies on the components in the orange box. The theory for the digital filter stage following the modulator is also briefly explored. The modulator itself comprises the switched capacitance to sample the input signal, an integrator (or accumulator) and the quantizing comparator to output a PWM signal. 
+The other blocks depicted are considered auxillary block. These include the multiplexer which can be used to switch between different inputs. It is followed by a programmable gain amplifier. The amplification factor can be selected via an I2C interface which is also used to select the input channel, sample rate, as well as for the read out of the converted digital data among others. Since these auxillary blocks do not add to the functionality of the modulator itself it was decided to not explore them any further. In case of the reference oscillator and the voltage reference, these are modeled as ideal inputs during simulations.
+
+![Block diagram internal structure ADS1115](figures/introduction/BlockDiagramm_ADS1115.svg){#fig-adc_overview}
+
+
+

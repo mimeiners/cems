@@ -1,0 +1,91 @@
+# Switched Capacitor
+
+Switched capacitor (SC) circuits play a fundamental role in modern mixed-signal systems, particularly in the implementation of high-performance ADCs. By replacing traditional resistors with switches and capacitors, SC circuits offer precise and controllable analog signal processing using standard CMOS technology. This makes them highly suitable for integration in low-power, high-accuracy applications.
+
+The core principle of a switched capacitor circuit is based on the controlled transfer of charge between capacitors through electronic switches. These switches are typically driven by non-overlapping clock phases that define the sampling (track) and holding intervals. During the track phase, the switch closes, allowing the capacitor to sample and store the input voltage. Once the switch opens (hold phase), the stored charge represents the sampled value, which can then be processed or transferred further along the signal chain. This sample-and-hold functionality is a critical building block for discrete-time signal processing.
+
+In essence, switched capacitor circuits emulate the behavior of resistors by controlling the rate at which charge is moved between nodes. The equivalent resistance is determined by the capacitance value and the switching frequency. As a result, SC circuits provide highly accurate and stable performance that is less sensitive to process variations, temperature, and voltage changes compared to traditional resistor-based circuits.
+
+Switched capacitor techniques are widely employed in integrators, filters, and analog-to-digital conversion stages, such as the integrator loops of Sigma-Delta ADCs. These circuits benefit from their compatibility with digital control logic, making them an essential component in modern integrated circuit design.
+
+---
+
+## Clock Phases in Switched Capacitor Circuits
+
+Switched capacitor circuits rely heavily on precise timing signals to control the switching events. Typically, two non-overlapping clock signals, denoted as Φ₁ and Φ₂, are used to drive the switches. These two clock phases ensure that switches are never simultaneously closed, which would otherwise create short circuits and result in charge sharing errors.
+
+### Non-overlapping Clock Phases
+In @fig-clock, the basic waveforms of Φ₁ and Φ₂ are shown. Φ₁ is high during one period while Φ₂ remains low. After Φ₁ transitions to low, Φ₂ becomes high. This non-overlapping behavior is essential for reliable charge transfer in switched capacitor circuits.
+
+![Non-Overlapping Clock Phases](figures/clock.drawio.png){#fig-clock width=50%} 
+
+These clock phases alternate, controlling the sampling and transfer of charge between nodes. The duration of the clock period and its frequency directly affect the equivalent resistance of the switched capacitor circuit. Specifically, the equivalent resistance R_eq can be described as:
+
+$$
+R_{eq} = \frac{1}{f \cdot C} \tag{18}
+$$
+
+Where f is the clock frequency, and C is the value of the switched capacitor.
+
+---
+
+## Timing Diagrams for Switched Capacitor Operation
+
+Understanding the timing behavior of Φ₁ and Φ₂ in different clocking schemes is essential for accurate circuit operation. In @fig-clock2, we see an extended timing diagram of Φ₁ and Φ₂ that emphasizes their non-overlapping nature over multiple cycles.
+
+This timing control prevents both switches from conducting at the same time, thereby avoiding charge injection errors and signal corruption. Such precision in clock phase control is a defining feature of CMOS-based SC implementations.
+
+![Timing Diagram of Clock Phases](figures/clock2.drawio.png){#fig-clock2 width=50%}
+
+The rise and fall times, as well as the phase separation, are carefully designed in modern integrated circuits to minimize clock feedthrough and other non-ideal effects.
+
+---
+
+## Basic Switched Capacitor Circuit Operation
+
+The simplest switched capacitor circuit, as shown in Figure 3, consists of two switches and one capacitor. This configuration serves as a charge pump, moving charge from an input node to an output node in discrete time intervals controlled by the clock phases Φ₁ and Φ₂.
+
+### Operating Principle
+1. During Φ₁, switch S₁ is closed, allowing the capacitor C₁ to charge up to the input voltage V₁.
+2. During Φ₂, switch S₁ opens and switch S₂ closes, transferring the stored charge from the capacitor to the output node V₂.
+
+This charge transfer process effectively samples the input signal and transfers its equivalent charge to the next stage. The circuit emulates the behavior of a resistor by relating the transferred charge to the voltage difference and the switching frequency.
+
+The operation of this circuit can be explained using charge conservation:
+
+$$
+Q = C \cdot V \tag{19}
+$$
+
+The charge transferred per cycle depends on the input voltage and the capacitance, while the average current is given by:
+
+$$
+I_{avg} = \frac{Q}{T} = C \cdot V \cdot f \tag{20}
+$$
+
+This explains how the circuit behaves like a resistor with resistance 1 / (C · f).
+
+![Basic Switched Capacitor Circuit](figures/SC.drawio.png){#fig-SC width=70%}
+
+By employing non-overlapping clock signals and discrete charge sampling, SC circuits successfully replicate the behavior of passive resistor networks in integrated circuits.
+
+Such designs form the foundation of analog filters, integrators, and ADC building blocks, especially in Sigma-Delta modulation schemes. Understanding these fundamentals allows for the design and implementation of low-power, high-precision, and scalable analog signal processing systems.
+
+## Area Efficiency and Frequency Control in Switched Capacitor Circuits
+One of the main challenges is implementing large and accurate resistances without consuming excessive silicon area. Unlike continuous-time RC filters, which require physically large resistors to achieve low-frequency operation, switched capacitor circuits can emulate resistances through controlled charge transfer, depending only on the clock frequency and the capacitor value. This technique allows designers to achieve high accuracy and area efficiency.
+
+The schematic shown in @fig-sc_switches illustrates a basic switched capacitor structure controlled by non-overlapping clock phases Φ₁ and Φ₂. During Φ₁, the capacitor is connected to the input, allowing it to charge. During Φ₂, the charge is transferred to the output. This operation is equivalent to moving discrete packets of charge, simulating the current that would flow through a resistor.
+
+![Switched Capacitor](figures/sc_switches.drawio.png){#fig-sc_switches width=70%} 
+
+One of the most valuable properties of switched capacitor circuits is that their equivalent resistance is defined by:
+
+$$
+R_{eq} = \frac{1}{C \cdot f} \tag{21}
+$$
+
+Where C is the capacitance and f is the switching frequency. This makes the resistance predictable and easily tunable by simply adjusting the clock frequency, without relying on process-sensitive resistor fabrication.
+
+The area savings come from the fact that capacitors generally occupy less silicon area than high-value resistors. Additionally, the matching between capacitors is typically better than the matching between resistors, resulting in more stable and accurate circuit behavior. These advantages make switched capacitor circuits ideal for applications such as integrators in Sigma-Delta ADCs, switched capacitor filters, and precision analog signal processing.
+
+Finally, because the resistance value depends entirely on the switching frequency and capacitance, designers can dynamically modify a filter's frequency response by changing the clock rate, providing additional flexibility in system design.

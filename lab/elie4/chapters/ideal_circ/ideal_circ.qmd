@@ -1,0 +1,110 @@
+# Basic Behaviour on Circuit Level
+
+In this section, we will deal with realization of our Delta-Sigma Modulator on the circuit level for given specifications. We will consider the basic behaviour of the circuit, and implement them. 
+
+The desired loop filter for the modulator, which is the first and most fundamental building block of our system, will be realised utilizing an active integrator circuit that has a switched capacitance input stage.
+
+First of all, let's see conceptually simplest Sample and Hold _(S/H)_ consists of a Switch and Capacitor in @fig-simple-sh.
+
+![Simple Sample and Hold](figures/switch_cap/basic_sh.svg){#fig-simple-sh}
+
+
+If the Switch is closed, the Capacitor will charge up to the input voltage which denotes to track phase. When Switch is opened, the Capacitor will hold the input voltage which denotes to hold phase, such circuits are also known as _Track and Hold_ circuits.
+
+## Non-Idealities
+
+Unlike ideal Switches, real switches have some On-Resistance $R_{on}$ which is some function of input. $\frac{1}{R_{onC}}$ is the bandwidth during the tracking phase. The signal is being stored in Capacitor in terms of charge, smaller the Capacitor more the tendency of getting disturbed or leakage. 
+
+Taking a closure look, Resistance is much suspectable to thermal noise and is modelled as voltage $V_n$ in series with resistance. Ouput Noise is present for all frequencies also known as _White Noise_ and is given as 
+
+$$
+V_\mathrm{n}^2 = \frac{k T}{C} 
+$$
+
+where $k$ is Boltzmann's constant, $T$ is temperature in Kelvin.
+
+Candidate for switch in circuit is MOSFET. Above were the non-idealities present if switch is _ON_. Even if switch is _OFF_ its far from being ideal. Ideally, it should be open circuit but there is some $C_{OFF}$ present. 
+
+More critical areas are when MOSFET is transitioning from ON to OFF and vice versa, they give rise to _Charge Injection_. Injected Charge is Non-Linear function of $V_{in}$. Due to these reasons we are using _Bottom Plate Sampling_. Instead of sampling directly at top plate, the bottom plate is switched before capturing the sampled value ensuring non distorted output at feedback or top plate capacitor.
+
+
+## Switched Capacitor Integrator
+
+A classic implementation of realizing an active integrator would be with the opamp circuit using a switch capacitor. However, in IC level implementation we use OTA instead of OpAMP as output resistance of OTA is infinte which benefits us heavily. $H(z)$ enables us to realize any Discrete Time Transfer Function. There are two types of integrators:
+
+- **Delay Free Integrator**: This form of integrator include the current sample of the input signal as well. Its transfer function is given as: 
+
+\begin{align}
+  {H(z)} = \frac{1}{1-z^{-1}}
+\end{align}
+
+- **Delayed Integrator**: This form of integrator does not include the current sample of the input signal. Its transfer function is given as:
+
+\begin{align}
+  {H(z)} = \frac{z^{-1}}{1-z^{-1}}
+\end{align}
+
+We will be using the second form of integrator in our system.
+
+Therefore, for our desired discrete integrator, it is worth utilizing the following input structure in Figure @fig-opamp_sc_integrator, which leads to a switched-capacitor integrator. 
+  
+![Opamp based switched capacitor integrator](figures/theory/SC_Integrator_Circuit.svg){#fig-opamp_sc_integrator}
+
+The depicted switches are clocked in a way to ensure non-overlapping high levels. This is of great importance, since turning both switches marked as $\phi_1$ off simultaneously would result in part of the channel charge of the series transistor transfering to the sample capacitor. Since this channel charge is signal dependent, it is nonlinearly related to the input signal. If however the series transistor is still on when turning off the parallel transistor, only a fixed amount of charge is added which introduces a dc offset. [@schreier]
+
+To derive the system behaviour of this circuitry, let's consider the two phases of operation, given be the switching phases, depicted in Figures @fig-phase1_integrator and @fig-phase2_integrator.
+
+![Integrator state during phase 1](figures/theory/sc_integrator_ph1.PNG){#fig-phase1_integrator}
+
+![Integrator state during phase 2](figures/theory/sc_integrator_ph2.PNG){#fig-phase2_integrator}
+
+The first phase allows for the capacitor $C_1$ to be charged from the input, leading to the charge accumulation $q_1[1]$, during which the integrating capacitor $C_2$ holds it's previous charge ($q_2[n]$). Due to the relation $V = \frac{Q}{C}$, the output voltage will be equal to the ratio of that charge $q_2[n]$ to the capacitance $C_2$.
+
+The second phase will than result in the charge of $C_1$ to accumulate in $C_2$, due to the opamps input behaviour related to it's "virtual ground". C2 will therefore have the sum of charges, leading to
+
+\begin{align}\label{sc_charge_ph2}
+  q_2[n+1] = q_2 + q_1. 
+\end{align}
+
+After applying the $z$-transform, the result is
+
+\begin{align}
+  Q_2(z) = Q_2(z)\,z^{-1} + Q_1(z)\,z^{-1}
+\end{align}
+
+which in turn can be rearranged to get
+
+\begin{align}
+  \frac{Q_2(z)}{Q_1(z)} = \frac{z^{-1}}{1-z^{-1}}
+\end{align}
+
+Utilizing the aforementions relation between voltage, charge and capacitance, we can derive the voltage I/O behaviour (transfer function) to be the following
+
+\begin{align}
+  \frac{V_{out}}{V_{in}} = \frac{z^{-1}}{1-z^{-1}} \frac{C1}{C2} = H_v(z)
+\end{align}
+
+The ratio of the capacitors would be a potential gain factor for the, which could also be choosen to achieve unity gain ($C_1 = C_2$).
+
+The remaining term, describing a delayed integrator, is what will be utilized in the MATLAB assited system analysis. That ultimately leads to the following description of out feedback system, which overlaps with the established linear model from our system analysis in MATLAB, previously shown in @fig-loopfilter_sys_1st_order.
+
+## Ideal system model in LTSpice
+For first simulation results the behaviour described in the previous subchapter can be implemented as an indealized model in LTSpice. Files for this were provided by the supervising professor and will be explained briefly.\
+\ 
+The simulation of the second order idealized $\Delta \Sigma$-Modulator (figure @fig-dsml2) comprises two casecaded versions of a switched capacitance stage followed by an integrator. The output of the second integrator is fed into the comparator, whose output is fed back through an inverter to both switched capacitor stages. The second sampling stage is responsible for correctly adding the delayed sample to the output sample of the first integrator.\
+
+![LTSpice simulation of idealized model](figures/ltspice_ideal/dsm_l2.PNG){#fig-dsml2}
+
+For the input stage, ideal switches are used which are controlled by voltage sources modeling the 220kHz input clocks. These are configured in such a way, that the clock phases are not overlapping. As explained earlier, this is needed to prevent corruption of the sampled signal.\
+\ 
+The operational amplifier is is planned to be an operational transconductrance amplifier (OTA) which is realized as a voltage controlled current source that outputs a current proportional to the difference of its two input signals. A parallel resistor creates a corresponding voltage drop. This representation is linear for all inputs and can be chosen, if the input signal can is guaranteed to be within the linear range of the real OTA. If the OTA is to operate in saturation, this model would not be valid anymore.\
+
+![LTSpice representation of the OTA](figures/ltspice_ideal/ota.png){#fig-ota-spice}
+
+The comparator has to compare the current input sample to a fixed value. If, at the rising edge of the reference clock, the input voltage lies above this threshold a logic high, represented by $V_{DD}$ is output, if the value lies below the threshold a logic low ($V_{SS}$) will be output. Additionally, this output value has to be held until the next rising edge of the controlling clock. This latching functionallity is realized using two clock controlled switches that open and close inversely. The comparison for the dermination of the output is done through a voltage source and a mathematical comparison.\
+
+![LTSpice representation of the comparator](figures/ltspice_ideal/comparator-spice.png){#fig-comp-spice}
+
+The delay of the comparator output fed back into the switched capacitor stages is realized through an inverter. This is possible, since due to the high sample frequency of the comparator, the width of two successive pulses can be assumed to be very small. Thus, inverting the signal is equal to a delay by one sample. The inversion is again done by a mathematical comparison.
+
+![LTSpice representation of the delaying inverter](figures/ltspice_ideal/inverter-spice.png){#fig-inv-spice}

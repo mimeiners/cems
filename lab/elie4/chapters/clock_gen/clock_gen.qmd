@@ -1,0 +1,59 @@
+## Clock-Phase generation
+
+The aforementioned delay in the phases of the clocks acting on the switched capacitor can be achieved by the structure in figure @fig-phase_gen. This takes a reference clock signal which provides a signal at the frequency required by the system and outputs four different phases $\phi_1$, $\phi_{1d}$, $\phi_2$ and $\phi_{2d}$. The feedback between the upper and lower strand of the structure, in conjunction with the NAND gates, ensures the prevention of overlap between $\phi_1$ and $\phi_2$ and in turn for their respective delayed versions.
+
+![Basic structure for delayed clock phase generation](figures/clk_gen/schem_clock_generation.svg){#fig-phase_gen}
+
+By changing the capacitance of the marked inverters the actual delay between $\phi_i$ and $\phi_{id}$ can be controlled. [@schreier] It is worth noting however, that the capacitive load $C_L$ experienced at the outputs of the structure also has an influence on the phase delay.
+
+```{python}
+#| label: fig-delay_norm
+#| fig-cap: "Delayed clock signals"
+
+import numpy as np
+import matplotlib.pyplot as plt
+import ltspice as lt
+
+#parse data from .raw file
+#for compiling the finished document this path needs to be relative to "report_grp4.qmd"
+fpath       = 'clk_gen/tb_clkgen_save.raw'
+l           = lt.Ltspice(fpath)
+l.parse()
+
+#extract relevant data
+time        = l.get_time()
+vclk        = l.get_data('v(clkin)')
+vp1         = l.get_data('v(p1)')
+vp1e        = l.get_data('v(p1e)')
+vp2         = l.get_data('v(p2)')
+vp2e        = l.get_data('v(p2e)')
+
+#redefine data arrays considering new length
+factor = 1/15
+length = round(len(time)/factor)
+
+
+time    = time[1000:1150]
+vclk    = vclk[1000:1150]
+vp1     = vp1[1000:1150]
+vp1e    = vp1e[1000:1150]
+vp2     = vp2[1000:1150]
+vp2e    = vp2e[1000:1150]
+
+#plot data
+plt.close('all')
+plt.figure(1)
+plt.plot(time*1e9, vp1, label=r'$\phi_{1d}$')
+plt.plot(time*1e9, vp1e, label=r'$\phi_1$')
+plt.plot(time*1e9, vp2, label=r'$\phi_2$')
+plt.title('Voltage input clock over time')
+plt.xlabel('$t$/ns')
+plt.ylabel('V')
+plt.legend()
+plt.grid()
+
+```
+
+Figure @fig-delay_norm shows the normal delay between $\phi_1$ and $\phi_{1d}$ as well as the non-overlap with $\phi_2$. The structure used for clock generation was modeled after the circuit provided by Boris Murman [@murmann]. In this, they used the *sg13g2* standard cells for the NAND gates and inverters which are not built from single transistors and hence their capacitance can not be changed. Simulations with different values for the load capacitances have proven to not impair the structures functionality.
+We thus continue with this non-transitorized version, since creating the gates from scratch would add unnecessary complexity.
+

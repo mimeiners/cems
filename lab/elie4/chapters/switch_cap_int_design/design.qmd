@@ -1,0 +1,94 @@
+# Switch Capacitor Design
+
+We are using "CIFB" topology also known as Cascade of integrators, feedback form to realize our design.
+
+![Second-Order CIFB modulator](figures/switch_cap/basic_sh.svg)
+
+Functions of $\Sigma \Delta$ toolbox in MATLAB enables us to realize the NTF function and based upon that we can get our coefficients.
+
+## Capacitor Sizing
+
+As mentioned above, the coefficients translate into capacitor ratios. In the first stage capacitance ratio can be computed as follows:
+
+$$ 
+a_1 = \frac{C_1 V_\text{ref}}{C_2} = \frac{C_1 V_\text{dd}}{C_2}
+$$
+
+$$
+b_1 = \frac{C_1 V_\text{FS}}{M C_2} = \frac{C_1 V_\text{dd}}{C_2}
+$$
+
+The absolute value of $C_{1}$ is computed by thermal noise constraint. Mean-square noise yielding an SNR of 101 dB is 
+
+$$
+\overline{v_n^2} = \frac{\left(\frac{V_\text{dd}}{2}\right)^2 / 2}{10^{\text{SNR}/10}}
+$$
+
+The in-band input-referred mean-square noise voltage associated with first integrator:
+
+$$
+v_n^2 = \frac{kT}{\text{OSR} \cdot C_1}
+$$
+
+From above equations we can get the value of $C_1$ and $C_2$. For capacitences for the second integrator can be computed from:
+
+$$
+c_1 = \frac{C_3}{C_5}
+$$
+
+$$
+a_2 = \frac{C_4 V_\text{dd}}{C_5}
+$$
+
+Since, due to oversampling ratio is high, the in-band thermal noise of the second integrator is heavily attenuated by gain of the first integrator. Therefore, we set $C_4$ is taken 0.1pF. 
+
+## OTA Sizing
+
+For integrator, we first implemented 5 transistor OTA. Using components available in IHP Microelectronics SG13G2 technology. First of all, we need to run the technology sweep to get the response of the OTA at various $V_{gs}$ and $V_{ds}$ values. Then we can use the sweep data to get the optimal graphs in MATLAB.
+
+![Testsweep for LV NMOS g_m/I_d Characterisation](figures/switch_cap/techsweep_nmos.svg){#fig-Nmos_sweep}
+
+We have a similar tesbench for LV_PMOS which to depict their behaviour. We would use the data provided by these sweep to realize the sizing of OTA discussed below @fig-basic_ota 
+
+![5 Transistor OTA Design](figures/opamp/5t_ota.svg){#fig-basic_ota}
+
+
+### Choosing $I_{d}$ and $g_{m}$
+
+The value of $I_d$ plays a very important role in the design of the OTA. At the start of each charge-transfer phase, the OTA input terminals are driven such that current in differential switches fully to one side. The magnitude output current of I (bias current) in each half of differential pair. It should be large enough to transfer the charge from input capacitor to integrating capacitor in allowed time.
+
+$$I > \frac{C_1 V_\text{dd}}{T / 4}$$
+
+Next important parameter is $g_m$.In small-signal model of an integrator in charge-transfer phase from which we can see time-constant is
+
+$$
+\tau = RC = \frac{C_1 + C_3 + C_1C_3 / C_2}{g_m}
+$$
+
+which gives 
+
+$$
+g_m = \frac{C_1 + C_3 + C_1C_3 / C_2}{T/48}
+$$
+
+Now, we have both the values of $I_d$ and $g_m$. We would divide the two values to get $g_m/I_d$ ratio and check whether it is in moderate region or not. If it is not, we need to adjust the value of $I_d$ and $g_m$ which can be done by increasing the value of $I_d$.
+
+### Choosing W and L parameters
+
+In a design we would have different NMOS and PMOS with different parameters depending upon their presence in design. We have used **Whilson Current Mirror** for creating reference current in our circuit. All NMOS and PMOS in this section would have double $W/L$ compared to the NMOS and PMOS in the differential pair.
+
+We would generate MATLAB scripts or also known as lookup table to generate the required plots for our technology node. In figure $g_m/I_d$ vs $I_d/W$ for NMOS. We can see that $g_m/I_d$ is in moderate region and for various $L$ values corresponding $I_d/W$ values can be see. Choose the length value in such a way that after calculation your $W$ is not less 130nm. Repeat the same procedure for PMOS. You have $W$ and $L$ values for both NMOS and PMOS but keep in mind choose length atleast three or four times of $L_{min}$. We get similar graph attached below for PMOS as well.
+
+![Graph for $I_d / W$ for nMOS](figures/switch_cap/priyanka_img_matlab.svg){#fig-graph_ota}
+
+## Xschem Realization
+
+To simulate our design we are using Xschem and ngspice. Realization of Telescopic OTA as after @fig-basic_ota was not compatible with Switched Capacitor.
+![Implementation of Telescopic OTA](figures/opamp/Telescopic.svg){#fig-telescope-ota}
+![AC analysis of Telescopic OTA](figures/opamp/ac0.svg){#fig-ac-telescope-ota}
+![AC analysis of Telescopic OTA](figures/opamp/ac1.svg){#fig-ac-telescope-ota2}
+![Transient Response of Telescopic OTA](figures/opamp/tran0.svg){#fig-transient-telescope-ota}
+
+Its giving us DC Gain of 9.6059e-01, Gain error of -3.9408e-02 and Slew rate ($t_{settle}$) of 7.0329e-07 at $I_0$ equivalent to 0.8microA.Below is the Switch Capacitor circuit with phase 1 and 2.
+
+![Implementation of Switch Capacitor](figures/opamp/Final_circuit_last.svg){#fig-final_circ}

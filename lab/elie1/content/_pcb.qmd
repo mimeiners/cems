@@ -1,0 +1,119 @@
+# Testbed Design
+
+
+## PCB Design for a Board to Evaluate the ADC ADS1115
+This Board was designed by us and aims to build a solid base to reduce parasitic effects like stray inductance etc. in comparison to a breadboard prototype and allow the user to take more accurate and reproducible measurements of the ADC. On this playform the ADS1115 as well as our IC can be tested when the IC is produced and then packaged. 
+
+
+## Design Steps
+
+First we fixed the design requirements and added following components into the list of parts on our board:
+
+
+| Component  | Product Number  |
+|--------|--------|
+| ADC  | ADS1115   |
+| Accelerometer   | ADXL335   |
+| LDO | AZ1117CH-3.3TRG1   |
+| Main Connector  | USB-C   |
+| MCU   | ESP8266-12E/ESP-12E   |
+| Signal Connectors | SMA Connector   |
+| USB-to-UART Converter  | CP2102-GM   |
+| Power In Connector   | Male Pin Headers   |
+
+: Table 1: Components 
+
+## Additional Features
+
+
+We also added the following features to this board. Even tho this is a relatively simple board we want to have this features anyway:
+
+
+- Reverse polarity protection at the power input
+- ESD protection on important nodes
+- EMI protection 
+- LEDs to show the status of the LDO and debug the MCU
+- Tight coupling to ground of signals (using a four layer PCB instead of a two layer board)
+- Clean and uninterupted reference plane 
+- Four layer board from EU
+- LEDs on UART lines between USB-to-UART Converter and ESP8266 
+
+## Block Diagram
+
+Here we have a visualisation of the board in the form of a block diagram. This allows the user and designers to quickly grasp the concept and order of the board and understand the system. Also this is usually thie first step in designing electronic systems as well as software since it gives a good overview.
+
+![Block diagram, Credit to: Mustafa Alkaya](figures/ac_Block_diagram_2.jpeg){#fig-Block-diagram-Credit width=80%}
+
+## Schematic
+
+The schematic consists of four pages in total and is in an hierachical order. On the title page we can find informations of the board and a block diagram of the schematic. In the input and voltage regulator section there is the USB-C connector and the male pinheader. Here we can also find the reverse polarity protection in the form of a schottky diode and TVS diodes for ESD protection. Schottky diodes have a smaller forward voltage drop than silicon diodes and were choosen because of this. Further the 3.3V LDO and LEDs are implemented here. We used net labels to clarify names of nets in the PCB editor. Ports are being used to connect signals and power rails across the project between multiple schematic pages. The USB connector has two 5.1k$\Omega$ to negotiate 5V and up to 1.5A from the USB supply device. 
+
+![Title page](Figures/ac_Title_Page.png){#fig-Ttile-Page width=100%}
+
+## Input, Power Regulation and USB-C Connector
+
+The schematic in the diagram illustrates the power management and input/output configurations of a circuit design in detail. The "USB-C Power and Programming" section includes circuit components that provide power supply and data communication through a USB-C connection. The "Voltage Supply Input" section ensures the regulation and protection of the input voltage, incorporating components for overcurrent and overvoltage protection. The "3.3V Voltage Regulator" section features a regulator circuit that steps down the 5V input voltage to 3.3V, along with filtering capacitors. Finally, the "Power Connections" section displays the connections of various voltage levels to other circuit modules. This design aims to deliver a compact and protected power management solution.
+
+![Title page](Figures/ac_Input.png){#fig-Ttile-Page-2 width=100%}
+
+## ESP8266 and USB-to-UART
+
+The ESP8266 Page contains the microcontroller and USB-to-UART converter IC in order to communicate with the MCU over the USB port and a PC. This part was mostly taken from the ESP8266 reference design schematic. 
+
+
+![ESP8266 and USB-to-UART](Figures/ac_ESP.png){#fig-ESP8266-and-USB width=100%}
+
+
+## ADC, Accelerometer and SMA Signal Input Connectors
+
+The ADC page contains the ADC ADS1115IDGST itself as well as four SMA connectors to connect to an external signal generator for example. There is also the accelerometer ADXL335BCPZ which can be utilized to aquire signals for the ADC. The connections can be configured by solder jumpers. This gives us the ability to quickly solder and desolder connections without using additional jumpers or 0 $\Omega$ resistors for example. The SMA connector inputs are also protected by TVS diodes against ESD. This ensures reliable operation of the ADC and other ICs. 
+
+
+![ADC, Accelerometer and SMA Signal Input Connectors](Figures/ac_ADC.png){#fig-Accelerometer-and-SMA-Signal width=100%}
+
+## PCB Design
+
+After designing the complete circuit in the schematic editor we checked for errors and annotated the schematics. Annotion means assigning each part an individual number to be able to seperate them. Then we did coarse placement of the components and then adjusted the footprints and did the fine placement. 
+
+It's important to place decoupling capacitors close to the respective ICs so they have small parasitic inductance and therefore better power delivery when digital ICs are switching and also analog ICs are pulling higher currents. Additional capacitors reduce voltage drop whenever a device or IC is pulling current from the supply traces. Also we made sure to have a transmission via to all signal vias whenever we are changing signal layer so the signal is always referenced to ground and electric and magnetic fields are contained in a small area. This also helps with crosstalk and noise reduction. 
+
+Around the board we added stitching vias to stitch the ground layers together and created a faraday cage in order to stop incoming em-waves from disturbing our analog and digital signals. Traces can and will act like antennas and we need to be careful with this. The distance of the vias around the edges of the board can be calculated with the following formula:
+
+
+$$
+L = \frac{1}{20} \cdot \frac{c}{\sqrt{\epsilon_{r_eff}} \cdot f_{max}} \tag{44}
+$$
+
+where
+
+- c = speed of light ($3\cdot 10^{8}$ m/s)
+- $\epsilon_{r\_eff}$ = effective dielectric constant of the PCB (for FR4 = 4.6)
+- $f_{max}$ = highest frequency of the RF circuit operation (Hz)
+
+
+with $f_{max}$ being the highest analog or digital frequency. The highest digital frequency is contained in the rising and falling edges and can therefore be much higher than the digital signal frequency itself. 
+
+
+The following pictures show the PCB:
+
+![2D-View of the top copper layer](Figures/ac_PCB1.png){#fig-2D-View-of-the-top width=100%}
+
+This is the Top and Bottom Layers in the 2D view in Altium Designer
+
+![Bottom copper layer](Figures/ac_PCB2.png){#fig-Bottom-copper width=100%}
+
+This picture shows the top copper layer
+
+![Top copper without the ground copper pour](Figures/ac_PCB3.png){#fig-Top-copper-without width=100%}
+
+
+The next two pictures show the voltage drop on the 3.3V rails when the ESP and both ICs pull their respective currents. THe lowest voltage here is 3.29V. This can be important whenever high precision is needed for the ADCs since they compare the voltage on the inputs to the ADC reference voltage.
+
+
+![Voltage drop simulation of the top copper layer power traces](Figures/ac_PCB4.png){#fig-Voltage-drop-simulation width=100%}
+
+![Voltage drop simulation of the bottom copper layer](Figures/ac_PCB5.png){#fig-Voltage-drop-simulation-of-the-bottom width=100%}
+
+In this last picture we can see the 3D rendered view from Altium Designer of our board.
+
+![3D-View of out PCB](Figures/ac_PCB6.png){#fig-3D-View-of-out-PCB width=100%}

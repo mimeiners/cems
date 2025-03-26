@@ -1,0 +1,128 @@
+
+# Basic OTA Sizing Strategy
+
+Device sizing is a fundamental step in analog circuit design. Specifically, for Operational Transconductance Amplifiers (OTAs), proper sizing ensures the desired trade-off between gain, bandwidth, power consumption, and linearity. A structured approach to sizing guarantees that the transistors operate in their optimal region—typically strong inversion and saturation for analog applications.
+
+This section presents a basic OTA sizing methodology based on the work of Prepl, whose notebook is publicly available at [GitHub: analog-circuit-design](https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb).
+
+The notebook demonstrates a Python-based framework for calculating initial transistor dimensions in a basic OTA. Below is an explanation of the key steps, equations, and important code snippets from the sizing method, along with visual aids to clarify the process.
+
+The sizing workflow follows these general steps:
+
+1. Define technology and process parameters.
+2. Specify bias currents and overdrive voltages.
+3. Calculate width-to-length ratios (W/L) for each transistor.
+4. Determine transconductance, output resistance, and gain.
+5. Evaluate key performance metrics like slew rate and gain-bandwidth product.
+
+At the beginning of the notebook, fundamental technology parameters are defined, including supply voltages, threshold voltages, mobility, and channel-length modulation factors for NMOS and PMOS transistors.
+
+```{python}
+# Technology and model parameters
+VDD = 1.8     # Supply voltage [V]
+VTHN = 0.4    # NMOS threshold voltage [V]
+VTHP = -0.4   # PMOS threshold voltage [V]
+mu_n_Cox = 200e-6  # NMOS process transconductance parameter [A/V^2]
+mu_p_Cox = 100e-6  # PMOS process transconductance parameter [A/V^2]
+lambda_n = 0.1     # Channel length modulation NMOS [1/V]
+lambda_p = 0.1     # Channel length modulation PMOS [1/V]
+```
+
+These parameters are critical for calculating transistor drain current in saturation:
+
+$$
+I_D = \frac{1}{2} \mu C_{ox} \frac{W}{L} (V_{GS} - V_{TH})^2 \tag{24}
+$$
+
+The differential pair (M1 and M2) defines the input transconductance of the OTA. Sizing begins by selecting bias current and overdrive voltage (V$_{OV}$):
+
+```{python}
+# Bias current for each NMOS transistor
+ID1 = 100e-6   # [A]
+
+# Overdrive voltage for M1 and M2
+VOV1 = 0.2     # [V]
+
+# Calculate W/L ratio for M1 and M2
+WL1 = 2 * ID1 / (mu_n_Cox * VOV1**2)
+print(f"W/L for M1 and M2: {WL1:.2f}")
+```
+
+In this example:
+- Bias current (ID1) is 100 µA per transistor.
+- Overdrive voltage (VOV1) is 0.2 V.
+- Calculated W/L ensures M1 and M2 operate in saturation with desired transconductance.
+
+The tail current source (M5) provides total bias current to the differential pair:
+
+```{python}
+# Tail current source sizing (M5)
+ID5 = 200e-6   # Total bias current [A]
+VOV5 = 0.2     # Overdrive voltage [V]
+
+WL5 = 2 * ID5 / (mu_n_Cox * VOV5**2)
+print(f"W/L for M5: {WL5:.2f}")
+```
+
+M5 carries the combined current of M1 and M2, typically twice ID1.
+
+PMOS current mirrors (M3 and M4) act as active loads for the differential pair, impacting gain and output resistance:
+
+```{python}
+# Load transistors sizing (M3 and M4)
+ID3 = 100e-6   # [A]
+VOV3 = 0.2     # [V]
+
+WL3 = 2 * ID3 / (mu_p_Cox * VOV3**2)
+print(f"W/L for M3 and M4: {WL3:.2f}")
+```
+
+Lowering overdrive voltage (V$_{OV3}$) increases output resistance, improving OTA voltage gain.
+
+Once W/L ratios are calculated, device transconductance (g$_m$) and output resistance (r$_o$) are derived:
+
+```{python}
+gm1 = mu_n_Cox * WL1 * VOV1 / 2
+ro1 = 1 / (lambda_n * ID1)
+ro3 = 1 / (lambda_p * ID3)
+
+print(f"gm1: {gm1:.2e} S")
+print(f"ro1: {ro1:.2e} Ω")
+print(f"ro3: {ro3:.2e} Ω")
+```
+
+The OTA's DC gain is:
+
+$$
+A_v = g_{m1} \cdot (r_{o1} \parallel r_{o3}) \tag{25}
+$$
+
+In Python:
+
+```{python}
+Av = gm1 * (ro1 * ro3) / (ro1 + ro3)
+print(f"Voltage gain A_v: {Av:.2f}")
+```
+
+**Evaluating Performance Metrics - Slew Rate and GBW:**
+
+Slew rate and gain-bandwidth product (GBW) predict OTA dynamic performance:
+
+```{python}
+import numpy as np
+
+CL = 1e-12   # Load capacitance [F]
+
+# Slew rate calculation
+SR = ID5 / CL
+print(f"Slew Rate: {SR:.2e} V/s")
+
+# Gain Bandwidth Product (GBW)
+GBW = gm1 / (2 * np.pi * CL)
+print(f"Gain Bandwidth Product: {GBW:.2e} Hz")
+```
+
+- **Slew Rate (SR)**: OTA's ability to respond to large signals.
+- **Gain Bandwidth Product (GBW)**: Small-signal frequency response.
+
+The presented methodology offers a systematic, reproducible approach to OTA design. Starting with hand calculations and validating through simulation helps designers optimize OTA performance while balancing speed, power, and gain. This lays groundwork for addressing noise, mismatch, and layout parasitics. Further information is publicly available at [GitHub: analog-circuit-design](https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/sizing_basic_ota.ipynb).

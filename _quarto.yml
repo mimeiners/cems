@@ -49,13 +49,12 @@ book:
 #        - class/lec-08-ota_design.qmd
     - part: Lab
       chapters:
-        - lab/lab-01-mbse_and_design.qmd
-        - lab/elie-01.qmd
-        - lab/elie-02.qmd
-        - lab/elie-03.qmd
-        - lab/elie-04.qmd
-        - lab/elie-05.qmd
-        - lab/elie-06.qmd
+        - lab/elie1/index.qmd
+        - lab/elie2/index.qmd
+        - lab/elie3/index.qmd
+        - lab/elie4/index.qmd
+        - lab/elie5/index.qmd
+        - lab/elie6/index.qmd
     - references.qmd
 
 bibliography: _bibliography/references.bib
