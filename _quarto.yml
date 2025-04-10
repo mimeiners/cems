@@ -28,12 +28,12 @@ book:
     right: |
       This book was built with <a href="https://quarto.org/">Quarto</a>.
 #  cover-image: images/hsb-logo.png
-  favicon: images/hsb-logo.png
+#  favicon: images/hsb-logo.png
   site-url: https://mimeiners.github.io/cems/
   repo-url: https://github.com/mimeiners/cems/
   repo-branch: main
   repo-actions: [edit, issue]
-  downloads: [pdf,epub]
+#  downloads: [pdf,epub]
 
   chapters:
     - index.qmd
@@ -47,34 +47,32 @@ book:
         - lab/elie3/index.ipynb
         - lab/elie4/index.qmd
         - lab/elie5/index.qmd
-    - references.qmd
+#    - references.qmd
 
 bibliography: _bibliography/references.bib
 
 format:
   html:
     theme: flatly
-  pdf:
-    documentclass: scrbook
-    lof: true
-    lot: true
-    toc: true    
-    geometry:
-      - top=30mm
-      - left=20mm
-      - heightrounded
-    hyperrefoptions:
-      - linktoc=all
-    colorlinks: true
-    linkcolor: "blue"
-    biblio-style: ieee
-    #    keep-tex: true
-    output-file: cems
-  epub:
-    theme: flatly
-    output-file: cems
-
-latex-auto-install: true
+    # pdf:
+    #   documentclass: scrbook
+    #   lof: true
+    #   lot: true
+    #   toc: true    
+    #   geometry:
+    #     - top=30mm
+    #     - left=20mm
+    #     - heightrounded
+    #   hyperrefoptions:
+    #     - linktoc=all
+    #   colorlinks: true
+    #   linkcolor: "blue"
+    #   biblio-style: ieee
+    #   keep-tex: true
+    #   output-file: cems
+    # epub:
+    #   theme: flatly
+    #   output-file: cems
 
 execute:
   freeze: auto

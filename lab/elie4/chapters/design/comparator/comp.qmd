@@ -57,67 +57,24 @@ This circuit is proposed by Boris Murmann in his EE628 lecture series (e.g. lec 
 
 While the mentioned sources also propose a latching circuit, we will directly utilize the logic gates available through the used PDK, which generally helps to make the comparator system more universally applicable. Specifically, the proposed design showed a lesser tolerence for very small differences between the input signals, once the latch was cascaded. This becomes worse for higher supply voltages (e.g. 3V3 instead of 1V5).
 
-The testbench file is shown next in @fig-xschem_comp_tb.
+The testbench file is shown next in @fig-comp_tb.
 
-![Comparator Testbench](figures/comp/comp_tb.png){#fig-xschem_comp_tb}
+![Comparator Testbench](figures/comp/comp_tb.PNG){#fig-comp_tb}
+
 
 ### Validation
 
-The following plots show the outputs of both the comparator and the cascaded SR-latch. For the first 8 ns, the positive input voltage of the comparator is 1 mV higher than the negative input. At around 8.1 ns, that polarityis reversed.
+The following plots show the outputs of both the comparator and the cascaded SR-latch. For the first 8 ns, the positive
+input voltage of the comparator is 1 mV higher than the negative input. At around 8.1 ns, that polarityis reversed.
 
-```{python}
-#| label: fig-comp_plot
-#| fig-cap: Waveworms of Comparator Subsystem
+::: {#fig-comp_plot layout-nrow=2}
 
+![StrongARM](figures/comp/comp_plot1.png)
 
-import numpy as np
-import matplotlib.pyplot as plt
-import ltspice as lt
+![RS-Latch](figures/comp/comp_plot2.png)
 
-#parse data from .raw file
-#for compiling the finished document this path needs to be relative to "report_grp4.qmd"
-fpath       = 'raws/tb_comp_test.raw'
-l           = lt.Ltspice(fpath)
-l.parse()
-
-#extract relevant data
-time        = l.get_time()
-clk         = l.get_data('v(clk)')
-outp        = l.get_data('v(outp)')
-outn        = l.get_data('v(outn)')
-out2dff     = l.get_data('v(out2dff)')
-nout2dff    = l.get_data('v(nout2dff)')
-
-#redefine data arrays considering new length
-'''
-factor = 10
-length = round(len(time)/factor)
-
-time        = time[:length]
-clk         = np.flip(clk[:length])
-outp        = np.flip(outp[:length])
-outn        = np.flip(outn[:length])
-out2dff     = np.flip(out2dff[:length])
-nout2dff    = np.flip(nout2dff[:length])
-'''
-
-#plot data
-plt.close('all')
-plt.figure(1)
-plt.plot(time*1e9, clk, label=r'clk')
-plt.plot(time*1e9, outp, label=r'outp')
-plt.plot(time*1e9, outn, label=r'outn')
-plt.title('Output Voltages from StrongArm Comparator')
-plt.xlabel('time/ ns'); plt.ylabel('Voltage/ V')
-plt.legend(); plt.grid()
-
-plt.figure(2)
-plt.plot(time*1e9, out2dff, label=r'to d-flip-flop')
-plt.plot(time*1e9, nout2dff, label=r'complement')
-plt.title('Output of RS-Latch')
-plt.xlabel('time/ ns'); plt.ylabel('Voltage/ V')
-plt.legend(); plt.grid()
-```
+Waveforms of Comparator Subsystem
+:::
 
 A clock period of 10 ns is chosen, which is much shorter then for our actual application. Therefore proving, that even for a fraction of the desired clock period, the circuit is sufficiently fast when it comes to settling. The latch outputs show the desired behavior, where only during the active clock periods the output will change in case the polarity of the input difference has changed, while remaining constant during the reseting of the comparator.
 
