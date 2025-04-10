@@ -39,15 +39,7 @@ book:
     - index.qmd
     - part: Lecture
       chapters:
-#        - lec/lec-01-intro.qmd
-#        - lec/lec-02-gyros.qmd
-#        - lec/lec-03-sampling_quantization.qmd
-#        - lec/lec-04-adc_metrics.qmd
-#        - lec/lec-05a-oversampling_adc.qmd
-#        - lec/lec-06-app-ideal-opamp.qmd
-#        - lec/lec-07-sampling_circuits.qmd
-#        - lec/lec-08-ota_design.qmd
-        - references.qmd
+        - lec/lec-01-intro.qmd
     - part: Design Reports
       chapters:
         - lab/elie1/index.qmd
@@ -55,7 +47,7 @@ book:
         - lab/elie3/index.ipynb
         - lab/elie4/index.qmd
         - lab/elie5/index.qmd
-
+    - references.qmd
 
 bibliography: _bibliography/references.bib
 
