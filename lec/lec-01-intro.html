@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Mirco Meiners">
-<meta name="author" content="Tim Ziemann">
-<meta name="dcterms.date" content="2025-04-10">
 
-<title>Concept Engineering Mixed-Technology Systems</title>
+<title>2&nbsp; Introduction and Survey – Concept Engineering Mixed-Technology Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,23 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./lec/lec-01-intro.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b7c2d8834e08b04a63bb76a724ffbcac.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lab/elie1/index.html" rel="next">
+<link href="../index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b7c2d8834e08b04a63bb76a724ffbcac.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,6 +68,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -83,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Unsyllabus</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lec/lec-01-intro.html">Lecture</a></li><li class="breadcrumb-item"><a href="../lec/lec-01-intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -98,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Concept Engineering Mixed-Technology Systems</a> 
+      <a href="../">Concept Engineering Mixed-Technology Systems</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/mimeiners/cems/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -118,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Unsyllabus</span></span></a>
   </div>
 </li>
@@ -133,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lec/lec-01-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../lec/lec-01-intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span></a>
   </div>
 </li>
@@ -150,31 +151,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/elie1/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/elie1/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Design of an Analog-to-Digital Converter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/elie2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/elie2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discrete-Time Delta-Sigma Modulator</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/elie3/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/elie3/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design of an Analog-to-Digital Converter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/elie4/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/elie4/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Design of an Analog-Digital-Converter after the ADS1115</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/elie5/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/elie5/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MBSE of a Delta Sigma Modulator based IC Design</span></span></a>
   </div>
 </li>
@@ -190,49 +191,34 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#unsyllabus" id="toc-unsyllabus" class="nav-link active" data-scroll-target="#unsyllabus"><span class="header-section-number">1</span> Unsyllabus</a></li>
+  <li><a href="#course-objectives" id="toc-course-objectives" class="nav-link active" data-scroll-target="#course-objectives"><span class="header-section-number">2.1</span> Course Objectives</a></li>
+  <li><a href="#scientific-computing" id="toc-scientific-computing" class="nav-link" data-scroll-target="#scientific-computing"><span class="header-section-number">2.2</span> Scientific Computing</a></li>
+  <li><a href="#eda-tools" id="toc-eda-tools" class="nav-link" data-scroll-target="#eda-tools"><span class="header-section-number">2.3</span> EDA Tools</a></li>
+  <li><a href="#os-tools" id="toc-os-tools" class="nav-link" data-scroll-target="#os-tools"><span class="header-section-number">2.4</span> OS-Tools</a></li>
+  <li><a href="#code-editors" id="toc-code-editors" class="nav-link" data-scroll-target="#code-editors"><span class="header-section-number">2.5</span> Code Editors</a></li>
+  <li><a href="#data-science" id="toc-data-science" class="nav-link" data-scroll-target="#data-science"><span class="header-section-number">2.6</span> Data Science</a></li>
+  <li><a href="#publish-computational-content" id="toc-publish-computational-content" class="nav-link" data-scroll-target="#publish-computational-content"><span class="header-section-number">2.7</span> Publish Computational Content</a></li>
+  <li><a href="#are-you-writing-or-texing" id="toc-are-you-writing-or-texing" class="nav-link" data-scroll-target="#are-you-writing-or-texing"><span class="header-section-number">2.8</span> Are you writing or TeXing?</a></li>
+  <li><a href="#latex-editors" id="toc-latex-editors" class="nav-link" data-scroll-target="#latex-editors"><span class="header-section-number">2.9</span> LaTeX Editors</a></li>
+  <li><a href="#bibliography-and-latex" id="toc-bibliography-and-latex" class="nav-link" data-scroll-target="#bibliography-and-latex"><span class="header-section-number">2.10</span> Bibliography and LaTeX</a></li>
+  <li><a href="#model-based-systems-engineering-mbse-of-an-inertial-sensor-system-and-ic-design" id="toc-model-based-systems-engineering-mbse-of-an-inertial-sensor-system-and-ic-design" class="nav-link" data-scroll-target="#model-based-systems-engineering-mbse-of-an-inertial-sensor-system-and-ic-design"><span class="header-section-number">2.11</span> Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design</a></li>
+  <li><a href="#course-prerequisites" id="toc-course-prerequisites" class="nav-link" data-scroll-target="#course-prerequisites"><span class="header-section-number">2.12</span> Course Prerequisites</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/mimeiners/cems/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/cems/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/mimeiners/cems/edit/main/lec/lec-01-intro.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/cems/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lec/lec-01-intro.html">Lecture</a></li><li class="breadcrumb-item"><a href="../lec/lec-01-intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Concept Engineering Mixed-Technology Systems</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Mirco Meiners <a href="mailto:Mirco.Meiners@hs-bremen.de" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-9709-4191" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            <a href="https://www.hs-bremen.de/person/mimeiners/">
-            Hochschule Bremen - City University of Applied Sciences (HSB)
-            </a>
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Tim Ziemann <a href="mailto:Tim.Ziemann@hs-bremen.de" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 10, 2025</p>
-    </div>
-  </div>
+    
   
     
   </div>
@@ -242,38 +228,220 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="unsyllabus" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Unsyllabus</h1>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 83%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Course</td>
-<td>M 1.9 Concept Engineering Mixed-Technology Systems (CEMS)</td>
-</tr>
-<tr class="even">
-<td>Term</td>
-<td>Winter 2024/25</td>
-</tr>
-<tr class="odd">
-<td>Instructor</td>
-<td>Prof.&nbsp;Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann</td>
-</tr>
-</tbody>
-</table>
-<p><strong>(c) 2024-2025 Mirco Meiners and co-authors, Hochschule Bremen - City University of Aplied Sciences (HSB), Bremen, Germany</strong></p>
-<p>The course makes heavy use of circuit simulation, using <a href="https://xschem.sourceforge.io"><strong>Xschem</strong></a> for schematic entry and <a href="https://ngspice.sourceforge.io"><strong>ngspice</strong></a> for simulation. The 130nm CMOS technology <a href="https://github.com/IHP-GmbH/IHP-Open-PDK"><strong>SG13G2</strong></a> from <a href="https://www.ihp-microelectronics.com">IHP Microelectronics</a> is used.</p>
-<p>Tools and PDK are integrated in the <a href="https://github.com/iic-jku/IIC-OSIC-TOOLS"><strong>IIC-OSIC-TOOLS</strong></a> Docker image, which will be used during the coursework.</p>
-<p>All course material is made publicly available and shared under the Apache-2.0 license.</p>
+<section id="course-objectives" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="course-objectives"><span class="header-section-number">2.1</span> Course Objectives</h2>
+<ul>
+<li>Interfacing Microsystems
+<ul>
+<li>Mixed-technology systems (System-on-Chip, SoC)</li>
+<li>System analysis</li>
+<li>System specification</li>
+</ul></li>
+<li>Design Methodology
+<ul>
+<li>Seamlessly modeling and design over all physical domains</li>
+</ul></li>
+<li>PCB (System) and IC Design
+<ul>
+<li>Architecture</li>
+<li>Partitioning</li>
+<li>Layout</li>
+</ul></li>
+</ul>
+</section>
+<section id="scientific-computing" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="scientific-computing"><span class="header-section-number">2.2</span> Scientific Computing</h2>
+<ul>
+<li><p><a href="https://www.anaconda.com/download/">Python (Anaconda)</a></p></li>
+<li><p><a href="https://de.mathworks.com/academia/tah-portal/hochschule-bremen-31463273.html">Matlab (Campus Lizenz)</a></p></li>
+<li><p><a href="https://jeroenjanssens.com/seven/">Command-line tools</a></p></li>
+</ul>
+</section>
+<section id="eda-tools" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="eda-tools"><span class="header-section-number">2.3</span> EDA Tools</h2>
+<ul>
+<li>PCB / System Design
+<ul>
+<li><a href="https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html">LTspice</a></li>
+<li><a href="https://www.kicad.org/">KiCad EDA</a></li>
+<li><a href="https://www.altium.com/de/altium-designer">Altium Designer</a></li>
+<li><a href="https://eda.sw.siemens.com/en-US/pcb/products/">SiemensEDA PCB tools</a></li>
+<li><a href="https://www.cadence.com/en_US/home/tools/system-design-and-analysis.html">cadence System Design &amp; Analysis</a></li>
+</ul></li>
+<li>IC / Silicon Design
+<ul>
+<li><a href="https://github.com/iic-jku/IIC-OSIC-TOOLS">IIC-OSIC-TOOLS (open-source)</a></li>
+<li><a href="https://eda.sw.siemens.com/en-US/ic/products/">SiemensEDA IC tools</a></li>
+<li><a href="https://www.cadence.com/en_US/home/tools/design-excellence.html">cadence IC Design &amp; Verification</a></li>
+<li><a href="https://www.synopsys.com/silicon-design.html">synopsys silicon design (IC)</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="os-tools" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="os-tools"><span class="header-section-number">2.4</span> OS-Tools</h2>
+<ul>
+<li><p><a href="https://github.com/microsoft/terminal">Microsoft-Terminal</a></p></li>
+<li><p><a href="https://learn.microsoft.com/de-de/powershell/scripting/learn/ps101/01-getting-started">Microsoft-PowerShell</a></p></li>
+<li><p><a href="https://iterm2.com">MacOS-Terminal</a></p></li>
+<li><p><a href="https://ohmyz.sh">Linux/MacOS Shell zsh-tools</a>,</p></li>
+<li><p><a href="https://git-scm.com">git (Versionskontrolle)</a></p></li>
+</ul>
+</section>
+<section id="code-editors" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="code-editors"><span class="header-section-number">2.5</span> Code Editors</h2>
+<ul>
+<li><p><a href="https://code.visualstudio.com">Visual Studio Code</a></p></li>
+<li><p><a href="https://www.spyder-ide.org">Spyder IDE</a></p></li>
+<li><p><a href="https://thonny.org">Thonny (Micro-)Python IDE</a></p></li>
+<li><p><a href="https://www.gnu.org/software/emacs/">Emacs</a></p></li>
+<li><p><a href="https://www.vim.org">Vim</a></p></li>
+</ul>
+</section>
+<section id="data-science" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="data-science"><span class="header-section-number">2.6</span> Data Science</h2>
+<ul>
+<li><p>Journaled File System</p>
+<ul>
+<li>Directories</li>
+<li>Files</li>
+</ul></li>
+<li><p>Rectangular Data</p>
+<ul>
+<li>Comma-Separated-Values (CSV), Tab-Separated-Values (TSV)</li>
+<li><a href="https://github.com/wireservice/csvkit">csvkit: A suite of utilities for converting to and working with CSV, the king of tabular file formats.</a></li>
+<li>[miller: Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON] (https://github.com/wireservice/csvkit)</li>
+<li>Spreadsheet (.xlsx, .ods)</li>
+<li><a href="https://github.com/apache/iceberg?tab=readme-ov-file">apache/iceberg: Apache Iceberg</a></li>
+<li><a href="https://github.com/apache/iceberg-python">apache/iceberg-python: Apache PyIceberg</a></li>
+</ul></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Serialization">Serialisation</a></p>
+<ul>
+<li><a href="https://docs.python-guide.org/scenarios/serialization/">Data Serialization — The Hitchhiker’s Guide to Python</a></li>
+<li><a href="https://www.json.org/json-en.html">JSON</a></li>
+<li><a href="https://msgpack.org/">MessagePack: It’s like JSON. but fast and small.</a></li>
+</ul></li>
+<li><p>Data Frames</p>
+<ul>
+<li><a href="https://www.adventuresinmachinelearning.com/mastering-python-dictionaries-efficient-data-storage-and-retrieval/">Mastering Python Dictionaries: Efficient Data Storage and Retrieval - Adventures in Machine Learning</a></li>
+<li><a href="https://de.mathworks.com/help/matlab/import_export/mat-file-versions.html">MAT-File Versions - MATLAB &amp; Simulink - MathWorks Deutschland</a></li>
+<li><a href="https://www.hdfgroup.org/2018/06/15/hdf5-or-how-i-learned-to-love-data-compression-and-partial-i-o/">HDF5 Or How I Learned To Love Data Compression And Partial I/O</a></li>
+<li><a href="https://www.databricks.com/de/glossary/what-is-parquet">What is Apache Parquet?</a></li>
+<li><a href="https://arrow.apache.org/docs/python/feather.html">Feather File Format</a></li>
+<li><a href="https://github.com/pola-rs/polars">pola-rs/polars: Dataframes powered by a multithreaded, vectorized query engine</a></li>
+<li><a href="https://github.com/ibis-project/ibis">ibis-project/ibis: Portable Python dataframe library</a></li>
+</ul></li>
+<li><p>Embedded <a href="https://db-engines.com">Databases</a></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/SQL">SQL</a>, z.B. <a href="https://en.wikipedia.org/wiki/SQLite">SQlite</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Online_analytical_processing">OLAP</a>, z.B. <a href="https://duckdb.org/why_duckdb">DuckDB</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="publish-computational-content" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="publish-computational-content"><span class="header-section-number">2.7</span> Publish Computational Content</h2>
+<ul>
+<li><a href="https://quarto.org">quarto</a>
+<ul>
+<li><a href="https://quarto.org/docs/manuscripts/">Manuscripts</a></li>
+</ul></li>
+<li><a href="https://jupyterbook.org/en/stable/intro.html">Jupyter-Book</a></li>
+</ul>
+</section>
+<section id="are-you-writing-or-texing" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="are-you-writing-or-texing"><span class="header-section-number">2.8</span> Are you writing or TeXing?</h2>
+<ul>
+<li><p><a href="https://miktex.org/">MikTeX (Windows, MacOS, Linux)</a></p></li>
+<li><p><a href="https://www.tug.org/mactex/">MacTeX (MacOS)</a></p></li>
+<li><p><a href="http://tug.org/texlive/">TeXLive (Linux)</a></p></li>
+</ul>
+</section>
+<section id="latex-editors" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="latex-editors"><span class="header-section-number">2.9</span> LaTeX Editors</h2>
+<ul>
+<li>IDE’s
+<ul>
+<li><a href="http://www.texstudio.org">TeXStudio</a></li>
+<li><a href="http://www.xm1math.net/texmaker/">TeXMaker</a></li>
+</ul></li>
+<li>Collaborative Frameworks
+<ul>
+<li><a href="https://www.overleaf.com/">Overleaf, Online LaTeX</a></li>
+<li><a href="https://cocalc.com/doc/latex-editor.html">CoCalc - Online LaTeX</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="bibliography-and-latex" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="bibliography-and-latex"><span class="header-section-number">2.10</span> Bibliography and LaTeX</h2>
+<ul>
+<li><p><a href="https://www1.citavi.com/sub/manual5/de/exporting_to_bibtex.html">Citavi im Detail &gt; Titel exportieren &gt; Export nach BibTeX</a></p></li>
+<li><p><a href="https://unimelb.libguides.com/c.php?g=565734&amp;p=3912294">RefWorks - Library Guide Univ. Melbourne</a></p></li>
+<li><p><a href="https://nerdpause.de/benutzerdefinierte-bibtex-keys-mit-zotero/">Benutzerdefinierte BibTex-Keys mit Zotero | nerdpause</a></p></li>
+<li><p><a href="https://unimelb.libguides.com/c.php?g=565734&amp;p=3897117">JabRef - Library Guide Univ. Melbourne</a></p></li>
+<li><p><a href="https://unimelb.libguides.com/latexbibtex/endnote">EndNote - Library Guide Univ. Melbourne</a></p></li>
+</ul>
+</section>
+<section id="model-based-systems-engineering-mbse-of-an-inertial-sensor-system-and-ic-design" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="model-based-systems-engineering-mbse-of-an-inertial-sensor-system-and-ic-design"><span class="header-section-number">2.11</span> Model-Based Systems Engineering (MBSE) of an Inertial Sensor System and IC Design</h2>
+<p>This winter term, the defining idea of the CEMS course is a modular board-level sensor system consisting of ADXL335 accelerometer, ADS1115 ADC and ESP8266 NodeMCU. The ADC module has to be replaced by a custom IC design.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-system" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-system">flowchart LR
+    A(ADXL335) --&gt; B(ADS1115)
+    B --&gt; C(ESP8266)
+    C --&gt; D{Measurement}
+    D --&gt; E(Thonny Micropython)
+    D --&gt; F(Arduino IDE C)
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Modular board-level sensor system.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>System level, behavioural model</p>
+<ul>
+<li>Matlab/Simulink,</li>
+<li>Python</li>
+</ul></li>
+<li><p>PCB level</p>
+<ul>
+<li><a href="https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/">ESP8266 NodeMCU</a>,</li>
+<li><a href="https://www.ti.com/product/ADS1115">TIs ADS1115</a>,</li>
+<li><a href="https://www.analog.com/en/products/adxl335.html">ADs ADXL335</a></li>
+</ul></li>
+<li><p>IC level, SPICE with behavioural blocks, e.g.&nbsp;OTA and comparator</p>
+<ul>
+<li><a href="https://github.com/iic-jku/IIC-OSIC-TOOLS">IIC-OSIC-TOOLS IHP130-based analog and digital chip design</a></li>
+</ul></li>
+<li><p><strong>Final Oral Exam/Project Presentation</strong></p></li>
+</ul>
+</section>
+<section id="course-prerequisites" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="course-prerequisites"><span class="header-section-number">2.12</span> Course Prerequisites</h2>
+<ul>
+<li><p>Fundamentals of linux operating systems</p></li>
+<li><p>Fundamentals of microelectronics</p>
+<ul>
+<li>Device physics and models</li>
+<li>Transistor level analog circuits, elementary gain stages</li>
+</ul></li>
+<li><p>Fundamentals of analog circuit design</p>
+<ul>
+<li>Operational amplifier</li>
+<li>Active filter design</li>
+<li>Noise analysis</li>
+<li>Switched-capacitor techniques</li>
+</ul></li>
+<li><p>Prior exposure to SPICE, Matlab, Python or equivalent.</p></li>
+</ul>
 
 
 </section>
@@ -698,10 +866,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link" aria-label="Unsyllabus">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Unsyllabus</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lec/lec-01-intro.html" class="pagination-link" aria-label="Introduction and Survey">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lab/elie1/index.html" class="pagination-link" aria-label="Design of an Analog-to-Digital Converter">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Design of an Analog-to-Digital Converter</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -713,7 +884,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mimeiners/cems/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/cems/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mimeiners/cems/edit/main/lec/lec-01-intro.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/cems/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

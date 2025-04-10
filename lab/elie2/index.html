@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hrishikesh Pangavhane">
+<meta name="author" content="Sneha Shree Katepalli">
+<meta name="author" content="Hanieh Alaeiatar">
+
+<title>4&nbsp; Discrete-Time Delta-Sigma Modulator – Concept Engineering Mixed-Technology Systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lab/elie3/index.html" rel="next">
+<link href="../../lab/elie1/index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b7c2d8834e08b04a63bb76a724ffbcac.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lab/elie1/index.html">Design Reports</a></li><li class="breadcrumb-item"><a href="../../lab/elie2/index.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discrete-Time Delta-Sigma Modulator</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Concept Engineering Mixed-Technology Systems</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/mimeiners/cems/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Unsyllabus</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lec/lec-01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction and Survey</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Design Reports</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lab/elie1/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Design of an Analog-to-Digital Converter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lab/elie2/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discrete-Time Delta-Sigma Modulator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lab/elie3/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design of an Analog-to-Digital Converter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lab/elie4/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Design of an Analog-Digital-Converter after the ADS1115</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lab/elie5/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MBSE of a Delta Sigma Modulator based IC Design</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#system-overview" id="toc-system-overview" class="nav-link active" data-scroll-target="#system-overview"><span class="header-section-number">5</span> System Overview</a></li>
+  <li><a href="#Block-Level" id="toc-Block-Level" class="nav-link" data-scroll-target="#Block-Level"><span class="header-section-number">6</span> Block Level Representation</a>
+  <ul class="collapse">
+  <li><a href="#sec-NTF" id="toc-sec-NTF" class="nav-link" data-scroll-target="#sec-NTF"><span class="header-section-number">6.1</span> NTF Selection</a></li>
+  </ul></li>
+  <li><a href="#sec-SwitchCap" id="toc-sec-SwitchCap" class="nav-link" data-scroll-target="#sec-SwitchCap"><span class="header-section-number">7</span> Realisation of discrete time second order switch capacitor circuit</a>
+  <ul class="collapse">
+  <li><a href="#implementation-of-delayed-switch-capacitor-integrator" id="toc-implementation-of-delayed-switch-capacitor-integrator" class="nav-link" data-scroll-target="#implementation-of-delayed-switch-capacitor-integrator"><span class="header-section-number">7.1</span> Implementation of Delayed Switch-Capacitor Integrator</a></li>
+  </ul></li>
+  <li><a href="#sec-capacitor-sizing" id="toc-sec-capacitor-sizing" class="nav-link" data-scroll-target="#sec-capacitor-sizing"><span class="header-section-number">8</span> Capacitor Sizing</a></li>
+  <li><a href="#sec-OTA" id="toc-sec-OTA" class="nav-link" data-scroll-target="#sec-OTA"><span class="header-section-number">9</span> OTA design for Switch Capacitor integrators</a>
+  <ul class="collapse">
+  <li><a href="#deriving-required-parameters-for-design" id="toc-deriving-required-parameters-for-design" class="nav-link" data-scroll-target="#deriving-required-parameters-for-design"><span class="header-section-number">9.1</span> Deriving required parameters for design</a>
+  <ul class="collapse">
+  <li><a href="#deriving-i" id="toc-deriving-i" class="nav-link" data-scroll-target="#deriving-i"><span class="header-section-number">9.1.1</span> Deriving <span class="math inline">\(I\)</span></a></li>
+  <li><a href="#deriving-g_mathrmm-from-time-constant-calculation" id="toc-deriving-g_mathrmm-from-time-constant-calculation" class="nav-link" data-scroll-target="#deriving-g_mathrmm-from-time-constant-calculation"><span class="header-section-number">9.1.2</span> Deriving <span class="math inline">\({g_\mathrm{m}}\)</span> from Time-constant calculation</a></li>
+  <li><a href="#deciding-l-and-w-for-mosfets" id="toc-deciding-l-and-w-for-mosfets" class="nav-link" data-scroll-target="#deciding-l-and-w-for-mosfets"><span class="header-section-number">9.1.3</span> Deciding <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> for MOSFETS</a></li>
+  <li><a href="#ota-biasing-using-current-mirror" id="toc-ota-biasing-using-current-mirror" class="nav-link" data-scroll-target="#ota-biasing-using-current-mirror"><span class="header-section-number">9.1.4</span> OTA biasing using <strong>current mirror</strong></a></li>
+  <li><a href="#sec-Performance-OTA" id="toc-sec-Performance-OTA" class="nav-link" data-scroll-target="#sec-Performance-OTA"><span class="header-section-number">9.1.5</span> Performance of designed OTA</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-gmid-method" id="toc-sec-gmid-method" class="nav-link" data-scroll-target="#sec-gmid-method"><span class="header-section-number">10</span> Sizing using gm over Id method</a>
+  <ul class="collapse">
+  <li><a href="#sec-techsweep-testbench" id="toc-sec-techsweep-testbench" class="nav-link" data-scroll-target="#sec-techsweep-testbench"><span class="header-section-number">10.1</span> Testbench for MOSFETSWEEP</a></li>
+  </ul></li>
+  <li><a href="#sec-Quantizer" id="toc-sec-Quantizer" class="nav-link" data-scroll-target="#sec-Quantizer"><span class="header-section-number">11</span> Realisation of 1-Bit Quantizer</a>
+  <ul class="collapse">
+  <li><a href="#designing-of-the-1-bit-quantiser" id="toc-designing-of-the-1-bit-quantiser" class="nav-link" data-scroll-target="#designing-of-the-1-bit-quantiser"><span class="header-section-number">11.1</span> Designing of the 1-Bit Quantiser</a></li>
+  <li><a href="#defining-a-comparator" id="toc-defining-a-comparator" class="nav-link" data-scroll-target="#defining-a-comparator"><span class="header-section-number">11.2</span> Defining a Comparator</a></li>
+  <li><a href="#realising-a-comparator" id="toc-realising-a-comparator" class="nav-link" data-scroll-target="#realising-a-comparator"><span class="header-section-number">11.3</span> Realising a Comparator</a></li>
+  <li><a href="#implementing-a-strong-arm-latch-for-delta-sigma-modulator" id="toc-implementing-a-strong-arm-latch-for-delta-sigma-modulator" class="nav-link" data-scroll-target="#implementing-a-strong-arm-latch-for-delta-sigma-modulator"><span class="header-section-number">11.4</span> Implementing a Strong Arm Latch for Delta-Sigma Modulator</a></li>
+  </ul></li>
+  <li><a href="#clock-generator" id="toc-clock-generator" class="nav-link" data-scroll-target="#clock-generator"><span class="header-section-number">12</span> Clock Generator</a>
+  <ul class="collapse">
+  <li><a href="#why-non-overlapping-phases" id="toc-why-non-overlapping-phases" class="nav-link" data-scroll-target="#why-non-overlapping-phases"><span class="header-section-number">12.1</span> Why non-overlapping phases?</a></li>
+  <li><a href="#how-to-generate-a-non-overlapping-clock" id="toc-how-to-generate-a-non-overlapping-clock" class="nav-link" data-scroll-target="#how-to-generate-a-non-overlapping-clock"><span class="header-section-number">12.2</span> How to Generate a Non-Overlapping Clock?</a></li>
+  <li><a href="#schematic-entry-of-clock-generator" id="toc-schematic-entry-of-clock-generator" class="nav-link" data-scroll-target="#schematic-entry-of-clock-generator"><span class="header-section-number">12.3</span> Schematic entry of Clock Generator</a></li>
+  </ul></li>
+  <li><a href="#final-design" id="toc-final-design" class="nav-link" data-scroll-target="#final-design"><span class="header-section-number">13</span> Final Design</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mimeiners/cems/edit/main/lab/elie2/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/cems/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lab/elie1/index.html">Design Reports</a></li><li class="breadcrumb-item"><a href="../../lab/elie2/index.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discrete-Time Delta-Sigma Modulator</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discrete-Time Delta-Sigma Modulator</span></h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Hrishikesh Pangavhane <a href="mailto:hrishipangavhane@stud.hs-bremen.de" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Hochschule Bremen
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Sneha Shree Katepalli <a href="mailto:skatepalli@stud.hs-bremen.de" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Hanieh Alaeiatar <a href="mailto:halaeiatar@stud.hs-bremen.de" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="system-overview" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> System Overview</h1>
+<p><strong>Concept Engineering of Mixed Signals and Systems</strong></p>
+<div id="fig-nature" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nature-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_nature.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nature-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Concept
+</figcaption>
+</figure>
+</div>
+<p>We all live in an analog world where all we percieve is analog in nature but at the same time our technology process on digital data. We have <strong>sensors</strong> as input nodes. They can be voice signals, RF signals, pressure. temperatur, etc. Every system acquires the analog data and results in analog data which is called as <strong>actuators</strong> such as Speakers, etc. So the point is we need something which converts the data from analog domain to discrete or digital domain and again converts back to analog domain. Here comes the concept of <strong>Data Converters</strong>.</p>
+<div id="fig-domains" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-domains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_domains.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-domains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: Concept
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-domains" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> tells us that we have <strong>Continuous Domain</strong> where a signal can be represented as continuous in time and continuous in amplitude and <strong>Discrete Domain</strong> where the signal can be represented as discrete in time and amplitude. By sampling we discretise the signal from continuous time to discrete time and then by quantizing it we discretise its amplitude.</p>
+<p>Our main focus will be on the design of <strong>Analog to Digital Converter</strong></p>
+</section>
+<section id="Block-Level" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Block Level Representation</h1>
+<div id="fig-blocks" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_blocks.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Block Level
+</figcaption>
+</figure>
+</div>
+<p>Acccording to <a href="#fig-blocks" class="quarto-xref">Figure&nbsp;<span>12.4</span></a>, We have a system where we have ADXL335 accelerometer as our analog sensor and we need to process the data on microcontroller so we need an ADC which takes the analog output from ADXL335 and provides the data in discrete form to the microcontroller. Considering the type of output provided by the accelerometer, we need to design low voltage, low speed, single-bit <span class="math inline">\(\Delta\Sigma\)</span> modulator followed by a decimation filter. Our main focus will be on designing a second order single-bit <span class="math inline">\(\Delta\Sigma\)</span> modulator using discrete time switch capacitor circuit.</p>
+<p>Before diving deep into the circuit level, let’s look at our target specifications.</p>
+<table class="caption-top table">
+<caption><strong>Specifications.</strong></caption>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Symbol</th>
+<th>Value</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Signal Bandwidth</td>
+<td><span class="math inline">\(f_B\)</span></td>
+<td>512</td>
+<td>kHz</td>
+</tr>
+<tr class="even">
+<td>Sampling frequency</td>
+<td><span class="math inline">\(f_{s}\)</span></td>
+<td>220</td>
+<td>kHz</td>
+</tr>
+<tr class="odd">
+<td>Signal-to-Noise Ratio</td>
+<td><span class="math inline">\(SNR\)</span></td>
+<td>98</td>
+<td>dB</td>
+</tr>
+<tr class="even">
+<td>Supply voltage</td>
+<td><span class="math inline">\(V_{dd}\)</span></td>
+<td>1.5</td>
+<td>V</td>
+</tr>
+</tbody>
+</table>
+<section id="sec-NTF" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sec-NTF"><span class="header-section-number">6.1</span> NTF Selection</h2>
+<div id="fig-NTF" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_NTF.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-NTF-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: NTF
+</figcaption>
+</figure>
+</div>
+<p>The <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">matlab code</a> creates an NTF (see <a href="#fig-NTF" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>) with CIFB topology and performs dynamic scaling using the functions of <span class="math inline">\(\Delta\Sigma\)</span> toolbox (see <span class="citation" data-cites="tb-CIFB-params">(<a href="../elie4/index.html#ref-tb-CIFB-params" role="doc-biblioref"><strong>tb-CIFB-params?</strong></a>)</span>)).</p>
+<table class="caption-top table">
+<caption><strong>Table 2: Specifications.</strong> {#tb-CIFB-params}</caption>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a(1)</td>
+<td>0.2636</td>
+</tr>
+<tr class="even">
+<td>a(2)</td>
+<td>2.137</td>
+</tr>
+<tr class="odd">
+<td>b(1)</td>
+<td>0.2636</td>
+</tr>
+<tr class="even">
+<td>c(1)</td>
+<td>0.3097</td>
+</tr>
+<tr class="odd">
+<td>c(2)</td>
+<td>5.7837</td>
+</tr>
+</tbody>
+</table>
+<p>While designing NTF, OSR, quantization levels[N] are fixed attributes and order of the modulator, out-band gain[OBG], cut-off frequency, etc are the iterative factors. Let’s discuss some facts about NTF and Quantizer.</p>
+<p><span class="math inline">\(Dynamic Range = SQNR =\frac{signal power}{noise power}\)</span></p>
+<p>and in <span class="math inline">\(d\beta\)</span>, <span class="math inline">\(Dynamic Range =6.02 N + 1.76\)</span> (where N = quantization levels)</p>
+<p>as we decrease <strong>N</strong> by 1, SQNR decreases by factor of 6 <span class="math inline">\(d\beta\)</span> and this can be fixed easil by increasing <strong>OBG</strong>. The working is quantizer is basically we need to compare the output from the loop filter against a bunch of levels and generate PWM quantity which is dependent on these levels. Hence, fewer the levels of quantizer, easier is the design of quantizer. So we try and reduce the number of levels as much as possible and the lowest we can go is 2 levels resulting in 1-bit quantizer. Clearly, we are pushing the assumptions we made in the mathematical analysis of quantizer too much for e.g.&nbsp;the realization of quantizer as white additive noise is only valid when the levels are more.</p>
+<p>It turns out that for a single-bit modulator, the noise is still shaped out but since we have only two levels, technically speaking, the quantizer is always either in upper saturation or lower saturation. Also it is not answerable defining the gain of the quantizer.</p>
+<p>This gives rise to an <strong>Empirical rule: Lee’s Rule</strong> which says that the NTF’s out-band gain (OBG) must be <span class="math inline">\(\le 1.5\)</span>. Whole bunch of simulations were run on 1-bit modulator and proven that Lee’s Rule will somehow make all the mathematical assumptions for quantizer hold true.</p>
+<p>The mathematical assumptions are as follows:</p>
+<ol type="1">
+<li>We treat quantization noise as ‘white’, ‘broad-banded’ and independent of input signal</li>
+<li>The error is bounded and also uniformly distributed between <span class="math inline">\([-\frac{\Delta}{2}, \frac{\Delta}{2}]\)</span> (where<span class="math inline">\(\Delta\)</span> = step size of quantizer)</li>
+</ol>
+<p>As we are desiging a second order <strong>single bit</strong> <span class="math inline">\(\Delta\Sigma\)</span> modulator, quantization level[N] = 2 and the NTF is being automatically designed using <span class="math inline">\(\Delta\Sigma\)</span> toolbox</p>
+<div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_System_Diagram.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: Block Diagram
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-Block-Diagram" class="quarto-xref">Figure&nbsp;<span>12.2</span></a> shows that we need discrete time integrators for our loop filter, 1-bit quantizer and 1-bit feedback.</p>
+</section>
+</section>
+<section id="sec-SwitchCap" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Realisation of discrete time second order switch capacitor circuit</h1>
+<div id="fig-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_graph.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Integrator
+</figcaption>
+</figure>
+</div>
+<p>If we want to realize any discrete time transfer function <strong>H(z)</strong>, we need a. discrete time switch-capacitor amplifier and b. discrete time switch capacitor integrator. <a href="#fig-graph" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> shows the integrator in continuous time where the area under the curve shows the integrated output at any time instant ‘t’ and its equivalent in discrete time where the output at sample ‘n’ is sum of all samples till that sample. But now we have two possibilities:</p>
+<ol type="a">
+<li>we sum up all the samples excluding the current sample. Where we get a transfer function as follows;</li>
+</ol>
+<p><span class="math display">\[
+V_{out}[n] = \sum_{m=0}^{n-1} V_{in}[m]
+\]</span></p>
+<ol start="2" type="a">
+<li>we sum up all the samples including the current sample. Where we get a transfer function as follows;</li>
+</ol>
+<p><span class="math display">\[
+V_{out}[n-1] = \sum_{m=0}^{n-2} V_{in}[m]
+\]</span></p>
+<p>Now, writing <span class="math inline">\(V_{out}[n]\)</span> in terms of <span class="math inline">\(V_{out}[n-1]\)</span>,</p>
+<p><span class="math inline">\(V_{out}[n] - V_{out}[n-1] = V_{in}[n-1]\)</span> this yeilds,</p>
+<p><span class="math inline">\(V_{out}[n] = V_{out}[n-1] + V_{in}[n-1]\)</span> for case (a) where the current sample is excluded giving us a <strong>Transfer function: <span class="math inline">\(H(z) = \frac{z^{-1}}{1-z^{-1}}\)</span></strong>. This gives us the ‘Delayed Switch-Capacitor Integrator’</p>
+<p>and if we include the current sample then we have, <span class="math inline">\(V_{out}[n] = V_{out}[n-1] + V_{in}[n]\)</span> giving us a <strong>Transfer function: <span class="math inline">\(H(z) = \frac{1}{1-z^{-1}}\)</span></strong>. This gives us the ‘Non-Delayed Switch-Capacitor Integrator’</p>
+<section id="implementation-of-delayed-switch-capacitor-integrator" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="implementation-of-delayed-switch-capacitor-integrator"><span class="header-section-number">7.1</span> Implementation of Delayed Switch-Capacitor Integrator</h2>
+<p>So essentially, the equation speaks that we are storing the output and adding the input to the existing output. Therefore, to store the output we need a capacitor <span class="math inline">\((C_1)\)</span>, and we want to process this voltage onto the next capacitor <span class="math inline">\((C_2)\)</span>, but we also need to make sure that no current is being derived from it. Thus, we need to use a voltage controlled voltage source (Op-amp) but while designing on IC level, mosfets are always current sources controlled by voltage and its better to use OTA instead of Op-amps in our design. So, we need an OTA.</p>
+<p><span class="quarto-unresolved-ref">?fig-phis</span> shows that in phase1, <span class="math inline">\(C_1\)</span> will store the charge from <span class="math inline">\(V_{in}\)</span> and in phase2, the charge will be transfered to <span class="math inline">\(C_2\)</span> and it will store charge from previous sample. To put this together (see <span class="quarto-unresolved-ref">?fig-Club</span>)</p>
+<p><img src="figures/_fig_phis.svg" id="fig-phis" class="img-fluid"> <img src="figures/_fig_Club.svg" id="fig-Club" class="img-fluid"></p>
+<p>Now, we also need to take charge injection into consideration and implement bottom plate sampling. Our derived switch-capacitor integrator will be having a <strong>Transfer function: <span class="math inline">\(H(z) = \frac{C_1}{C_2}\frac{z^{-1}}{1-z^{-1}}\)</span></strong> (See <a href="#fig-switchcap-integrator" class="quarto-xref">Figure&nbsp;<span>7.2</span></a>)</p>
+<div id="fig-switchcap-integrator" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-switchcap-integrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_switchcap_integrator.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-switchcap-integrator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: Delayed Switch capacitor Integrator
+</figcaption>
+</figure>
+</div>
+<p>The input is sampled in track phase <span class="math inline">\(\phi_1\)</span> and transferred to <span class="math inline">\(C_2\)</span> in hold phase <span class="math inline">\(\phi_2\)</span> again in next <span class="math inline">\(\phi_1\)</span>, new <span class="math inline">\(V_{in}\)</span> is sampled and hence, the sampled signal is available at output after one cycle proving the delay. (see <a href="#fig-delay" class="quarto-xref">Figure&nbsp;<span>7.3</span></a>)</p>
+<div id="fig-delay" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-delay-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_delay.svg" id="fig-delay" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-delay-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.3
+</figcaption>
+</figure>
+</div>
+<p>This boils down to a second order switch capacitor circuit follwed by a single bit quantizer as shown in <a href="#fig-switchcap-dsm" class="quarto-xref">Figure&nbsp;<span>7.4</span></a>.</p>
+<div id="fig-switchcap-dsm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-switchcap-dsm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_switchcap_dsm.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-switchcap-dsm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.4: Second order switch capacitor DSM
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-capacitor-sizing" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Capacitor Sizing</h1>
+<p>The capacitance ratio in the first stage can be computed using <span class="math display">\[
+a_1 = \frac{C_1 V_{\text{ref}}}{C_2} = \frac{C_1 V_{\text{dd}}}{C_2}
+\]</span></p>
+<p>The absolute value of C1 is determined by a thermal noise constraint. The meansquare noise voltage yielding an SNR of 101 dB (98 dB plus 3 dB margin) relative to the power of a full-scale sine wave is <span class="math display">\[
+\overline{\nu_n^2} = \frac{(V_{dd}/2)^2/2}{10^{SNR/10}} = \frac{(0.75)^2/2}{10^{(101/10)}} = (22.3\,\mu V)^2
+\]</span></p>
+<p>The in-band input-referred mean-square noise voltage associated with the first integrator is approximately <span class="math display">\[
+v_n^2 = \frac{kT}{OSR \cdot C_1}
+\]</span></p>
+<p>The <span class="math inline">\(c1\)</span> coefficient specifies the weighting factor connecting the first integrator to the second</p>
+<p><span class="math display">\[
+c_1 = \frac{C_3}{C_5}
+\]</span></p>
+<p><span class="math inline">\(a_2\)</span> is related to the feedback capacitor <span class="math inline">\(C_4\)</span> and the 1-bit DAC’s differential reference voltage via following equation and setting <span class="math inline">\(C_4 = 0.1\)</span> picofarrad arbitraryly</p>
+<p><span class="math display">\[
+a_2 = \frac{C_4 V_{dd}}{C_5}
+\]</span></p>
+<p>This <a href="https://github.com/snehashree499/CEMS_DSM/blob/main/DSM/Matlab/Second_Order_SwitchCap.m">matlab code</a> yeilds the capacitor values according to the desired equations as follows:</p>
+<table class="caption-top table">
+<caption><strong>Capacitor Sizes</strong></caption>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C_1</td>
+<td>0.3</td>
+<td>pF</td>
+</tr>
+<tr class="even">
+<td>C_2</td>
+<td>2.06</td>
+<td>pF</td>
+</tr>
+<tr class="odd">
+<td>C_3</td>
+<td>0.21</td>
+<td>pF</td>
+</tr>
+<tr class="even">
+<td>C_4</td>
+<td>0.1</td>
+<td>pF</td>
+</tr>
+<tr class="odd">
+<td>C_5</td>
+<td>0.7</td>
+<td>pF</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-OTA" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> OTA design for Switch Capacitor integrators</h1>
+<p>As we now enter on IC design level, we need to implement the discrete time integrator using CMOS elements. We will use <a href="https://xschem.sourceforge.io">Xschem</a> for schematic entry and <a href="https://ngspice.sourceforge.io">ngspice</a> for simulation. The 130nm CMOS technology <strong>IHP-SG13G2</strong> from <a href="https://www.ihp-microelectronics.com">IHP Microelectronics</a>. Tools and PDK are integrated in the <a href="https://github.com/iic-jku/IIC-OSIC-TOOLS">IIC-OSIC-TOOLS</a> Docker image. This PDK is open-source, and the complete process specification can be found at <a href="https://github.com/IHP-GmbH/IHP-Open-PDK/blob/main/ihp-sg13g2/libs.doc/doc/SG13G2_os_process_spec.pdf">SG13G2 process specification</a></p>
+<section id="deriving-required-parameters-for-design" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="deriving-required-parameters-for-design"><span class="header-section-number">9.1</span> Deriving required parameters for design</h2>
+<p>As mention in <a href="#sec-SwitchCap" class="quarto-xref"><span>Chapter 7</span></a> the load driven by our circuit is purely capacitive and hence taking consideration of swing over gain, <strong>Folded Cascode</strong> topology (see <span class="quarto-unresolved-ref">?fig-OTA</span>) is what best suited in our case, where we have PMOS input pair.</p>
+<div id="fig-OTA-SlewCurrents" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./figures/_fig_OTA_SlewCurrents.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-SlewCurrents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Candidate OTA
+</figcaption>
+</figure>
+</div>
+<p>Detailed analysis of <strong>Folded Cascode</strong> topology can be accessed <a href="https://github.com/pangavhanehreeshi/SecondOrder_SingleBit_DSM/blob/main/DSM/Designs_Hrishi/RealCircuits/Folded%20Cascode/FoldedCascode%20_Theory.pdf">here</a>. You can find the <strong>quantitative</strong> as well as <strong>qualitative</strong> analysis , <strong>noise analysis</strong>, <strong>offset / mismatch analysis</strong>.</p>
+<section id="deriving-i" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="deriving-i"><span class="header-section-number">9.1.1</span> Deriving <span class="math inline">\(I\)</span></h3>
+<p>As shown in <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> the magnitude of the output current under these conditions is <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> is the bias current in each half of the differential pair. (<span class="math inline">\(I\)</span> is also assumed to be the standing current in the output cascodes.) Clearly, <span class="math inline">\(I\)</span> must be large enough to transfer the charge from the input capacitor(s) to the integrating capacitor in the allotted time.<span class="citation" data-cites="Understanding_Delta-Sigma_Data_Converters">(<a href="../elie4/index.html#ref-Understanding_Delta-Sigma_Data_Converters" role="doc-biblioref">S. Pavan and Temes 2017</a>)</span></p>
+<p>Let’s allocate half of a clock phase (i.e., one quarter of a clock period) for slewing. Since the voltage on the left side of the input capacitor C1 can change by as much as <span class="math inline">\({{V_\mathrm{DD}}} = 1.5 V\)</span> , we therefore need</p>
+<p><span class="math display">\[
+I &gt; \frac{C_1 VDD}{T/4} = \frac{0.36 \, \mathrm{pF} \cdot 1.5 \, \mathrm{V}}{1.13 \, \mu\mathrm{s}} = 0.8 \, \mu\mathrm{A}.
+\]</span></p>
+</section>
+<section id="deriving-g_mathrmm-from-time-constant-calculation" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="deriving-g_mathrmm-from-time-constant-calculation"><span class="header-section-number">9.1.2</span> Deriving <span class="math inline">\({g_\mathrm{m}}\)</span> from Time-constant calculation</h3>
+<div id="fig-RC-Calculations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-RC-Calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_RC_Calculation.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RC-Calculations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: Time Constant Calculation
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-RC-Calculations" class="quarto-xref">Figure&nbsp;<span>9.2</span></a> shows the small-signal model of an integrator in the charge-transfer phase and an equivalent circuit from which we see that the time-constant is</p>
+<p><span class="math display">\[
+\tau = RC = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{g_\mathrm{m}}
+\]</span></p>
+<p>Now let’s say we take the linera settling to provide attenuation of 100 <span class="math inline">\(dB\)</span></p>
+<p><span class="math display">\[
+\frac{T}{4} = \tau \ln(10^5) \approx 12\tau
+\]</span></p>
+<p>This gives us <span class="math display">\[
+{g_\mathrm{m}} = \frac{C_1 + C_3 + \frac{C_1 C_3}{C_2}}{\frac{T}{48}} = 5.7 \, \mu\frac{A}{V}
+\]</span></p>
+</section>
+<section id="deciding-l-and-w-for-mosfets" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="deciding-l-and-w-for-mosfets"><span class="header-section-number">9.1.3</span> Deciding <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> for MOSFETS</h3>
+<p>Now that we have the exact values for <span class="math inline">\({g_\mathrm{m}}\)</span> and <span class="math inline">\({I_\mathrm{D}}\)</span>, we can derive the values of <span class="math inline">\(L\)</span> and <span class="math inline">\(W\)</span> by making use of <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve. Refer to <a href="#sec-gmid-method" class="quarto-xref"><span>Chapter 10</span></a> for detailed discussion regarding sizing.</p>
+<p>We already know the current flowing throught each MOSFET (See <a href="#fig-OTA-SlewCurrents" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>). As shown in <a href="#fig-gm_IdvsId_W-nmos" class="quarto-xref">Figure&nbsp;<span>9.3</span></a> and <a href="#fig-gm_IdvsId_W-pmos" class="quarto-xref">Figure&nbsp;<span>9.4</span></a>, by appropriately choosing the <span class="math inline">\(L\)</span>, we can obtain <span class="math inline">\(W\)</span> for $ = 7.12 $</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The minimum length consideration while designing in low voltage CMOS technology should be atleast <strong>3 to 4 times</strong> the <span class="math inline">\(L_\min\)</span>. In our case <span class="math inline">\(L_\min = 0.13 \, \mu\)</span>.</p>
+</div>
+</div>
+<div id="fig-gm_IdvsId_W-nmos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gm_IdvsId_W-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_gmid_vs_idw_nmos.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_IdvsId_W-nmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for nmos
+</figcaption>
+</figure>
+</div>
+<div id="fig-gm_IdvsId_W-pmos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gm_IdvsId_W-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_gmid_vs_idw_pmos.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gm_IdvsId_W-pmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.4: <span class="math inline">\({g_\mathrm{m}}\)</span><em><span class="math inline">\({I_\mathrm{D}}\)</span> vs <span class="math inline">\({I_\mathrm{D}}\)</span></em><span class="math inline">\(W\)</span> curve for pmos
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="ota-biasing-using-current-mirror" class="level3" data-number="9.1.4">
+<h3 data-number="9.1.4" class="anchored" data-anchor-id="ota-biasing-using-current-mirror"><span class="header-section-number">9.1.4</span> OTA biasing using <strong>current mirror</strong></h3>
+<div id="fig-OTA-Biasing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-OTA-Biasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_biased_OTA.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-Biasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.5: OTA Biasing
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-OTA-Biasing" class="quarto-xref">Figure&nbsp;<span>9.5</span></a> explains the biasing of the OTA using <strong>Wilson’s current mirror</strong> topology.</p>
+</section>
+<section id="sec-Performance-OTA" class="level3" data-number="9.1.5">
+<h3 data-number="9.1.5" class="anchored" data-anchor-id="sec-Performance-OTA"><span class="header-section-number">9.1.5</span> Performance of designed OTA</h3>
+<p>For understanding how the designed OTA is performing, we run transient analysis, ac analysis and dc analysis. In order to achieve these analysis, we need to put our OTA in negative feedback loop (unity feedback loop in our case) and realize the plots. <a href="#fig-OTA-tran" class="quarto-xref">Figure&nbsp;<span>9.6</span></a> shows the transient plot and gives us the time constant in which it reaches the steady state. NgSpice yeilds tsettle = 8.663771e-09</p>
+<p><a href="#fig-OTA-ac-mag" class="quarto-xref">Figure&nbsp;<span>9.8</span></a> and <a href="#fig-OTA-ac-phase" class="quarto-xref">Figure&nbsp;<span>9.7</span></a> shows us the magnitude and phase over a range of frequency.Where NgSpice yeilds dc_gain = 9.156547e-01 fbw = 7.544229e+07 Gain_error = -8.41453e-02</p>
+<div id="fig-OTA-tran" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-OTA-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Tran_OTA.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.6: Transient Analysis
+</figcaption>
+</figure>
+</div>
+<div id="fig-OTA-ac-phase" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-OTA-ac-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Magnitude_OTA.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-ac-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.7: AC Analysis
+</figcaption>
+</figure>
+</div>
+<div id="fig-OTA-ac-mag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-OTA-ac-mag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Phase_OTA.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OTA-ac-mag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.8: AC Analysis
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="sec-gmid-method" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Sizing using gm over Id method</h1>
+<p>Now that we have designed the topology of our OTA(refer to foldedCascode) and we already know the value of <span class="math inline">\(g_\mathrm{m}\)</span>, and <span class="math inline">\(I_\mathrm{D}\)</span>, we need to derive the widths <span class="math inline">\(W\)</span> <span class="math inline">\(L\)</span> and lengths of our design.</p>
+<p>In nanometer CMOS, the MOSFET behavior is much more complex than these simple models. Also, this highly simplified derivations introduce concepts like the threshold voltage or the overdrive voltage, which are interesting from a theoretical viewpoint, but bear little practical use. Modern compact MOSFET models (like the PSP model used in SG13G2) use hundreds of parameters and fairly complex equations to somewhat properly describe MOSFET behavior over a wide range of parameters like width, length and temperature. A modern approach to MOSFET sizing is thus based on the thought to use exactly these MOSFET models, characterize them, put the resulting data into tables and charts, and thus learn about the complex MOSFET behavior and use it for MOSFET sizing.</p>
+<p>The gm over Id methodology has the huge advantage that it catches MOSFET behavior quite accurately over a wide range of operating conditions, and the curves look very similar for pretty much all CMOS technologies, from micrometer bulk CMOS down to nanometer FinFET devices. Of course the absolute values change, but the method applies universally.</p>
+<p>A brief is available <a href="https://github.com/iic-jku/analog-circuit-design/blob/main/sizing/Ref_Murmann_gmID.pdf">here</a></p>
+<section id="sec-techsweep-testbench" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-techsweep-testbench"><span class="header-section-number">10.1</span> Testbench for MOSFETSWEEP</h2>
+<p>In order to get all the operating points for lv nmos shown in <a href="#fig-techsweep-nmos-tb" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>, and lv pmos shown in <a href="#fig-techsweep-pmos-tb" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>, we run a techsweep and obtain curves related to parameters such as <span class="math inline">\({g_\mathrm{m}}\)</span>, <span class="math inline">\({g_\mathrm{ds}}\)</span>, <span class="math inline">\({C_\mathrm{gs}}\)</span>, <span class="math inline">\({I_\mathrm{d}}\)</span>, <span class="math inline">\({V_\mathrm{GS}}\)</span>, <span class="math inline">\({V_\mathrm{DS}}\)</span>, <span class="math inline">\(L\)</span>, <span class="math inline">\(W\)</span>. We create a testbench in Xschem which sweeps the terminal voltages, and records various large- and small-signal parameters, which are then stored in large tables.</p>
+<div id="fig-techsweep-nmos-tb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-techsweep-nmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/tb_sg13_lv_nmos.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-techsweep-nmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Testbench for LV NMOS <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> characterization.
+</figcaption>
+</figure>
+</div>
+<div id="fig-techsweep-pmos-tb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-techsweep-pmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/tb_sg13_lv_pmos.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-techsweep-pmos-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: Testbench for LV PMOS <span class="math inline">\(g_\mathrm{m}/I_\mathrm{D}\)</span> characterization.
+</figcaption>
+</figure>
+</div>
+<p>After obtaining the parameters we plot them using Matlab, and obtain some important curves or graphs in order to understand the MOSFET’s behaviour.</p>
+</section>
+</section>
+<section id="sec-Quantizer" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Realisation of 1-Bit Quantizer</h1>
+<section id="designing-of-the-1-bit-quantiser" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="designing-of-the-1-bit-quantiser"><span class="header-section-number">11.1</span> Designing of the 1-Bit Quantiser</h2>
+<p>Based on the collected experience in this lecture we are desiging a 1-bit Quantiser (Comparator) in Xschem. <!-- @fig-Comparator-sch is the prepared comparator design which will be discused in detail next.
+
+![Schematic for Strong arm latch.](/figures/Comparator.svg){#fig-Comparator-sch} --></p>
+</section>
+<section id="defining-a-comparator" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="defining-a-comparator"><span class="header-section-number">11.2</span> Defining a Comparator</h2>
+<p>This block compares two input voltages, <span class="math inline">\({V_\mathrm{1}}\)</span> and <span class="math inline">\({V_\mathrm{2}}\)</span> and determines their relationship. If <span class="math inline">\({V_\mathrm{1}}\)</span> &gt; <span class="math inline">\({V_\mathrm{2}}\)</span> output is set to <span class="math inline">\({V_\mathrm{DD}}\)</span>. Otherwise, if <span class="math inline">\({V_\mathrm{1}}\)</span> &lt; <span class="math inline">\({V_\mathrm{2}}\)</span> the output is 0<span class="math inline">\({V_\mathrm{}}\)</span>.</p>
+<p>The ideal input-output characteristics should resemble a signum function, as illustrated in <span class="quarto-unresolved-ref">?fig-Ip_Op</span>(Comp).</p>
+<p><img src="../../figures/_fig_Ip_Op_Comp.svg" class="img-fluid" alt="Ideal Input-Output Charecteristics of a Comparator">{#fig-Ip_Op(Comp)}</p>
+</section>
+<section id="realising-a-comparator" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="realising-a-comparator"><span class="header-section-number">11.3</span> Realising a Comparator</h2>
+<p>Consider an amplier with a sufficiently large gain. For simplicity consider one input <span class="math inline">\({V_\mathrm{in}}\)</span>, the output is going to be amplified by factor A. Amplifier operates between <span class="math inline">\({V_\mathrm{DD}}\)</span> and GND. If the gain is large emough the output will saturate to <span class="math inline">\({V_\mathrm{DD}}\)</span> or GND.</p>
+<p>The minimum input required for the output to reach <span class="math inline">\({V_\mathrm{DD}}\)</span> is <span class="math inline">\({V_\mathrm{DD}}\)</span>/<span class="math inline">\(A\)</span>, at which point the comparator produces an output of <span class="math inline">\({V_\mathrm{DD}}\)</span>.</p>
+<p>The output is then fed into a digital block, typically a flip-flop, to resample the obtained signal. For the flip-flop to register a digital 1, the amplifier’s output must exceed the input threshold voltage <span class="math inline">\({V_\mathrm{TH}}\)</span>.</p>
+<p>As we know that the common implementation of first stage OTA is <strong>Differential Pair</strong> as shown in <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;<span>11.1</span></a>.</p>
+<div id="fig-diffpair" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffpair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../figures/_fig_Diff_Pair.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffpair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: Differential Pair
+</figcaption>
+</figure>
+</div>
+<p>The gain of the circuit, as shown in <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;<span>11.1</span></a> is given by: <span class="math inline">\({V_\mathrm{out}}\)</span> = <span class="math inline">\({g_\mathrm{m}R}\)</span><span class="math inline">\(\Delta V\)</span> Initially, the output of <a href="#fig-diffpair" class="quarto-xref">Figure&nbsp;<span>11.1</span></a> is zero. When an input is applied, the output gradually increases due to the influence of parasitic capacitances. Over time, it settles exponentially to its final value. The closed form expression for exponentially settling behaviour is given by: <span class="math display">\[
+V_{\mathrm{out}} = g_m R \Delta V \left(1 - e^{-t/\tau}\right)
+\]</span></p>
+<p>To accelerate the response of the output curve, we need to adjust <span class="math inline">\({\tau}\)</span> as its magnitude cannot be directly altered. One effective approach is to replace the resistor with a negative resistor, which helps achieve faster settling.</p>
+<p><span id="eq-closed-form-exponential"><span class="math display">\[
+-g_m R \Delta V \left(1 - e^{t/\tau}\right)
+g_m R \Delta V \left(1 - e^{t/\tau}\right) - {g_\mathrm{m}R}\Delta V
+\tag{11.1}\]</span></span></p>
+<p><a href="#eq-closed-form-exponential" class="quarto-xref">Equation&nbsp;<span>11.1</span></a> gives much quicker settling in the output.</p>
+<p>Negative resistor is if we apply voltage we should not be drawing current but we should put the current in the node in order get negative reistance. We cannot have a constant current source because it should depend on <span class="math inline">\({V_\mathrm{t}}\)</span> so we should use voltage control current source. Simplest voltage control current source is MOSFET. Therefore we replace resistors by PMOS’s as shown in <a href="#fig-rbypmos" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>.</p>
+<p>A negative resistor is characterized by the property that when a voltage is applied, it does not draw current but instead injects current into the node, effectively creating negative resistance. A constant current source cannot be used in this case, as the current must depend on <span class="math inline">\({V_\mathrm{t}}\)</span>. Therefore, a voltage-controlled current source is required. The simplest implementation of a voltage-controlled current source is a MOSFET. Consequently, resistors are replaced with PMOS transistors, as illustrated in <a href="#fig-rbypmos" class="quarto-xref">Figure&nbsp;<span>11.2</span></a>.</p>
+<div id="fig-rbypmos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rbypmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../figures/_fig_rbyp.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rbypmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: Updated Differential Pair
+</figcaption>
+</figure>
+</div>
+<p>Initially, the output voltages <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> decrease as current is drawn from the top PMOS transistors. Among them, <span class="math inline">\({V_\mathrm{x}}\)</span> drops more rapidly than <span class="math inline">\({V_\mathrm{y}}\)</span>. As <span class="math inline">\({V_\mathrm{x}}\)</span> decreases, the current through its corresponding transistor increases, eventually surpassing the externally drawn current. As a result, <span class="math inline">\({V_\mathrm{y}}\)</span> begins to rise. As <span class="math inline">\({V_\mathrm{y}}\)</span> increases, the gate voltage at <span class="math inline">\({V_\mathrm{x}}\)</span> also increases, reducing the current through the transistor. Consequently, the amount of current being pushed into the node becomes less than the current being pulled out, causing <span class="math inline">\({V_\mathrm{x}}\)</span> to drop even further.</p>
+<p>Ultimately, this feedback process leads to: <span class="math inline">\({V_\mathrm{y}}\)</span> reaching to <span class="math inline">\({V_\mathrm{DD}}\)</span> <span class="math inline">\({V_\mathrm{x}}\)</span> reaching to 0<span class="math inline">\({V_\mathrm{}}\)</span></p>
+<p>This kind of exponential increase is called <strong>“Regeneration”</strong>.</p>
+<p>When <span class="math inline">\(\Delta V\)</span> &lt; 0, the voltage <span class="math inline">\({V_\mathrm{y}}\)</span> should decrease while <span class="math inline">\({V_\mathrm{x}}\)</span> should should rise to <span class="math inline">\({V_\mathrm{DD}}\)</span>. However, a challenge with this approach arises due to the <strong>positive feedback</strong>, which reinforces the voltages at <strong><span class="math inline">\({V_\mathrm{DD}}\)</span> and 0<span class="math inline">\({V_\mathrm{}}\)</span></strong>. Once these values are established, the positive feedback works to maintain them, preventing a smooth transition.</p>
+<p>In this configuration, the <strong>PMOS transistors remain in the same state</strong>, and the switching action relies on the <strong>two NMOS transistors</strong>. However, unless the current drawn from node <span class="math inline">\({V_\mathrm{y}}\)</span> is significantly stronger, it cannot be effectively pulled down to 0<span class="math inline">\({V_\mathrm{}}\)</span>.</p>
+<p>The key issue is that after completing a comparison for the previous input, the circuit retains the same output state while starting a new comparison. To ensure proper operation, both outputs must be <strong>reset</strong> before a new comparison begins.</p>
+<p>The total time available is from 0 to <span class="math inline">\({T_\mathrm{s}}\)</span> where, the first half is dedicated to sampling and the second half is allocated for regeneration.</p>
+<p>The comparator operates in the regeneration phase, denoted as <span class="math inline">\(\phi c\)</span> and in the sampling phase, represented a <span class="math inline">\(\overline{\phi c}\)</span>. During the sampling phase, the outputs can be reset. To achieve this, switches are used to reset the outputs to <span class="math inline">\({V_\mathrm{DD}}\)</span> as in <a href="#fig-Comp-Switch" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>.</p>
+<div id="fig-Comp-Switch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Comp-Switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../figures/_fig_Comp_Switch.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Comp-Switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.3: Addition of Switches
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-Comp-Switch" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>, the two NMOS transistors do not need to be active during the reset phase of the PMOS transistors. Therefore, they can be turned off by switching off the bottom NMOS transistor. This allows the circuit to be clocked at <span class="math inline">\(\phi c\)</span>. Additionally, PMOS transistors can be used as switches for this operation as in <a href="#fig-pmos-switch" class="quarto-xref">Figure&nbsp;<span>11.4</span></a>.</p>
+<div id="fig-pmos-switch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pmos-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../figures/_fig_pmos_switch.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pmos-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.4: PMOS_NMOS Comparator Circuit
+</figcaption>
+</figure>
+</div>
+<p>To describe the output behavior of a PMOS switch with respect to the clock signal <span class="math inline">\(\phi c\)</span>, here’s how it works step-by-step: 1.When <span class="math inline">\(\phi c\)</span> = 0: The switches are off, so both The output of above <a href="#fig-pmos-switch" class="quarto-xref">Figure&nbsp;<span>11.4</span></a>, <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> are at 0<span class="math inline">\({V_\mathrm{}}\)</span>. 2.When <span class="math inline">\(\phi c\)</span> = 1: The switches are now on. Initially, <span class="math inline">\({V_\mathrm{x}}\)</span> starts to drop faster because the PMOS transistor turns on when the voltage difference <span class="math inline">\({V_\mathrm{DD}}\)</span>-<span class="math inline">\({V_\mathrm{TH}}\)</span> is large enough. 3.As <span class="math inline">\({V_\mathrm{x}}\)</span> drops and approaches a certain threshold, the PMOS turns on completely. The voltage at <span class="math inline">\({V_\mathrm{y}}\)</span> then starts increasing and approaches <span class="math inline">\({V_\mathrm{DD}}\)</span>. Simultaneously, <span class="math inline">\({V_\mathrm{x}}\)</span> continues to drop due to the action of the PMOS switch.</p>
+<p><strong>Issue with Static Power Consumption in Comparator Circuit</strong></p>
+<p>In the described PMOS-NMOS comparator circuit, the comparison process halts at a certain point where: <span class="math inline">\({V_\mathrm{y}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span> and <span class="math inline">\({V_\mathrm{x}}\)</span> = 0 At this stage, the NMOS transistor on the right side is turned on, which keeps the corresponding PMOS transistor in the ON state. <strong>Static Power Consumption:</strong> After the comparison is complete, and there is no change in the inputs and outputs, static power consumption persists. This is due to a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground, as the NMOS remains on while the PMOS continues to conduct.</p>
+<p><strong>Influence of Differential Voltage(<span class="math inline">\({\Delta V}\)</span>):</strong> When the differential voltage <span class="math inline">\({\Delta V}\)</span> is large, the term <span class="math inline">\(\frac{\Delta V}{2}\)</span> becomes significant. This results in ${V_} being very small, which in turn causes the PMOS transistor to turn off, effectively reducing power consumption. However, when the differential voltage <span class="math inline">\({\Delta V}\)</span> is small, the voltage difference is insufficient to turn off the PMOS, allowing a direct path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground, and consequently leading to static power consumption.</p>
+<p>To address this issue, a direct connection exists between the PMOS and NMOS transistors, creating an unintended path from <span class="math inline">\({V_\mathrm{DD}}\)</span> to ground. To resolve this, an additional element should be introduced between points A and B, as illustrated in the diagram below <a href="#fig-A-B" class="quarto-xref">Figure&nbsp;<span>11.5</span></a></p>
+<div id="fig-A-B" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-A-B-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../figures/_fig_A_B_point.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-A-B-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.5: PMOS_NMOS Comparator Circuit
+</figcaption>
+</figure>
+</div>
+<p>The goal is to ensure that node B is OFF when <span class="math inline">\({V_\mathrm{x}}\)</span> = 0 <span class="math inline">\({V_\mathrm{}}\)</span> and node A is ON when <span class="math inline">\({V_\mathrm{y}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span>. This can be achieved by using an NMOS transistor, with its gate connected to <span class="math inline">\({V_\mathrm{x}}\)</span> and <span class="math inline">\({V_\mathrm{y}}\)</span> as shown in #fig-comp-1</p>
+<div id="fig-comp-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../../figures/_fig_comp_1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.6: Comparator
+</figcaption>
+</figure>
+</div>
+<p>In the diagram <a href="#fig-comp-1" class="quarto-xref">Figure&nbsp;<span>11.6</span></a>, the drains and gates of the PMOS and NMOS transistors are connected to each other, forming a CMOS inverter.</p>
+<p>Thi circuit is known as Strong-Arm Latch. Drawing it neatly as in <span class="quarto-unresolved-ref">?fig-comp-final</span> <img src="../../figures/_fig_comp_final.svg" id="fig-comp-final" class="img-fluid" alt="Strong-Arm Latch"></p>
+<p>In practice there is one more modification made, along with ressetting X and Y we will also reset P and Q.</p>
+<p><span class="math inline">\({V_\mathrm{1}}\)</span>-<span class="math inline">\({V_\mathrm{2}}\)</span> = <span class="math inline">\({\Delta V}\)</span> &gt; 0</p>
+<p>The output analysis of <span class="quarto-unresolved-ref">?fig-comp-final</span> is showin in <a href="#fig-OP-analysis" class="quarto-xref">Figure&nbsp;<span>11.7</span></a>.</p>
+<p>When, <span class="math inline">\(\phi c\)</span> = 0, <span class="math inline">\({V_\mathrm{X,Y,P,Q}}\)</span> = <span class="math inline">\({V_\mathrm{DD}}\)</span> When, <span class="math inline">\(\phi c\)</span> = ON, switches are OFF.</p>
+<div id="fig-OP-analysis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-OP-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Comp_Output_analysis.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-OP-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.7: Output Analysis of Strong Arm Latch
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-comp-tran" class="quarto-xref">Figure&nbsp;<span>11.8</span></a> shows the transient analysis of our comparator.</p>
+<div id="fig-comp-tran" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_comp_tran.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-tran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.8: Transient Analysis of Comparator
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="implementing-a-strong-arm-latch-for-delta-sigma-modulator" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="implementing-a-strong-arm-latch-for-delta-sigma-modulator"><span class="header-section-number">11.4</span> Implementing a Strong Arm Latch for Delta-Sigma Modulator</h2>
+<p>Based on the above theory, we need to design a comparator and a latch that stores the output data from the comparator and converts it into a strong digital output.</p>
+<p><span class="citation" data-cites="ig-comp2-sch">(<a href="../elie4/index.html#ref-ig-comp2-sch" role="doc-biblioref"><strong>ig-comp2-sch?</strong></a>)</span>- and <a href="#fig-comp-tran1" class="quarto-xref">Figure&nbsp;<span>11.10</span></a> shows the implementation and transient analysis of <strong>Strong Arm Latch Comparator</strong> respectively.</p>
+<div id="fig-comp2-sch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp2-sch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Comp-Latch.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp2-sch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.9: Schematic representation of a Strong-Arm Latch Comparator
+</figcaption>
+</figure>
+</div>
+<div id="fig-comp-tran1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-tran1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_Comp_Tran1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-tran1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.10: Transient Analysis of a Strong-Arm Latch Comparator
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="clock-generator" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Clock Generator</h1>
+<p>Mixed-signal systems must balance elements that are critical in the digital domain as well as the analog domain. One important area of digital interface design in mixed-signal systems is clocking, which must be used to enforce timing between components and to read data from ADCs. Many mixed-signal systems operating in the low-to-moderate frequency range will use a reference oscillator, and there may be a need to synchronize multiple clocks across a system to accurately sample and synchronize the entire system.</p>
+<p>In designing a sigma- delta ADC, we can say that the clock is the heartbeat of the ADC, synchronizing all operations. It means that the clock plays a crucial role in the overall system operation. The clock precisely controls the timing of various ADC components, and without it, neither sampling nor processing can occur.</p>
+<p>let’s see clock’s role precisely:</p>
+<p><strong>1. Sampling Control:</strong></p>
+<p>The clock determines when the ADC should take a sample of the analog signal. In our system, the sampling frequency is 220 kHZ, meaning a new sample is taken every 4.545 seconds.</p>
+<p><span class="math display">\[
+T_s = \frac{1}{f_s} = \frac{1}{220 \times 10^3} = 4.545 \mu s \,
+\]</span></p>
+<p>If the clock is too slow, insufficient data is captured, leading to signal degradation. If the clock is too fast, the circuit may not respond correctly, introducing noise and errors.</p>
+<p><strong>2. Control of the <span class="math inline">\(\Delta\Sigma\)</span> Modulator Processing:</strong></p>
+<p>The <span class="math inline">\(\Delta\Sigma\)</span> ADC operates using a feedback loop, which consists of: Integrators Comparator Flip-Flop</p>
+<p>The clock synchronizes these components, ensuring the correct generation of the digital output.</p>
+<p>Every clock cycle, the following steps occur: integrator updates its value. The integrator accumulates past values and combines them with the new input. This operation occurs once per clock cycle. Comparator determines if the new value is above or below zero. The comparator outputs a digital 0 or 1 at each clock edge. This output is directly sent to the digital processing stage. Feedback loop adjusts the input based on the digital output. The feedback system returns a digital signal to the integrator to correct conversion errors. If the clock is not properly configured, the modulator may malfunction, leading to incorrect digital output. If the clock is too fast, noise increases, and synchronization between analog and digital circuits is lost.</p>
+<p><strong>3. Flip-Flop Control and Comparator Decision-Making:</strong></p>
+<p>The comparator evaluates the integrator’s output and determines a digital 0 or 1 at each clock edge. Every time the clock triggers, a new digital value is stored, preparing it for further processing. The D Flip-Flop stores this digital value and generates the final bitstream. Without clock flip-flops store the data randomly and that is not the thing we want, because it leads to corrupt digital output.</p>
+<p><strong>4. Digital Filter (Decimation Filter) Control:</strong></p>
+<p>After the modulator, a digital filter (Decimation Filter) processes the high-speed output data. This filter, operating with the system clock and its divided versions, reduces the data rate to generate the final 16-bit digital output.</p>
+<p>To design this <span class="math inline">\(\Delta\Sigma\)</span> ADC clock, we must consider that we need two non-overlapping clock signals for proper operation. In a <span class="math inline">\(\Delta\Sigma\)</span> ADC, capacitor switching and signal processing occur in two consecutive steps. One phase is used for sampling, while the other is used for integration and processing. If both clocks are high at the same time, it may cause signal interference and increased noise. To avoid this issue, two non-overlapping clocks are used, ensuring that they never go high simultaneously. The Sample-and-Hold circuit in an ADC requires two separate phases: In Phase 1, sampling takes place. In Phase 2, signal processing and data transfer occur. This circuits operation is based on charge transfer by switching. As shown by the time-domain waveforms in figure, during integrating phase ∅2, the charge stored in a sampling capacitor Cs is transferred to an integrating capacitor C1 of the switch. The discharging of Cs takes place at an exponentially decaying rate.</p>
+<p><a href="#fig-switchcap-integrator" class="quarto-xref">Figure&nbsp;<span>7.2</span></a></p>
+<p>in switch capacitor circuits, the maintenance you should ensure is that the clocks never overlap.</p>
+<section id="why-non-overlapping-phases" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="why-non-overlapping-phases"><span class="header-section-number">12.1</span> Why non-overlapping phases?</h2>
+<p><strong>1. Preventing short circuit current:</strong></p>
+<p>In switched-capacitor circuits, two switches are controlled by complementary clock phases. If both clock signals go high simultaneously, both switches turn on, creating a short circuit to ground or supply voltage. A non-overlapping clock eliminates this issue by ensuring a small delay (Dead Time) between the two clock phases.</p>
+<p><strong>2. Improving Sampling Accuracy:</strong></p>
+<p>In <span class="math inline">\(\Delta\Sigma\)</span> ADCs, capacitors require sufficient time to charge or discharge before the clock phase changes. If the clock phases overlap, the capacitor may not fully charge, leading to sampling errors. A non-overlapping clock ensures accurate data transfer and minimizes noise.</p>
+<p><strong>3. Reducing Charge Injection &amp; Clock Feedthrough:</strong></p>
+<p>Overlapping clock phases can cause charge injections and clock feedthrough, leading to signal distortion and increased noise. A non-overlapping clock helps to reduce these effects significantly.</p>
+<div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_waveform_Clkphase.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: Block Diagram
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="how-to-generate-a-non-overlapping-clock" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="how-to-generate-a-non-overlapping-clock"><span class="header-section-number">12.2</span> How to Generate a Non-Overlapping Clock?</h2>
+<p>To generate ϕ1 and ϕ2 clock phases that never overlap, delay elements (RC delay, buffers, inverters) and AND/NOR gates are commonly used. The propagation delay is determined by the number and sizing of inverters in the non-overlapping circuit. While increasing the number of inverters extends the delay, it also increases power consumption and chip area. Transmission gates can be used alongside inverters to optimize delay and reduce the number of inverter stages. Switched capacitor circuits are widely used in ADCs, comparators, filters, and sample-and-hold circuits due to their compact and reliable design. The inverter chain configuration affects clocking sequences, where odd/even numbers of inverters generate specific logic transitions. Proper inverter sizing is crucial for achieving high-speed operation while minimizing area.</p>
+<p>So, we saw that for example we don’t need 2 clocks to be high. At the same time phase 2 is going high after phase 1 is low by this you need logic to give you an output of 1 when both inputs are zero so that’s a NOR gate.<br>
+As you can see in the picture The basic non-overlapping clock generator consists of a S-R flip-flop, with inverters in series before the feedback, to add delay as required. Each sub-block contains inverters and one transmission gate to produce desired delay in the falling or rising edge.</p>
+<div id="fig-Block-Diagram" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures\Untitled Diagram-Page-3.drawio (1).svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Block-Diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.2: Block Diagram
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="schematic-entry-of-clock-generator" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="schematic-entry-of-clock-generator"><span class="header-section-number">12.3</span> Schematic entry of Clock Generator</h2>
+<p>There is the design of the non-overlapping clock phases with our project specifications.</p>
+<div id="fig-blocks" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_clk_output.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.3: CLK_GEN_output
+</figcaption>
+</figure>
+</div>
+<div id="fig-blocks" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_tb_ClkG.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.4: CLK_GEN_testbench
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="final-design" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Final Design</h1>
+<div id="fig-schematic-ltspice" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-schematic-ltspice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_ltspice_schematic.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-ltspice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.1: Schematic
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-schematic-ltspice" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> shows the schematic entry in <strong>LTSpice</strong> which acts as a reference to our circuit</p>
+<div id="fig-schematic-dsm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-schematic-dsm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_schematic_dsm.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schematic-dsm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.2: Schematic
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-ltspice-output" class="quarto-xref">Figure&nbsp;<span>13.3</span></a> is the output from <strong>LTSpice</strong> which is taken as reference. <a href="#fig-schematic-dsm" class="quarto-xref">Figure&nbsp;<span>13.2</span></a> shows the implementation of real circuit , where the designed switch capacitor using OTA and comparator are put together in <strong>Xschem</strong>. <strong>vo1</strong> representing the output from first integrator, <strong>vo2</strong> from second integrator, and <strong>vcmp</strong> from the comparator, which then creates a feedback loop.</p>
+<div id="fig-ltspice-output" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ltspice-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_ltspice_output.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ltspice-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.3: LTSpice output
+</figcaption>
+</figure>
+</div>
+<div id="fig-real-dsm-output" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-real-dsm-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_60u_vo1vo2vcmp.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-real-dsm-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.4: DSM output
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-ltspice-output" class="quarto-xref">Figure&nbsp;<span>13.3</span></a> gives us the reference plot and <a href="#fig-real-dsm-output" class="quarto-xref">Figure&nbsp;<span>13.4</span></a> is the output of our real circuit which portrays that the switch capacitor block is working perfectly fine as we can see the plot till <span class="math inline">\(60\mu\)</span> in <a href="#fig-ltspice-output" class="quarto-xref">Figure&nbsp;<span>13.3</span></a> and compare it with <a href="#fig-real-dsm-output" class="quarto-xref">Figure&nbsp;<span>13.4</span></a></p>
+<p>We can further analyse the output behaviour of switch capacitor block by looking at the <a href="#fig-20m-SC" class="quarto-xref">Figure&nbsp;<span>13.5</span></a>.</p>
+<div id="fig-20m-SC" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-20m-SC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_20m_vo2vo1Vin.svg" id="fig-20m-SC" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-20m-SC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.5
+</figcaption>
+</figure>
+</div>
+<p>The current status of the output from dsm is shown in <a href="#fig-dsm-output" class="quarto-xref">Figure&nbsp;<span>13.6</span></a></p>
+<div id="fig-dsm-output" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dsm-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/_fig_final_output.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dsm-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.6: Output DSM
+</figcaption>
+</figure>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Understanding_Delta-Sigma_Data_Converters" class="csl-entry" role="listitem">
+S. Pavan, R. Schreier, and G. C. Temes. 2017. <em>Understanding Delta-Sigma Data Converters</em>. 2nd ed. IEEE Press, WILEY.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mimeiners\.github\.io\/cems\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lab/elie1/index.html" class="pagination-link" aria-label="Design of an Analog-to-Digital Converter">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Design of an Analog-to-Digital Converter</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lab/elie3/index.html" class="pagination-link" aria-label="Design of an Analog-to-Digital Converter">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design of an Analog-to-Digital Converter</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Concept Engineering Mixed-Technology Systems</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mimeiners/cems/edit/main/lab/elie2/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mimeiners/cems/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

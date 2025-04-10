@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mimeiners.github.io/cems/index.html</loc>
-    <lastmod>2024-12-19T07:56:00.077Z</lastmod>
+    <lastmod>2025-04-10T07:55:32.259Z</lastmod>
   </url>
   <url>
-    <loc>https://mimeiners.github.io/cems/class/lec-01-intro.html</loc>
-    <lastmod>2025-01-31T10:06:35.526Z</lastmod>
+    <loc>https://mimeiners.github.io/cems/lec/lec-01-intro.html</loc>
+    <lastmod>2025-04-10T10:11:45.376Z</lastmod>
   </url>
   <url>
-    <loc>https://mimeiners.github.io/cems/class/references.html</loc>
-    <lastmod>2025-01-31T10:08:13.714Z</lastmod>
+    <loc>https://mimeiners.github.io/cems/lab/elie1/index.html</loc>
+    <lastmod>2025-04-10T09:01:51.557Z</lastmod>
   </url>
   <url>
-    <loc>https://mimeiners.github.io/cems/lab/lab-01-mbse_and_design.html</loc>
-    <lastmod>2025-01-31T09:25:15.037Z</lastmod>
+    <loc>https://mimeiners.github.io/cems/lab/elie2/index.html</loc>
+    <lastmod>2025-04-10T08:36:10.006Z</lastmod>
   </url>
   <url>
-    <loc>https://mimeiners.github.io/cems/Concept-Engineering-Mixed-Technology-Systems.pdf</loc>
-    <lastmod>2025-01-31T10:43:22.540Z</lastmod>
+    <loc>https://mimeiners.github.io/cems/lab/elie3/index.html</loc>
+    <lastmod>2025-04-10T09:18:06.020Z</lastmod>
   </url>
   <url>
-    <loc>https://mimeiners.github.io/cems/Concept-Engineering-Mixed-Technology-Systems.epub</loc>
-    <lastmod>2025-01-31T10:43:23.551Z</lastmod>
+    <loc>https://mimeiners.github.io/cems/lab/elie4/index.html</loc>
+    <lastmod>2025-04-10T08:38:40.300Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mimeiners.github.io/cems/lab/elie5/index.html</loc>
+    <lastmod>2025-04-10T09:30:17.104Z</lastmod>
   </url>
 </urlset>
