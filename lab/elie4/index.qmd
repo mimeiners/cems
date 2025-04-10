@@ -18,11 +18,11 @@ author:
 bibliography: references.bib
 ---
 
-{{< include chapters/introduction/introduction.qmd >}}
+{{< include ./chapters/introduction/introduction.qmd >}}
 
-{{< include chapters/theory/theory.qmd >}}
+{{< include ./chapters/theory/theory.qmd >}}
 
-{{< include chapters/ideal_circ/ideal_circ.qmd >}}
+{{< include ./chapters/ideal_circ/ideal_circ.qmd >}}
 
 # Design Proposals
 This chapter shall highlight our attempts at realizing the desired subsystems of the $\Delta\Sigma$ modulator on
@@ -46,13 +46,13 @@ testbench-driven simulations utilize ngspice.
 
 : IHP SG13G2 devices {#tbl-sg13g2-devices}[@pretl2025]
 
-{{< include chapters/clock_gen/clock_gen.qmd >}}
+{{< include ./chapters/clock_gen/clock_gen.qmd >}}
 
-{{< include chapters/switch_cap_int_design/design.qmd >}}
+{{< include ./chapters/switch_cap_int_design/design.qmd >}}
 
-{{< include chapters/design/comparator/comp.qmd >}}
+{{< include ./chapters/design/comparator/comp.qmd >}}
 
-{{< include chapters/decimator/decimator.qmd >}}
+{{< include ./chapters/decimator/decimator.qmd >}}
 
 # Conclusion
 
@@ -67,4 +67,3 @@ to time limitations.
 
 ::: {#refs}
 :::
-
