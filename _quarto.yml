@@ -47,14 +47,14 @@ book:
 #        - class/lec-06-app-ideal-opamp.qmd
 #        - class/lec-07-sampling_circuits.qmd
 #        - class/lec-08-ota_design.qmd
-    - part: Lab
+    - part: Design Teams
       chapters:
         - lab/elie1/index.qmd
         - lab/elie2/index.qmd
-        - lab/elie3/index.qmd
-        - lab/elie4/index.qmd
-        - lab/elie5/index.qmd
-        - lab/elie6/index.qmd
+        - lab/elie3/index.ipynb
+#        - lab/elie4/index.qmd
+#        - lab/elie5/index.qmd
+#        - lab/elie6/index.qmd
     - references.qmd
 
 bibliography: _bibliography/references.bib

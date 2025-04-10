@@ -1,10 +1,16 @@
 ## Clock-Phase generation
 
-The aforementioned delay in the phases of the clocks acting on the switched capacitor can be achieved by the structure in figure @fig-phase_gen. This takes a reference clock signal which provides a signal at the frequency required by the system and outputs four different phases $\phi_1$, $\phi_{1d}$, $\phi_2$ and $\phi_{2d}$. The feedback between the upper and lower strand of the structure, in conjunction with the NAND gates, ensures the prevention of overlap between $\phi_1$ and $\phi_2$ and in turn for their respective delayed versions.
+The aforementioned delay in the phases of the clocks acting on the switched capacitor can be achieved by the structure
+in @fig-phase_gen. This takes a reference clock signal which provides a signal at the frequency required by the system
+and outputs four different phases $\phi_1$, $\phi_{1d}$, $\phi_2$ and $\phi_{2d}$. The feedback between the upper and
+lower strand of the structure, in conjunction with the NAND gates, ensures the prevention of overlap between $\phi_1$
+and $\phi_2$ and in turn for their respective delayed versions.
 
-![Basic structure for delayed clock phase generation](figures/clk_gen/schem_clock_generation.svg){#fig-phase_gen}
+![Basic structure for delayed clock phase generation](../../figures/clk_gen/schem_clock_generation.svg){#fig-phase_gen}
 
-By changing the capacitance of the marked inverters the actual delay between $\phi_i$ and $\phi_{id}$ can be controlled. [@schreier] It is worth noting however, that the capacitive load $C_L$ experienced at the outputs of the structure also has an influence on the phase delay.
+By changing the capacitance of the marked inverters the actual delay between $\phi_i$ and $\phi_{id}$ can be controlled.
+[@schreier] It is worth noting however, that the capacitive load $C_L$ experienced at the outputs of the structure also
+has an influence on the phase delay.
 
 ```{python}
 #| label: fig-delay_norm
@@ -51,9 +57,12 @@ plt.xlabel('$t$/ns')
 plt.ylabel('V')
 plt.legend()
 plt.grid()
-
 ```
 
-Figure @fig-delay_norm shows the normal delay between $\phi_1$ and $\phi_{1d}$ as well as the non-overlap with $\phi_2$. The structure used for clock generation was modeled after the circuit provided by Boris Murman [@murmann]. In this, they used the *sg13g2* standard cells for the NAND gates and inverters which are not built from single transistors and hence their capacitance can not be changed. Simulations with different values for the load capacitances have proven to not impair the structures functionality.
-We thus continue with this non-transitorized version, since creating the gates from scratch would add unnecessary complexity.
+@fig-delay_norm shows the normal delay between $\phi_1$ and $\phi_{1d}$ as well as the non-overlap with $\phi_2$. 
+The structure used for clock generation was modeled after the circuit provided by Boris Murman [@murmann]. In this, 
+they used the *sg13g2* standard cells for the NAND gates and inverters which are not built from single transistors and 
+hence their capacitance can not be changed. Simulations with different values for the load capacitances have proven to
+not impair the structures functionality. We thus continue with this non-transitorized version, since creating the gates
+from scratch would add unnecessary complexity.
 
