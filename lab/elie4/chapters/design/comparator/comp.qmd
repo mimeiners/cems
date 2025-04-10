@@ -21,8 +21,7 @@ It utilizes both n- and pmos transistors that are generally sized with small val
 
 (to be cited:
 
-- Low Voltage, Low Power, Inverter-Based
-Switched-Capacitor Delta-Sigma Modulator
+- Low Voltage, Low Power, Inverter-Based Switched-Capacitor Delta-Sigma Modulator
 - Murmann lectures (e.g. 6)
 )
 
@@ -77,7 +76,7 @@ import ltspice as lt
 
 #parse data from .raw file
 #for compiling the finished document this path needs to be relative to "report_grp4.qmd"
-fpath       = '../../ic_design/design_comp/simulations/tb_comp_test.raw'
+fpath       = 'raws/tb_comp_test.raw'
 l           = lt.Ltspice(fpath)
 l.parse()
 

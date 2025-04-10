@@ -1,11 +1,20 @@
 ---
-title: "Model-Based Systems Engineering (MBSE) of a Delta Sigma Modulator based IC Design for Analog to Digital Converter"
+title: "MBSE of a Delta Sigma Modulator based IC Design"
+author:
+  - name: Sriram Repaka
+    email: srepaka@stud.hs-bremen.de
+    corresponding: true
+    roles: "author"
+    affiliation:
+      - name: Hochschule Bremen
+        city: Bremen
+        state: Deutschland
+        url: https://www.hs-bremen.de
 ---
 
-<div style="text-align: justify;">
-
 ## Objective
-IC level designing of an ACD based on ADS1115, understanding the working principle of an ADC via circuit simulations and an IC design in xschem based on SG13G2 package. SG13G2 is a 130nm process architecture  based package developed by IHP.
+IC level designing of an ADC based on ADS1115, understanding the working principle of an ADC via circuit simulations and
+an IC design in xschem based on SG13G2 package. SG13G2 is a 130nm process architecture based package developed by IHP.
 
 ## System Overview
 
@@ -19,7 +28,16 @@ flowchart LR
 	D --> E(Thonny Micropython)
 	D --> F(Arduino IDE C)
 ```
-The modular board-level sensor system illustrated in Figure 1 is designed for capturing and processing acceleration data using a combination of hardware and software components. The system begins with the **ADXL335**, a 3-axis analog accelerometer, which measures acceleration and provides an analog voltage output. This signal is then converted into a digital format by the **ADS1115**, a high-resolution 16-bit ADC, ensuring accurate data transmission. The **ESP8266**, a Wi-Fi-enabled microcontroller, receives this digitized data, processes it, and facilitates further measurement analysis. The system supports two different programming environments: **Thonny MicroPython**, which allows for Python-based scripting and quick prototyping, and **Arduino IDE C**, which enables traditional C-based firmware development. The flexibility of this system makes it highly adaptable for IoT applications, real-time monitoring, and embedded sensor-based projects, providing a reliable platform for data acquisition and wireless transmission.
+
+The modular board-level sensor system illustrated in Figure 1 is designed for capturing and processing acceleration data
+using a combination of hardware and software components. The system begins with the **ADXL335**, a 3-axis analog
+accelerometer, which measures acceleration and provides an analog voltage output. This signal is then converted into a
+digital format by the **ADS1115**, a high-resolution 16-bit ADC, ensuring accurate data transmission. The **ESP8266**, a
+Wi-Fi-enabled microcontroller, receives this digitized data, processes it, and facilitates further measurement analysis.
+The system supports two different programming environments: **Thonny MicroPython**, which allows for Python-based
+scripting and quick prototyping, and **Arduino IDE C**, which enables traditional C-based firmware development. The
+flexibility of this system makes it highly adaptable for IoT applications, real-time monitoring, and embedded
+sensor-based projects, providing a reliable platform for data acquisition and wireless transmission.
 
 ## Introduction
 A Sigma-Delta (ΣΔ) Modulator is an advanced signal conversion system commonly used for high-resolution A/D and D/A conversion. It employs **oversampling, quantization, and noise shaping** to achieve superior performance, particularly in applications requiring precise signal representation. Unlike conventional Nyquist-rate converters, ΣΔ modulators sample the input signal at a much higher rate, reducing the need for complex anti-aliasing filters. The noise shaping technique pushes quantization noise to higher frequencies, where it can be easily removed by digital filtering, leading to a significant improvement in signal-to-noise ratio (SNR). In A/D conversion, the Sigma-Delta modulator first filters the input analog signal to remove high-frequency components, preventing aliasing. The filtered signal is then sampled at a high rate and quantized, often using a simple 1-bit or multi-bit quantizer. A feedback loop, consisting of an integrator and a digital filter, continuously adjusts the quantization error, shaping the noise spectrum. The resulting digital output, though initially at a high sampling rate, is then passed through a decimation filter, which reduces the sampling rate while maintaining high resolution. In D/A conversion, the process is reversed. A digital input sequence is converted to an analog signal using a Digital-to-Analog Converter (DAC), followed by an analog hold stage that maintains each sample value for a short duration. The output is then passed through a reconstruction filter, which smooths the signal and removes high-frequency artifacts introduced during digital processing.
@@ -34,6 +52,7 @@ Sigma-Delta modulation is widely used in high-resolution applications such as au
 In A/D conversion, the analog input signal first undergoes anti-alias filtering, which removes unwanted high-frequency components that could cause aliasing during sampling. The filtered signal is then sampled at a high rate, often exceeding the Nyquist rate, capturing discrete points of the waveform. This sampled signal is then quantized, where each sample is assigned a digital value, producing a sequence such as 2, 7, 0, 15, etc. The high sampling rate and noise shaping techniques used in Sigma-Delta modulation push quantization noise to higher frequencies, improving resolution after digital filtering.
 
 The D/A conversion process reverses this operation. The digital sequence is first converted back into an analog signal using a Digital-to-Analog Converter (DAC). Since the DAC output consists of discrete steps, an analog hold stage maintains each sample value momentarily. This is followed by a reconstruction filter, which smooths the signal, removing high-frequency components and restoring the continuous analog waveform.
+
 By utilizing oversampling and noise shaping, Sigma-Delta modulators achieve higher accuracy and lower distortion than conventional converters. These characteristics make them ideal for applications requiring high dynamic range and low power consumption, such as audio codecs, RF systems, and industrial sensors.
 
 
@@ -174,4 +193,4 @@ Debugging this design highlighted the importance of accounting for OTA  both the
 - Bernhard E. Boser. Eecs247: Analog-digital interface integrated circuits. Course notes, University of California Berkeley, February 2003.
 - Michael Clifford. Fundamental principles behind the sigma-delta adc topology: Part 1. Technical report, Analog Devices (AD), January 2016.
 - Michael Clifford. Fundamental principles behind the sigma-delta adc topology: Part 2. Technical report, Analog Devices (AD), February 2016. 
-</div>
+

@@ -5,9 +5,7 @@ author:
     email: mkranich@stud.hs-bremen.de
     affiliations: 
     - name: Hochschule Bremen
-      address: Neustadtswall 30a
-      postal-code: 28299
-      city: Bremen
+      url: https://www.hs-bremen.de/
   - name: Lars Nickisch
     email: lnickisch@stud.hs-bremen.de
   - name: Priyanka Toyni 

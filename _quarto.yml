@@ -39,23 +39,23 @@ book:
     - index.qmd
     - part: Lecture
       chapters:
-        - lec/lec-01-intro.qmd
-#        - class/lec-02-gyros.qmd
-#        - class/lec-03-sampling_quantization.qmd
-#        - class/lec-04-adc_metrics.qmd
-#        - class/lec-05a-oversampling_adc.qmd
-#        - class/lec-06-app-ideal-opamp.qmd
-#        - class/lec-07-sampling_circuits.qmd
-#        - class/lec-08-ota_design.qmd
-    - part: Design Teams
+#        - lec/lec-01-intro.qmd
+#        - lec/lec-02-gyros.qmd
+#        - lec/lec-03-sampling_quantization.qmd
+#        - lec/lec-04-adc_metrics.qmd
+#        - lec/lec-05a-oversampling_adc.qmd
+#        - lec/lec-06-app-ideal-opamp.qmd
+#        - lec/lec-07-sampling_circuits.qmd
+#        - lec/lec-08-ota_design.qmd
+        - references.qmd
+    - part: Design Reports
       chapters:
         - lab/elie1/index.qmd
         - lab/elie2/index.qmd
         - lab/elie3/index.ipynb
-#        - lab/elie4/index.qmd
-#        - lab/elie5/index.qmd
-#        - lab/elie6/index.qmd
-    - references.qmd
+        - lab/elie4/index.qmd
+        - lab/elie5/index.qmd
+
 
 bibliography: _bibliography/references.bib
 
@@ -75,7 +75,7 @@ format:
       - linktoc=all
     colorlinks: true
     linkcolor: "blue"
-    biblio-style: apalike
+    biblio-style: ieee
     #    keep-tex: true
     output-file: cems
   epub:
