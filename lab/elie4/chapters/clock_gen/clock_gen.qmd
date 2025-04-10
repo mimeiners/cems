@@ -6,7 +6,7 @@ and outputs four different phases $\phi_1$, $\phi_{1d}$, $\phi_2$ and $\phi_{2d}
 lower strand of the structure, in conjunction with the NAND gates, ensures the prevention of overlap between $\phi_1$
 and $\phi_2$ and in turn for their respective delayed versions.
 
-![Basic structure for delayed clock phase generation](../../figures/clk_gen/schem_clock_generation.svg){#fig-phase_gen}
+![Basic structure for delayed clock phase generation](figures/clk_gen/schem_clock_generation.svg){#fig-phase_gen}
 
 By changing the capacitance of the marked inverters the actual delay between $\phi_i$ and $\phi_{id}$ can be controlled.
 [@schreier] It is worth noting however, that the capacitive load $C_L$ experienced at the outputs of the structure also
@@ -20,13 +20,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import ltspice as lt
 
-#parse data from .raw file
-#for compiling the finished document this path needs to be relative to "report_grp4.qmd"
-fpath       = 'clk_gen/tb_clkgen_save.raw'
+# parse data from .raw file
+# for compiling the finished document this path needs to be relative to "report_grp4.qmd"
+fpath       = 'raws/tb_clkgen_save.raw'
 l           = lt.Ltspice(fpath)
 l.parse()
 
-#extract relevant data
+# extract relevant data
 time        = l.get_time()
 vclk        = l.get_data('v(clkin)')
 vp1         = l.get_data('v(p1)')
@@ -34,7 +34,7 @@ vp1e        = l.get_data('v(p1e)')
 vp2         = l.get_data('v(p2)')
 vp2e        = l.get_data('v(p2e)')
 
-#redefine data arrays considering new length
+# redefine data arrays considering new length
 factor = 1/15
 length = round(len(time)/factor)
 
@@ -46,7 +46,7 @@ vp1e    = vp1e[1000:1150]
 vp2     = vp2[1000:1150]
 vp2e    = vp2e[1000:1150]
 
-#plot data
+# plot data
 plt.close('all')
 plt.figure(1)
 plt.plot(time*1e9, vp1, label=r'$\phi_{1d}$')

@@ -3,19 +3,16 @@ title: Discrete-Time Delta-Sigma Modulator
 author:
   - name: Hrishikesh Pangavhane
     corresponding: true
-    email: hrishipangavhane@gmail.com
+    email: hrishipangavhane@stud.hs-bremen.de
     affiliations:
       - Hochschule Bremen
   - name: Sneha Shree Katepalli
     corresponding: true
-    email: snehashree499@gmail.com
-    affiliations:
-      - Hochschule Bremen
+    email: skatepalli@stud.hs-bremen.de
   - name: Hanieh Alaeiatar
     corresponding: true
-    email: hanieh.alaei7596@gmail.com
-    affiliations:
-      - Hochschule Bremen
+    email: halaeiatar@stud.hs-bremen.de
+bibliography: references.bib
 ---
 
 {{< include ./content/_macros.qmd >}}

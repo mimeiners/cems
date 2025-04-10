@@ -1,23 +1,23 @@
 ---
 title: Design of an Analog-to-Digital Converter
 author:
-    - name: Erdem Agfirat
-      email: eagfirat@stud.hs-bremen.de
-      corresponding: true
-      roles: "author"
-      affiliation:
-        - name: Hochschule Bremen
-          city: Bremen
-          state: Deutschland
-          url: https://www.hs-bremen.de/die-hsb/fakultaeten/elektrotechnik-und-informatik/forschung-und-transfer/institut-fuer-nachrichtentechnik/
-    - name: Atakan Baydogan
-      roles: "author"
-      email: abaydogan@stud.hs-bremen.de
-    - name: Agah Osman Celebi
-      roles: "author"
-      email: abaydogan@stud.hs-bremen.de
+  - name: Erdem Agfirat
+    email: eagfirat@stud.hs-bremen.de
+    corresponding: true
+    roles: "author"
+    affiliation:
+      - name: Hochschule Bremen
+        city: Bremen
+        state: Deutschland
+        url: https://www.hs-bremen.de
+  - name: Atakan Baydogan
+    roles: "author"
+    email: abaydogan@stud.hs-bremen.de
+  - name: Agah Osman Celebi
+    roles: "author"
+    email: acelebi@stud.hs-bremen.de
+
 bibliography: references.bib
-date: today
 ---
 
 {{< include content/_introduction.qmd >}}
