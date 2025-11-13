@@ -3,7 +3,8 @@
 | Name       | Description                                               |
 |------------|-----------------------------------------------------------|
 | Course     | M 1.9 Concept Engineering Mixed-Technology Systems (CEMS) |
-| Term       | Winter 2024/25                                            |
+|            | M 1.10 Design and Realization of Mixed-Technology Systems (DRMS) |
+| Term       | Winter                                             |
 | Instructor | Prof. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann     |
 
 
