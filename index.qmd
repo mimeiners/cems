@@ -1,11 +1,11 @@
 # Unsyllabus
 
-| Name       | Description                                               |
-|------------|-----------------------------------------------------------|
-| Course     | M 1.9 Concept Engineering Mixed-Technology Systems (CEMS) |
+| Name       | Description                                                      |
+|------------|------------------------------------------------------------------|
+| Course     | M 1.9 Concept Engineering Mixed-Technology Systems (CEMS)        |
 |            | M 1.10 Design and Realization of Mixed-Technology Systems (DRMS) |
-| Term       | Winter                                             |
-| Instructor | Prof. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann     |
+| Term       | Winter                                                           |
+| Instructor | Prof. Dr.-Ing. M. Meiners, Dipl.-Ing. (FH) T. Ziemann            |
 
 
 **(c) 2024-2025 Mirco Meiners and co-authors, Hochschule Bremen - City University of Aplied Sciences (HSB), Bremen, Germany**
