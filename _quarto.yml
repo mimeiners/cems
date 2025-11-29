@@ -48,18 +48,25 @@ book:
     - part: Lecture
       chapters:
         - lec/lec-01-intro.qmd
+        - lec/lec-03-sampling_quantization.qmd
+        - lec/lec-04-adc_metrics.qmd
+        - lec/lec-05a-oversampling_adc.qmd
 
-    - part: Design Reports
-      chapters:
-        - lab/wise24/elie1/index.qmd
-        - lab/wise24/elie2/index.qmd
-        - lab/wise24/elie3/index.ipynb
-        - lab/wise24/elie4/index.qmd
-        - lab/wise24/elie5/index.qmd
+    # - part: Winter 2024/25
+    #   chapters:
+    #     - lab/wise24/elie1/index.qmd
+    #     - lab/wise24/elie2/index.qmd
+    #     - lab/wise24/elie3/index.ipynb
+    #     - lab/wise24/elie4/index.qmd
+    #     - lab/wise24/elie5/index.qmd
 
     - references.qmd
 
-    # Bibliography
+  output-file: "drms"
+
+highlight-style: pygments
+
+# Bibliography
 bibliography: _bibliography/references.bib
 csl: _bibliography/ieee.csl
 
@@ -73,7 +80,6 @@ format:
     # monofont: Cascadia Mono, Menlo, Consolas, Courier New, Courier
     # backgroundcolor: "white"
     # fontcolor: "black"
-    highlight-style: github
 
   epub:
     theme: flatly
@@ -83,10 +89,9 @@ format:
     # monofont: Cascadia Mono, Menlo, Consolas, Courier New, Courier
     # backgroundcolor: "white"
     # fontcolor: "black"
-    highlight-style: github
 
   pdf:
-    documentclass: scrreprt
+    documentclass: scrbook
     classoption: [twoside]
 
     keep-tex: true
@@ -94,15 +99,14 @@ format:
     toc: true
     toc-depth: 3
     # toc-title: "Table of contents"
-    lof: true
-    lot: true
+    # lof: true
+    # lot: true
 
     number-sections: true
     number-depth: 2
         
     papersize: a4
-    # fig-pos: "H"
-    
+        
     geometry:
       - inner=3cm
       - outer=4cm
@@ -121,7 +125,7 @@ format:
     mainfont: "Calibri"
     # mainfont: "Times New Roman"
     # sansfont: "Arial"
-    monofont: "Courier New"
+    # monofont: "Courier New"
     mathfont: "TeX Gyre Termes Math"
     
     # include-in-header:

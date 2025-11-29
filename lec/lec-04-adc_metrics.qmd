@@ -1,0 +1,299 @@
+# ADC/DAC Spectral Performance Metrics
+
+## Discrete-Time Signal Processing System
+
+Ref\. M\. Wickert\, ”Signals and Systems for Dummies”\, A Wiley Brand\, 2013
+
+## Dynamic Performance Metrics
+
+* Time domain
+  * Glitch impulse\, aperture uncertainty\, settling time\, …
+  * We'll look at these later\, in the context of specific circuits
+* Frequency domain
+  * Performance metrics follow from looking at converter or building block output spectrum \-> Spectral performance metrics\.
+  * Basic idea:Apply one or more tones at converter input and expect same tone\(s\) at output\, all other frequency components represent non\-idealities\.
+  * Important to realize that both static \(DNL\, INL\) and dynamic errors contribute to frequency domain non\-ideality\.
+
+
+## Alphabet Soup of Spectral Metrics
+
+SNR \- Signal\-to\-noise ratio
+
+SNDR \(SINAD\) \- Signal\-to\-\(noise\+distortion\) ratio
+
+ENOB \- Effective number of bits
+
+DR \- Dynamic range
+
+SFDR \- Spurious free dynamic range
+
+HD \- Harmonic distortion
+
+THD \- Total harmonic distortion
+
+IMD \- Intermodulation distortion
+
+MTPR \- Multi\-tone power ratio
+
+ERBW \- Effective Resolution Bandwidth
+
+## DAC Tone Test/Simulation Setup
+
+[Wikipedia: Spectrum Analyzer](https://en.wikipedia.org/wiki/Spectrum_analyzer)
+
+## Typical DAC Output Spectrum
+
+Ref\. Hendriks\, "Specifying Communications DACs”\, IEEE Spectrum\, Jul\. 1997
+
+## ADC Tone Test/Simulation Setup
+
+* Basic idea:
+  * Apply a clean sinusoid at input
+  * Compute ADC performance metrics based on output spectrum
+
+
+## Aside: How to Make a Clean Sinusoid in the Lab?
+
+[TTE Elliptical Bandpass Filters](https://www.tte.com/products/bandpass/elliptical-function/)
+
+<span style="color:##ff0000">Signal generator harmonics</span>
+
+## Spectral Estimation
+
+## Matlab Example
+
+![](img/lec-04-adc_metrics_2.png)
+
+## Normalized Plot with Frequency Axis
+
+![](img/lec-04-adc_metrics_3.png)
+
+## Another Example
+
+Same as before\, but now fx=101
+
+This doesn't look like a spectrum of a sinusoid …
+
+What's going on?
+
+![](img/lec-04-adc_metrics_4.png)
+
+## Spectral Leakage
+
+* The DFT computes the spectrum of the periodic repetition of its input\.
+* A sequence that contains a non\-integer number of sine wave cycles has discontinuities in its periodic repetition\.
+  * Discontinuity looks like a high frequency signal component
+  * Power spreads across spectrum
+* Two ways to deal with this:
+  * Ensure integer number of periods \(cycles\)
+  * Windowing
+
+
+## Integer Number of Cycles
+
+Usable test frequencies are limited to a multiple of fs/N\,
+
+![](img/lec-04-adc_metrics_5.png)
+
+## Windowing
+
+* Spectral leakage can be attenuated by windowing the time samples prior to the DFT\.
+* Windows taper smoothly down to zero at the beginning and the end of the observation window\.
+* Time domain samples are multiplied by window coefficients on a sample\-by\-sample basis:
+  * Means convolution in frequency
+  * Sine wave tone and other spectral components smear out over several bins
+* Lots of window functions to chose from:
+  * Tradeoff: attenuation versus smearing\,
+  * Example: Hann Window
+
+
+## Hann Window
+
+![](img/lec-04-adc_metrics_6.png)
+
+## Spectrum with Window
+
+![](img/lec-04-adc_metrics_7.png)
+
+## Integer Cycles vs. Windowing
+
+* Integer number of cycles:
+  * Test signal falls into single DFT bin
+  * Requires careful choice of signal frequency
+  * Ideal for simulations
+  * In lab measurements\, can lock sampling and signal frequency generators \(PLL\) \-> “ _Coherent sampling”_
+* Windowing:
+  * No restrictions on signal frequency
+  * Signal and harmonics distributed over several DFT bins \-> Beware of smeared out non\-idealities …
+  * Requires more samples for given accuracy
+
+
+## Example
+
+Now that we've “ _calibrated_ ” our test system\, let's look at some spectra that involve non\-idealities\.
+
+First look at quantization noise introduced by an ideal quantizer\.
+
+## Spectrum with Quantization Noise
+
+![](img/lec-04-adc_metrics_8.png)
+
+## SQNR
+
+![](img/lec-04-adc_metrics_9.png)
+
+## FFT Noise Floor
+
+![](img/lec-04-adc_metrics_10.png)
+
+## DFT Plot Annotation
+
+* DFT plots are fairly meaningless unless you clearly specifiy the underlying conditions\.
+* Most common annotation:
+  * Specify how many DFT points \(N\) were used\.
+* Less common options:
+  * Shift DFT noise floor by 10 log10\(N/2\) dB
+  * Normalize with respect to bin width in Hz and express noise as power spectral density \-> "Noise power in 1 Hz bandwidth"
+
+
+## Periodic Quantization Noise
+
+Same as before\, but cycles = 64 \(instead of 67\)
+
+fx = fs 64/2048 = fs/32
+
+Quantization noise is highly deterministic and periodic
+
+For more random and „white“ quantization noise\, it is best to make N and cycles mutually prime GCD\(N\, cycles\) = 1
+
+![](img/lec-04-adc_metrics_11.png)
+
+## Typical ADC Output Spectrum
+
+## SNDR and ENOB
+
+## Effective Number of Bits
+
+## Survey Data
+
+R\. H\. Walden\, "Analog\-to\-digital converter survey and analysis\,"  _IEEE J\. on Selected Areas in Communications_
+\, pp\. 539\-50\, April 1999
+
+Input Power \[dB\]
+
+## Dynamic Range
+
+## SFDR
+
+## SDR and THD
+
+## Lowering the Noise Floor
+
+Increasing the FFT size let's us lower the noise floor and reveal low level harmonics
+
+## Aliasing
+
+Harmonics can appear at "arbitrary" frequencies due to aliasing
+
+f1 = fx = 0\.3125 fs
+
+f2 = 2 f1 = 0\.6250 fs  0\.3750 fs
+
+f3 = 3 f1 = 0\.9375 fs  0\.0625 fs
+
+f4 = 4 f1 = 1\.2500 fs  0\.2500 fs
+
+f5 = 5 f1 = 1\.5625 fs  0\.4375 fs
+
+SECOND
+
+ORDER
+
+PRODUCTS
+
+THIRD
+
+ORDER
+
+PRODUCTS
+
+## IMD: Intermodulation Distortion
+
+* IMD is important in multi\-channel communication systems
+  * Third order products are generally difficult to filter out
+
+
+## MTPR: Multi-Tone Power Ratio
+
+* Useful metric in multi\-tone transmission systems
+  * E\.g\. OFDM
+
+
+## Frequency Dependence
+
+* All of the above discussed metrics generally depend on frequency
+  * Sampling frequency and input frequency
+
+![](img/lec-04-adc_metrics_20.png)
+
+![](img/lec-04-adc_metrics_21.png)
+
+\[Analog Devices\, AD9203 Datasheet \]
+
+![](img/lec-04-adc_metrics_22.png)
+
+\[Texas Instruments\, ADS5541 Datasheet \]
+
+## ERBW: Effective Resolution Bandwidth
+
+* Defined as the input frequency at which the SNDR of a converter has dropped by 3 dB
+  * Equivalent to a 0\.5\-bit loss in ENOB
+* ERBW > fs/2 is not uncommon\, especially in converters designed for sub\-sampling applications
+* ERBW is only a useful metric when the SNDR is relatively flat initially and gracefully degrades at high frequencies
+
+
+## Relationship Between INL and Harmonic Distortion
+
+* The INL of an ADC often takes on a quadratic or cubic “bow”
+  * Meaning that the transfer function can be approximated by x\+a2x2 or x\+a3x3
+* The resulting harmonic distortion usually sets the low frequency SFDR
+
+* The expression below provides an analytical relationship between the peak INL due a cubic bow and the resulting HD3
+* The result provides a reasonable bound even if the INL is not perfectly cubic
+  * Rule of thumb: HD ≅ \-20log\(2B/INL\)
+  * E\.g\. 1 LSB INL at 10 bits  HD ≅ \-60 dB
+
+Example of a cubic INL
+
+Lee\, JSSC 12/2007
+
+## SNR Degradation due to DNL
+
+For an ideal quantizer we assumed uniform quatization error over
+
+Let's add uniform DNL over                  and repeat math\.\.\.
+
+![](img/lec-04-adc_metrics_25.png)
+
+Source: Ion Opris\, http://www\.oprisconsulting\.com
+
+* Integrate triangular pdf
+* Compare to ideal quantizer
+* Bottom line: non\-zero DNL across many codes can easily cost a few dB in SNR
+  * „DNL noise"
+
+
+## Noise Figure of an ADC
+
+## Quantization Noise in 1Hz
+
+## Spot Noise Figure
+
+Improve NF by increasing R \(need a transformer\)\, resolution \(N\) and fs
+
+## Real World Example
+
+![](img/lec-04-adc_metrics_31.png)
+
+Analog Devices\, Tutorial MT\-006
+
